@@ -34,7 +34,7 @@ p {
     right: 4%;
 }
 
-.reload, .croix {
+.reload, .cross {
     position: absolute;
     width: 1.5rem;
     right: 1%;
@@ -80,7 +80,7 @@ p {
 
 }
 
-.croix {
+.cross {
     bottom: 2%;
 }
 
