@@ -149,3 +149,35 @@ button {
     bottom: 17%;
     right: 7%;
 }
+
+/* scumm*/
+.selected_objet {
+    color: red;
+    font-size: 10rem;
+    position: absolute;
+    bottom: 10rem;
+    left: 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
