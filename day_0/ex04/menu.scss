@@ -1,0 +1,254 @@
+/*------------------------------------*\
+    COLORS
+\*------------------------------------*/
+
+$light-green: #7ed56f;
+$medium-green: #55c57a;
+$dark-green: #28b485;
+$grey-light: #f7f7f7;
+
+/*------------------------------------*\
+    grid
+\*------------------------------------*/
+$grid-width: 114rem;
+$gutter-v: 8rem;
+$gutter-v-small: 4rem;
+$gutter-h: 6rem;
+
+/*------------------------------------*\
+    Mixin
+\*------------------------------------*/
+
+@mixin clearfix {
+
+	&::after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+/*------------------------------------*\
+    media query
+\*------------------------------------*/
+
+@mixin respond($breakpoint) {
+	@if $breakpoint == phone { // 600 px
+		@media (max-width: 37.5em) {
+			@content
+		}
+	}
+
+	@if $breakpoint == tab-land {
+		@media (max-width: 75em) {
+			@content
+		}
+	}
+
+	@if $breakpoint == tab-port {
+		@media (max-width: 56.25em) {
+			@content
+		}
+	}
+
+	@if $breakpoint == tabp {
+		@media (max-width: 56.25em) {
+			@content
+		}
+	}
+
+	@if $breakpoint == big-desktop {
+		@media (min-width: 112.5em) {
+			@content
+		}
+	}
+}
+
+/*------------------------------------*\
+    font
+\*------------------------------------*/
+$default-size: 1.6rem;
+
+.nav {
+	&__checkbox {
+		display: none;
+	}
+
+	&__button {
+		background: white;
+		height: 7rem;
+		width: 7rem;
+		position: fixed;
+		top: 6rem;
+		right: 6rem;
+		border-radius: 50%;
+		z-index: 2000;
+		box-shadow: 0 1rem 3rem rgba(black, .1);
+		text-align: center;
+
+	}
+
+	&__background {
+		height: 6rem;
+		width: 6rem;
+		border-radius: 50%;
+
+		position: fixed;
+		top: 6.5rem;
+		right: 6.5rem;
+		z-index: 1000;
+
+		transition: all .8s cubic-bezier(0.86, 0, 0.07, 1);
+
+		@include respond(tab-port) {
+			top: 4.5rem;
+			right: 4.5rem;
+		}
+	;
+
+		@include respond(phone) {
+			top: 3.5rem;
+			right: 3.5rem;
+		}
+	;
+
+	}
+
+	&__navigation {
+		height: 100vh;
+		width: 120vw;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 1500;
+
+		background: radial-gradient($dark-green, $light-green);
+
+		transform: translateX(-120vw);
+		//opacity: 0;
+		//width: 0;
+		transition: all .6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	}
+
+	&__list {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		list-style: none;
+		text-align: center;
+		width: 100%;
+	}
+
+	&__item {
+		font-size: 3rem;
+		font-weight: 300;
+		color: white;
+		text-transform: uppercase;
+		background: linear-gradient(120deg, transparent 0%, transparent 50%, white 50%);
+		padding: 1rem 2rem;
+		background-size: 220%;
+		transition: all .4s;
+		margin: 1rem;
+
+		&:hover,
+		&:active {
+			background-position: 100%;
+			color: #28b485;
+			transform: translateX(1rem);
+			div {
+				display: block;
+			}
+		}
+	}
+
+	&__checkbox:checked ~ &__background {
+		transform: scale(80);
+	}
+
+	&__checkbox:checked ~ &__navigation {
+
+		//opacity: 1;
+		//width: 100%;
+		transform: translateX(-10vw);
+	}
+
+	&__icon {
+		position: relative;
+		margin-top: 50%;
+
+		&,
+		&::after,
+		&::before {
+			width: 3rem;
+			height: 3px;
+			background: black;
+			display: inline-block;
+		}
+
+		&::after,
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			transition: all .2s;
+		}
+
+		&:before {
+			top: -.8rem
+		}
+		&:after {
+			top: .8rem;
+		}
+	}
+
+	&__button:hover &__icon::before {
+		top: -1rem;
+
+	}
+
+	&__button:hover &__icon::after {
+		top: 1rem;
+	}
+
+	&__checkbox:checked + &__button &__icon {
+		background: transparent;
+	}
+
+	&__checkbox:checked + &__button &__icon::before {
+		top: 0;
+		transform: rotate(135deg);
+	}
+
+	&__checkbox:checked + &__button &__icon::after {
+		top: 0;
+		transform: rotate(-135deg);
+	}
+}
+
+.choice:hover{
+	background-position: 100%;
+	background: blue;
+	transform: translateX(1rem);
+}
+
+.choice{
+	font-size: 2rem;
+	font-weight: 300;
+	color: black;
+	text-transform: uppercase;
+	background: linear-gradient(120deg, transparent 0%, transparent 50%, white 50%);
+	padding: 1rem 2rem;
+	background-size: 220%;
+	transition: all .4s;
+	margin: 1rem;
+}
+
+.relou{
+
+	display: none;
+}
+
+.choice:hover{
+
+}
