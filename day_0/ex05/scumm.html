@@ -47,27 +47,33 @@
     <div class="element">
         <!--col left-->
         <div class=" col sim_el">
+
             <img
                     src="resources/arrow.png"
                     title="Avancer"
-                    alt="Avancer">
+                    alt="Avancer"
+                    id="avancer">
             <img
                     src="resources/main.png"
                     title="Prendre"
-                    alt="Prendre">
+                    alt="Prendre"
+                    id="prendre">
             <img
                     src="resources/oeil.png"
                     class="oeil"
                     title="Regarder"
-                    alt="Regarder">
+                    alt="Regarder"
+                    id="regarder">
             <img
                     src="resources/outil.png"
                     title="Utiliser"
-                    alt="Utiliser">
+                    alt="Utiliser"
+                    id="utiliser">
             <img
                     src="resources/chat-icon.png"
                     title="Parler"
-                    alt="Parler">
+                    alt="Parler"
+                    id="parler">
         </div>
         <!--img-->
         <div class="cluster sim_el">
@@ -92,15 +98,18 @@
             <img
                     src="resources/book.png"
                     title="book"
-                    alt="book">
+                    alt="book"
+                    id="book">
             <img
                     src="resources/towel.png"
                     title="towel"
-                    alt="towel">
+                    alt="towel"
+                    id="towel">
             <div
                     class="brick"
                     title="brick"
                     alt="brick"
+                    id="brick"
             ></div>
         </div>
     </div>
@@ -121,7 +130,20 @@
         </div>
     </div>
 </div>
+<div>
+    <p
+            id="selected_action"
+            class="selected_action">
 
+    </p>
+    <br>
+    <p
+            id="selected_object"
+            class="selected_object">
+
+    </p>
+
+</div>
 <script src="main.js"></script>
 </body>
 </html>

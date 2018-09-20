@@ -151,12 +151,20 @@ button {
 }
 
 /* scumm*/
-.selected_objet {
+.selected_action {
     color: red;
     font-size: 10rem;
     position: absolute;
     bottom: 10rem;
     left: 0px;
+}
+
+.selected_object {
+    color: red;
+    font-size: 10rem;
+    position: absolute;
+    bottom: 10rem;
+    left: 40rem;
 }
 
 
