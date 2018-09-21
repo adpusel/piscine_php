@@ -208,11 +208,14 @@ button {
 
 
 #joueur{
-    bottom: 66%;
-    right: 70%;
+    bottom: 78%;
+    right: 49%;
 }
 
-
+#dragon{
+    bottom: 75%;
+    right: 35%;
+}
 
 
 
