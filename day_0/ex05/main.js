@@ -94,6 +94,11 @@ function set_all_click()
 		set_dialogue("hey j'ai besion d'aide")
 		woman_diag = "ok"
 	  }
+
+	  if (cur_action === "regarder")
+	  {
+		set_description("c'est une femme qui est triste")
+	  }
 	}
   }
 
@@ -102,7 +107,14 @@ function set_all_click()
 	document.getElementById("man").onclick = function ()
 	{
 	  set_dialogue("fiche moi la paix")
+
+	  if (cur_action === "regarder")
+	  {
+		set_description("c'est un mec type pas gentil")
+	  }
 	}
+
+
   }
 
 
@@ -116,7 +128,12 @@ function set_all_click()
 	  if (cur_obj === "book" && cur_action === "regarder")
 	  {
 		set_dialogue("merci je ne l'avais pas celui la")
-		player_diag === "ok"
+		player_diag = "ok"
+	  }
+
+	  if (cur_action === "regarder")
+	  {
+		set_description("c'est un mec qui joue au carte")
 	  }
 	}
   }
@@ -133,7 +150,14 @@ function set_all_click()
 		set_dialogue("dis 42")
 		dragon_diag = "ok"
 	  }
+
+	  if (cur_action === "regarder")
+	  {
+		set_description("c'est un dragon")
+	  }
 	}
+
+
   }
 
 
@@ -151,7 +175,7 @@ function set_all_click()
 	if (document.getElementById("dialogue").value === "book" &&
 	  player_diag === "ok")
 	{
-	  set_dialogue("va voir le dragon_diag")
+	  set_dialogue("va voir le dragon ")
 	}
 
 	if ((document.getElementById("dialogue").value === "42" ||
