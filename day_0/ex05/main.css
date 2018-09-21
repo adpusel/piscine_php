@@ -169,17 +169,48 @@ button {
 
 
 
+.selected_object {
+    color: red;
+    font-size: 10rem;
+    position: absolute;
+    bottom: 10rem;
+    left: 40rem;
+}
+
+.description {
+    color: blue;
+    font-size: 5rem;
+    position: absolute;
+    bottom: 30rem;
+    left: 40rem;
+}
+
+.inv_link {
+    z-index: 1000;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    position: absolute;
+
+    background: red;
+}
+
+#man{
+    bottom: 66%;
+    right: 47%;
+}
 
 
+#woman{
+    bottom: 66%;
+    right: 70%;
+}
 
 
-
-
-
-
-
-
-
+#joueur{
+    bottom: 66%;
+    right: 70%;
+}
 
 
 
