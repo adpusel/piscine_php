@@ -5,6 +5,8 @@
 
 #clean tout les fichiers a la fin
 
+# j'ai les meme dossier et je copie tout ce qu'il y a dans le dossier dans l'autre
+
 #*------------------------------------*\
 #    $1 --> le fichier ou prendre les fichiers
 #    $2 --> le nom du fichier a cp
@@ -12,11 +14,22 @@
 function copie_all()
 {
     cd $1
-    for file in `ls ./` ;do
-        directory=`echo $file | sed s'/.php$//'`
-        cp $file "../../$directory/$2"
+    for directory in `ls` ;do
+        cd $directory
+#        echo $directory
+
+        for file in `ls` ;do
+            echo $file
+            cp $file "../../../$directory/source_adpusel.php"
+        done
+
+        cd ..
     done
+    cd ..
 }
+
+# delete
+
 
 function ft_cmp()
 {
@@ -29,7 +42,10 @@ function ft_cmp()
 
 function ft_do_diff()
 {
-    DIFF=$(diff "$1" "$2")
+    php "./$1"      | echo -e   > your
+    php ./code.php  | echo -e   > my
+
+    DIFF=$(diff your my)
 
     if  [ "$DIFF" == "" ]; then
         echo 1
@@ -38,22 +54,27 @@ function ft_do_diff()
     fi
 }
 
-function ft_check_diff()
-{
-    res=$(ft_do_diff "$1" "$2" )
-
-    if  [ "$res" -eq 0 ];  then
-            diff "$1"  "$2"
-    fi
-}
-
-function check_res()
+function test_res()
 {
     if  [ "$1" -eq 1 ]; then
-       printf "\e[1;32m-->  OK   $2 \e[0m\n"
+        printf "\e[1;32m--> OK   $2 \e[0m\n"
     else
         printf "\e[1;31m--> FAIL $2  \e[0m\n"
     fi
+}
+
+#*------------------------------------*\
+#    S1 => fichier test  || $2 => nom exo
+#*------------------------------------*/
+function ft_check_diff()
+{
+    res=$(ft_do_diff $1)
+
+    if  [ "$res" -eq 0 ];  then
+            diff your my
+    fi
+
+    test_res "$res" $2
 }
 
 function end()
@@ -63,7 +84,7 @@ function end()
 }
 
 copie_all code
-copie_all php_file
+#copie_all php_file
 
 
 cd ..
@@ -72,17 +93,8 @@ cd ..
 ##*------------------------------------*/
 cd ex00;
 
-#test
-value=$(printf "Hello World\n" | cat -e)
-
-#ret
-ret=$(php hw.php | cat -e)
-
-#res
-res=$(ft_cmp "$value" = "$ret")
-
-#check
-check_res "$res" ex_00
+#test du result
+ft_check_diff hw.php ex_00
 
 end
 
