@@ -1,5 +1,7 @@
 <?PHP
 
+// j'envoie ce main, je genere un autre a partir de sources adrien
+// je copie juste le main car c'est lui que je vais lancer
 include "ft_split.php";
 
 print_r(ft_split("   Hello    World       AAA   "));

@@ -19,12 +19,12 @@ function copie_all()
         cd $directory
 
         for file in `ls` ; do
-            echo $file
+#            echo $file
 
             if [ "$file" = "main.php" ]; then
-                cp $file "../../../$directory/main_adpusel.php"
+                cp $file "../../../$directory/main_ad.php"
             else
-                cp $file "../../../$directory/source_adpusel.php"
+                cp $file "../../../$directory/src_ad.php"
             fi
         done
 
@@ -49,10 +49,19 @@ function ft_cmp()
     fi
 }
 
+function test_res()
+{
+    if  [ "$1" -eq 1 ]; then
+        printf "\e[1;32m--> OK   $2 \e[0m\n"
+    else
+        printf "\e[1;31m--> FAIL $2  \e[0m\n"
+    fi
+}
+
 function ft_do_diff()
 {
-    php "./$1"      | echo -e   > your
-    php ./code.php  | echo -e   > my
+    php "./$1.php"    | cat -e > your
+    php "./$2.php"    | cat -e > my
 
     DIFF=$(diff your my)
 
@@ -63,21 +72,12 @@ function ft_do_diff()
     fi
 }
 
-function test_res()
-{
-    if  [ "$1" -eq 1 ]; then
-        printf "\e[1;32m--> OK   $2 \e[0m\n"
-    else
-        printf "\e[1;31m--> FAIL $2  \e[0m\n"
-    fi
-}
-
 #*------------------------------------*\
-#    S1 => fichier test  || $2 => nom exo
+#    $1 => fichier a test || $2 => ficher de test || $3 => nom exo
 #*------------------------------------*/
 function ft_check_diff()
 {
-    res=$(ft_do_diff $1)
+    res=$(ft_do_diff $1 $2)
 
     if  [ "$res" -eq 0 ];  then
             diff your my
@@ -92,7 +92,7 @@ function end()
     cd ..
 }
 
-copie_all code
+#copie_all code
 
 
 
@@ -108,25 +108,25 @@ cd ..
 cd ex00;
 
 #test du result
-ft_check_diff hw.php ex_00
+ft_check_diff hw src_ad ex_00
 
 end
 
 
-##*------------------------------------*\
-##    ex 01
-##*------------------------------------*/
-cd ex01
-
-#test result
-ft_check_diff mlx.php "ex_01 --> same outpout"
-
-#test size prog
-size_program=`cat -e mlx.php | wc -c`
-res_size=$( ft_cmp size_program "-le" 99)
-check_res "$res_size"   "ex_01 --> size ok"
-
-end
+###*------------------------------------*\
+###    ex 01
+###*------------------------------------*/
+#cd ex01
+#
+##test result
+#ft_check_diff mlx.php ` echo "ex_01_test_same_outpout"`
+#
+##test size prog
+#size_program=`cat -e mlx.php | wc -c`
+#res_size=`ft_cmp "$size_program" "-le" 99`
+#test_res "$res_size"   "ex_01_test_size_ok"
+#
+#end
 #
 #
 ##*------------------------------------*\
