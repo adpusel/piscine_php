@@ -5,29 +5,27 @@
 
 #clean tout les fichiers a la fin
 
-# j'ai les meme dossier et je copie tout ce qu'il y a dans le dossier dans l'autre
 
 #*------------------------------------*\
 #    $1 --> le fichier ou prendre les fichiers
 #    $2 --> le nom du fichier a cp
 #*------------------------------------*/
+
 function copie_all()
 {
     cd $1
-    for directory in `ls` ;do
+    for directory in `ls`; do
+
         cd $directory
-#        echo $directory
 
         for file in `ls` ; do
             echo $file
 
-            if [ "$file" = "main.php"]; then
+            if [ "$file" = "main.php" ]; then
                 cp $file "../../../$directory/main_adpusel.php"
             else
                 cp $file "../../../$directory/source_adpusel.php"
-
             fi
-
         done
 
         cd ..
