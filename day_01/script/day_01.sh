@@ -18,90 +18,75 @@ function copie_all()
     done
 }
 
-#function ft_cmp()
-#{
-#    if  [ "$1" "$2" "$3" ]; then
-#        echo 1
-#    else
-#        echo 0
-#    fi
-#}
-#
+function ft_cmp()
+{
+    if  [ "$1" "$2" "$3" ]; then
+        echo 1
+    else
+        echo 0
+    fi
+}
+
+function ft_do_diff()
+{
+    DIFF=$(diff "$1" "$2")
+
+    if  [ "$DIFF" == "" ]; then
+        echo 1
+    else
+        echo 0
+    fi
+}
+
+function ft_check_diff()
+{
+    res=$(ft_do_diff "$1" "$2" )
+
+    if  [ "$res" -eq 0 ];  then
+            diff "$1"  "$2"
+    fi
+}
+
+function check_res()
+{
+    if  [ "$1" -eq 1 ]; then
+       printf "\e[1;32m-->  OK   $2 \e[0m\n"
+    else
+        printf "\e[1;31m--> FAIL $2  \e[0m\n"
+    fi
+}
+
+function end()
+{
+    echo
+    cd ..
+}
 
 copie_all code
+copie_all php_file
 
-#copie_all code
-#
-#function ft_do_diff()
-#{
-#    DIFF=$(diff "$1" "$2")
-#
-#    if  [ "$DIFF" == "" ]; then
-#        echo 1
-#    else
-#        echo 0
-#    fi
-#}
-#
-#
-#function ft_check_diff()
-#{
-#    res=$(ft_do_diff "$1" "$2" )
-#
-#    if  [ "$res" -eq 0 ];  then
-#            diff "$1"  "$2"
-#    fi
-#}
-#
-#function check_res()
-#{
-#    if  [ "$1" -eq 1 ]; then
-#       printf "\e[1;32m-->  OK   $2 \e[0m\n"
-#    else
-#        printf "\e[1;31m--> FAIL $2  \e[0m\n"
-#    fi
-#}
-#
-#function end()
-#{
-#    echo
-#    cd ..
-#}
-#
-#function cp_all_diff()
-#{
-#    #EX_02
-#    cp ./resources/diff_ex_02 ./../ex02/
-#
-#    #EX_03
-#    cp ./php_file/ex_03.php ./../ex03/
-#    cp ./code/ex_03.php ./../ex03/code.php
-#
-#}
-#
-#cp_all_diff
-#
-#cd ..
+
+cd ..
 ##*------------------------------------*\
 ##    ex 00
 ##*------------------------------------*/
-#cd ex00;
-#
-##test
-#value=$(printf "Hello World\n" | cat -e)
-#
-##ret
-#ret=$(php hw.php | cat -e)
-#
-##res
-#res=$(ft_cmp "$value" = "$ret")
-#
-##check
-#check_res "$res" ex_00
-#
-#end
-#
-#
+cd ex00;
+
+#test
+value=$(printf "Hello World\n" | cat -e)
+
+#ret
+ret=$(php hw.php | cat -e)
+
+#res
+res=$(ft_cmp "$value" = "$ret")
+
+#check
+check_res "$res" ex_00
+
+end
+
+
 ###*------------------------------------*\
 ###    ex 01
 ###*------------------------------------*/
