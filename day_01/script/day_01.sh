@@ -3,125 +3,182 @@
 # une fonction pour comparer du texte
 # comment check si les fonctions sont bien celle qui sont authoriser ?
 
-function ft_cmp()
+#clean tout les fichiers a la fin
+
+#*------------------------------------*\
+#    $1 --> le fichier ou prendre les fichiers
+#    $2 --> le nom du fichier a cp
+#*------------------------------------*/
+function copie_all()
 {
-    if  [ "$1" "$2" "$3" ]; then
-        echo 1
-    else
-        echo 0
-    fi
+    cd $1
+    for file in `ls ./` ;do
+        directory=`echo $file | sed s'/.php$//'`
+        cp $file "../../$directory/$2"
+    done
 }
 
-function ft_diff()
-{
-    DIFF=$(diff "$1" "$1")
-    if  [  "$DIFF" != "" ]; then
-        echo 1
-    else
-        echo 0
-    fi
-}
-
-function check_res()
-{
-    if  [ "$1" -eq 1 ]; then
-       printf "\e[1;32m-->  OK   $2 \e[0m\n"
-    else
-        printf "\e[1;31m--> FAIL $2  \e[0m\n"
-    fi
-}
-
-function end()
-{
-    echo
-    cd ..
-}
-
-#function ret_efo()
+#function ft_cmp()
 #{
-#    "$1" << EFO
-#    $2
-#    EFO
+#    if  [ "$1" "$2" "$3" ]; then
+#        echo 1
+#    else
+#        echo 0
+#    fi
 #}
+#
 
-cd ..
-#*------------------------------------*\
-#    ex 00
-#*------------------------------------*/
-cd ex00;
+copie_all code
 
-#test
-value=$(printf "Hello World\n" | cat -e)
-
-#ret
-ret=$(php hw.php | cat -e)
-
-#res
-res=$(ft_cmp "$value" = "$ret")
-
-#check
-check_res "$res" ex_00
-
-end
-
+#copie_all code
+#
+#function ft_do_diff()
+#{
+#    DIFF=$(diff "$1" "$2")
+#
+#    if  [ "$DIFF" == "" ]; then
+#        echo 1
+#    else
+#        echo 0
+#    fi
+#}
+#
+#
+#function ft_check_diff()
+#{
+#    res=$(ft_do_diff "$1" "$2" )
+#
+#    if  [ "$res" -eq 0 ];  then
+#            diff "$1"  "$2"
+#    fi
+#}
+#
+#function check_res()
+#{
+#    if  [ "$1" -eq 1 ]; then
+#       printf "\e[1;32m-->  OK   $2 \e[0m\n"
+#    else
+#        printf "\e[1;31m--> FAIL $2  \e[0m\n"
+#    fi
+#}
+#
+#function end()
+#{
+#    echo
+#    cd ..
+#}
+#
+#function cp_all_diff()
+#{
+#    #EX_02
+#    cp ./resources/diff_ex_02 ./../ex02/
+#
+#    #EX_03
+#    cp ./php_file/ex_03.php ./../ex03/
+#    cp ./code/ex_03.php ./../ex03/code.php
+#
+#}
+#
+#cp_all_diff
+#
+#cd ..
 ##*------------------------------------*\
-##    ex 01
+##    ex 00
 ##*------------------------------------*/
-cd ex01
-
-#test
-value=`printf "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n" | cat -e`
-
-#ret
-ret=`./mlx.php | cat -e`
-size_program=`cat -e mlx.php | wc -c`
-
-#res
-res=$(ft_cmp "$value" = "$ret")
-res_size=$( ft_cmp $size_program "-le" 99)
-
-#check
-check_res "$res"        "ex_01 --> same output"
-check_res "$res_size"   "ex_01 --> size ok"
-
-end
-
-#*------------------------------------*\
-#    ex 02
-#*------------------------------------*/
-cd ex02
-
-#ret
-ret=`./oddeven.php << F
-42sf24
-q4224
-4224a
-asdf
-
-0
-42
-23
-465465432134643136541654163513165416613654167496146456646465464646464987498744647
-465465432134643136541654163513165416613654167496146464175465484616164169841641844
-23aa
-adsf
-aa55
-0
-F
-`
-#res
-res=$(ft_diff "./resources/diff_ex_02" "$ret")
-
-#check
-check_res "$res"        "ex_02 --> diff ok"
-
-end
+#cd ex00;
+#
+##test
+#value=$(printf "Hello World\n" | cat -e)
+#
+##ret
+#ret=$(php hw.php | cat -e)
+#
+##res
+#res=$(ft_cmp "$value" = "$ret")
+#
+##check
+#check_res "$res" ex_00
+#
+#end
+#
+#
+###*------------------------------------*\
+###    ex 01
+###*------------------------------------*/
+#cd ex01
+#
+##test
+#value=`printf "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n" | cat -e`
+#
+##ret
+#ret=`./mlx.php | cat -e`
+#size_program=`cat -e mlx.php | wc -c`
+#
+##res
+#res=$(ft_cmp "$value" = "$ret")
+#res_size=$( ft_cmp $size_program "-le" 99)
+#
+##check
+#check_res "$res"        "ex_01 --> same output"
+#check_res "$res_size"   "ex_01 --> size ok"
+#
+#end
+#
+#
 ##*------------------------------------*\
-##    ex 03
+##    ex 02
 ##*------------------------------------*/
-#cd d_01
-#echo ;echo "ex03 ============================="
-#php test_1.php | cat -e
+#function ex_02()
+#{
+#cd ex02
+#
+##ret
+#ret=`./oddeven.php << F
+#42sf24
+#q4224
+#4224a
+#asdf
+#
+#0
+#42
+#23
+#465465432134643136541654163513165416613654167496146456646465464646464987498744647
+#465465432134643136541654163513165416613654167496146464175465484616164169841641844
+#23aa
+#adsf
+#aa55
+#0
+#F
+#`
+#
+##generate diff
+#echo "$ret"  | cat -e > ret
+#
+## do diff
+#res=$(ft_do_diff diff_ex_02 ret)
+#
+##check la diff
+#ft_check_diff diff_ex_02 ret
+#
+##check le res
+#check_res "$res"        "ex_02 --> diff ok"
+#
+##dernier check
+#./oddeven.php
+#
+#end
+#}
+#ex_02
+
+# je met le script dans le repertoire, je copie tout les fichier
+# dans les dossiers correspondant
+#*------------------------------------*\
+#    ex 03
+#*------------------------------------*/
+#cd ex03
+#
+#php ex_03.php | cat -e > your
+#php code.php | cat -e > my
 #cd ..
 #read
 #
