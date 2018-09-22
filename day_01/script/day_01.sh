@@ -18,9 +18,16 @@ function copie_all()
         cd $directory
 #        echo $directory
 
-        for file in `ls` ;do
+        for file in `ls` ; do
             echo $file
-            cp $file "../../../$directory/source_adpusel.php"
+
+            if [ "$file" = "main.php"]; then
+                cp $file "../../../$directory/main_adpusel.php"
+            else
+                cp $file "../../../$directory/source_adpusel.php"
+
+            fi
+
         done
 
         cd ..
