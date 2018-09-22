@@ -29,6 +29,10 @@ function copie_all()
 }
 
 # delete
+function delete_trace()
+{
+    find . -type f  -name '*adpusel*' -exec rm -rf {} \;
+}
 
 
 function ft_cmp()
@@ -84,10 +88,15 @@ function end()
 }
 
 copie_all code
+
+
+
 #copie_all php_file
 
 
 cd ..
+#delete_trace
+
 ##*------------------------------------*\
 ##    ex 00
 ##*------------------------------------*/
