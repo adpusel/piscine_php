@@ -90,19 +90,7 @@ php ad_src.php super super super | cat -e >> my
 php aff_param.php "super super super" | cat -e >> your
 php ad_src.php "super super super" | cat -e >> my
 
-DIFF=$(diff your my)
-
-    if  [ "$DIFF" == "" ]; then
-        res=1
-    else
-        res=0
-    fi
-    #------------------------------------------
-    if  [ "$res" -eq 0 ];  then
-            diff your my
-    fi
-
-    test_res "$res" ex_04_same_output
+diff_param ex_04_same_output
 
 end
 
@@ -131,61 +119,82 @@ php ad_src.php "    "| cat -e >> my
 php epur_str.php "  a a  " | cat -e >> your
 php ad_src.php "    a  a  "| cat -e >> my
 
-DIFF=$(diff your my)
-
-    if  [ "$DIFF" == "" ]; then
-        res=1
-    else
-        res=0
-    fi
-    #------------------------------------------
-    if  [ "$res" -eq 0 ];  then
-            diff your my
-    fi
-
-    test_res "$res" ex_05_same_output
+diff_param ex_05_same_output
 
 end 
+
 
 ##*------------------------------------*\
 ##    ex 06
 ##*------------------------------------*/
-#cd ex06
-#echo ;echo "ex06 ============================="
-#echo ++++++++++
-#php ssap.php | cat -e
-#echo ++++++++++
-#php ssap.php "    55    " | cat -e
-#echo ++++++++++
-#php ssap.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e
-#echo ++++++++++
-#php ssap.php "    " | cat -e
-#echo ++++++++++
-#php ssap.php "  a a " | cat -e
-#echo ++++++++++
-#php ssap.php  foo bar "yo man" "A moi compte, deux mots" Xibul | cat -e
-#read
-#cd ..
-#
-##*------------------------------------*\
-##    ex 07
-##*------------------------------------*/
-#cd ex07
-#echo ;echo "ex07 ============================="
-#echo ++++++++++
-#php rostring.php  | cat -e
-#echo ++++++++++
-#php rostring.php "    2   1  " | cat -e
-#echo ++++++++++
-#php rostring.php "    3 1  2  " | cat -e
-#echo ++++++++++
-#php rostring.php "  1  " | cat -e
-#echo ++++++++++
-#php rostring.php "  2 dsfh adsfhjaksdf              jdjklsjkadfs          ioerwfioefrwj        jadsjkfl      1  " | cat -e
-#echo ++++++++++
-#read
-#cd ..
-#
+cd ex06
+
+php ssap.php | cat -e > your
+php ad_src.php | cat -e > my
+
+php ssap.php "" | cat -e >> your
+php ad_src.php "" | cat -e >> my
+
+php ssap.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> your
+php ad_src.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> my
+
+php ssap.php foo bar "yo man" "A moi compte, deux mots" Xibul | cat -e >> your
+php ad_src.php foo bar "yo man" "A moi compte, deux mots" Xibul | cat -e >> my
+
+php ssap.php "    " | cat -e >> your
+php ad_src.php "    "| cat -e >> my
+
+php ssap.php "  a a  " | cat -e >> your
+php ad_src.php "    a  a  "| cat -e >> my
+
+diff_param ex_06_same_output
+
+end
+
+
+#*------------------------------------*\
+#    ex 07
+#*------------------------------------*/
+cd ex07
+
+echo ;echo "ex07 ============================="
+echo ++++++++++
+php rostring.php  | cat -e
+echo ++++++++++
+php rostring.php "    2   1  " | cat -e
+echo ++++++++++
+php rostring.php "    3 1  2  " | cat -e
+echo ++++++++++
+php rostring.php "  1  " | cat -e
+echo ++++++++++
+php rostring.php "  2 dsfh adsfhjaksdf              jdjklsjkadfs          ioerwfioefrwj        jadsjkfl      1  " | cat -e
+echo ++++++++++
+
+php rostring.php | cat -e > your
+php ad_src.php | cat -e > my
+
+php rostring.php "" | cat -e >> your
+php ad_src.php "" | cat -e >> my
+
+php rostring.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> your
+php ad_src.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> my
+
+php rostring.php foo bar "yo man" "A moi compte, deux mots" Xibul | cat -e >> your
+php ad_src.php foo bar "yo man" "A moi compte, deux mots" Xibul | cat -e >> my
+
+php rostring.php "    " | cat -e >> your
+php ad_src.php "    "| cat -e >> my
+
+php rostring.php sdfkjsdkl sdkjfskljdf | cat -e >> your
+php ad_src.php sdfkjsdkl sdkjfskljdf| cat -e >> my
+
+php rostring.php "hello world  aaa" fslkdjf | cat -e >> your
+php ad_src.php "hello world  aaa" fslkdjf | cat -e >> my
+
+diff_param ex_06_same_output
+
+
+
 ##*------------------------------------*\
 ##    ex 08
 ##*------------------------------------*/

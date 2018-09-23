@@ -97,7 +97,7 @@ function ft_do_diff_EFO()
     else
         echo 0
     fi
-}
+}ft_split.php
 
 #*------------------------------------*\
 #    $1 => fichier a test || $2 => ficher de test || $3 => nom exo
@@ -112,6 +112,26 @@ function ft_check_diff_EFO()
 
     test_res "$res" $4
 }
+
+
+function diff_param()
+{
+    DIFF=$(diff your my)
+
+    if  [ "$DIFF" == "" ]; then
+        res=1
+    else
+        res=0
+    fi
+    #------------------------------------------
+    if  [ "$res" -eq 0 ];  then
+            diff your my
+    fi
+
+    test_res "$res" $1
+
+}
+
 
 function end()
 {

@@ -1,14 +1,15 @@
 <?PHP
 
-function ft_split($str)
+function delete_empty($value)
 {
-    $str = explode(' ', $str);
+  return $value !== "";
+}
 
-    foreach ($str as $key => $value)
-    {
-        if (empty($value) && $value == "")
-            unset($str[$key]);
-    }
-    sort($str);
-    return $str;
+function ft_split($tab)
+{
+    $tab = explode(" ", $tab);
+
+  	$tab = array_filter($tab, "delete_empty");
+    sort($tab);
+    return $tab;
 }
