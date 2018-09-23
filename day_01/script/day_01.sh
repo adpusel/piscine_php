@@ -255,25 +255,25 @@ function ex_09
     end
 }
 
-###*------------------------------------*\
-###    ex 10
-###*------------------------------------*/
-#cd ex10
-#echo ;echo "ex10 ============================="
-#php do_op.php
-#php do_op.php 4
-#php do_op.php 4 8
-#php do_op.php 4 8 5 8
-#
-#echo ==
-#
-#php do_op.php 21 + 21
-#php do_op.php 43 - 1
-#php do_op.php 1764 / 42
-#php do_op.php 1 "*" 42
-#php do_op.php 1807 % 42
-#cd ..
-#read
+##*------------------------------------*\
+##    ex 10
+##*------------------------------------*/
+cd ex10
+echo ;echo "ex10 ============================="
+php do_op.php
+php do_op.php 4
+php do_op.php 4 8
+php do_op.php 4 8 5 8
+
+echo ==
+
+php do_op.php 21 + 21
+php do_op.php 43 - 1
+php do_op.php 1764 / 42
+php do_op.php 1 "*" 42
+php do_op.php 1807 % 42
+cd ..
+read
 #
 #
 ##*------------------------------------*\
