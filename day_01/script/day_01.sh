@@ -6,13 +6,14 @@
 #clean tout les fichiers a la fin
 . "function.sh"
 
+cd ..
+delete_trace;
 
-
+cd script
 copie_all code
 
 
 cd ..
-#delete_trace
 
 ##*------------------------------------*\
 ##    ex 00
@@ -26,7 +27,6 @@ function ex_00
 
     end
 }
-
 
 #*------------------------------------*\
 #    ex 01
@@ -45,9 +45,6 @@ function ex_01
 
     end
 }
-
-
-
 
 #*------------------------------------*\
 #    ex 02
@@ -258,67 +255,78 @@ function ex_09
 ##*------------------------------------*\
 ##    ex 10
 ##*------------------------------------*/
-cd ex10
-echo ;echo "ex10 ============================="
-php do_op.php
-php do_op.php 4
-php do_op.php 4 8
-php do_op.php 4 8 5 8
+function ex_10
+{
+    cd ex10
+
+    #false
+    test_arg do_op.php
+    test_arg do_op.php 4
+    test_arg do_op.php 4 8
+    test_arg do_op.php 4 8 5 8
+
+    #true
+    test_arg do_op.php 21 + 21
+    test_arg do_op.php 43 - 1
+    test_arg do_op.php 1764 / 42
+    test_arg do_op.php 1 "*" 42
+    test_arg do_op.php 1807 % 42
+
+    diff_param ex_10_same_output
+
+    end
+}
+
+
+
+#*------------------------------------*\
+#    ex 11
+#*------------------------------------*/
+#function ex_11
+#{
+#
+#}
+
+
+cd ex11
+echo ;echo "ex11 ============================="
+
+php do_op_2.php
+php do_op_2.php "4" "4"
 
 echo ==
 
-php do_op.php 21 + 21
-php do_op.php 43 - 1
-php do_op.php 1764 / 42
-php do_op.php 1 "*" 42
-php do_op.php 1807 % 42
+php do_op_2.php "4"
+php do_op_2.php "4 8"
+php do_op_2.php "4 dd 8"
+php do_op_2.php "42 / 0"
+php do_op_2.php "42 % 0"
+php do_op_2.php "aa42 % 4"
+php do_op_2.php "42 % a4"
+php do_op_2.php "asdfgs42 % adfs4"
+php do_op_2.php "toto % 55"
+php do_op_2.php "55 % toto"
+php do_op_2.php "55 toto 44"
+
+echo ==
+
+php do_op_2.php "21    +    21"
+php do_op_2.php "43-1"
+php do_op_2.php "43   -   1"
+php do_op_2.php "1764/42"
+php do_op_2.php "1764   /   42"
+php do_op_2.php "1*42"
+
+echo ==
+
+php do_op_2.php "000021 + 0000021"
+php do_op_2.php "021 + 21"
+
+
+php do_op_2.php "    1807           %     42   "
+php do_op_2.php "   1           *     4200000   "
+
 cd ..
-read
-#
-#
-##*------------------------------------*\
-##    ex 11
-##*------------------------------------*/
-#cd ex11
-#echo ;echo "ex11 ============================="
-#
-#php do_op_2.php
-#php do_op_2.php "4" "4"
-#
-#echo ==
-#
-#php do_op_2.php "4"
-#php do_op_2.php "4 8"
-#php do_op_2.php "4 dd 8"
-#php do_op_2.php "42 / 0"
-#php do_op_2.php "42 % 0"
-#php do_op_2.php "aa42 % 4"
-#php do_op_2.php "42 % a4"
-#php do_op_2.php "asdfgs42 % adfs4"
-#php do_op_2.php "toto % 55"
-#php do_op_2.php "55 % toto"
-#php do_op_2.php "55 toto 44"
-#
-#echo ==
-#
-#php do_op_2.php "21    +    21"
-#php do_op_2.php "43-1"
-#php do_op_2.php "43   -   1"
-#php do_op_2.php "1764/42"
-#php do_op_2.php "1764   /   42"
-#php do_op_2.php "1*42"
-#
-#echo ==
-#
-#php do_op_2.php "000021 + 0000021"
-#php do_op_2.php "021 + 21"
-#
-#
-#php do_op_2.php "    1807           %     42   "
-#php do_op_2.php "   1           *     4200000   "
-#
-#cd ..
-#read
 #
 ###*------------------------------------*\
 ###    ex 12
