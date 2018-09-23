@@ -10,17 +10,17 @@ function copie_all()
     cd $1
     for directory in `ls`; do
 
-        cd $directory
+        cd "$directory"
 
         for file in `ls` ; do
-            echo $file
+            echo "$file"
 
             if [ "$file" = "main.php" ]; then
-                cp $file "../../../$directory/ad_main.php"
+                cp "$file" "../../../$directory/ad_main.php"
             elif [ "$file" = "test" ] ; then
-                cp $file "../../../$directory/ad_test_text"
+                cp "$file" "../../../$directory/ad_test_text"
             else
-                cp $file "../../../$directory/ad_src.php"
+                cp "$file" "../../../$directory/ad_src.php"
             fi
         done
 
@@ -97,7 +97,7 @@ function ft_do_diff_EFO()
     else
         echo 0
     fi
-}ft_split.php
+}
 
 #*------------------------------------*\
 #    $1 => fichier a test || $2 => ficher de test || $3 => nom exo
@@ -130,6 +130,12 @@ function diff_param()
 
     test_res "$res" $1
 
+}
+
+function test_arg()
+{
+    php $@ | cat -e >> your
+    php  ad_src.php ${@:2}| cat -e >> my
 }
 
 

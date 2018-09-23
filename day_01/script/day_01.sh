@@ -17,216 +17,244 @@ cd ..
 ##*------------------------------------*\
 ##    ex 00
 ##*------------------------------------*/
-cd ex00;
+function ex_00
+{
+    cd ex00;
 
-#test du result
-ft_check_diff hw ad_src ex_00
+    #test du result
+    ft_check_diff hw ad_src ex_00
 
-end
+    end
+}
 
 
-##*------------------------------------*\
-##    ex 01
-##*------------------------------------*/
-cd ex01
+#*------------------------------------*\
+#    ex 01
+#*------------------------------------*/
+function ex_01
+{
+    cd ex01
 
-#test result
-ft_check_diff mlx ad_src    ex_01_test_same_outpout
+    #test result
+    ft_check_diff mlx ad_src    ex_01_test_same_outpout
 
-#test size prog
-size_program=`cat -e mlx.php | wc -c`
-res_size=`ft_cmp "$size_program" "-le" 99`
-test_res "$res_size"        "ex_01_test_size_ok"
+    #test size prog
+    size_program=`cat -e mlx.php | wc -c`
+    res_size=`ft_cmp "$size_program" "-le" 99`
+    test_res "$res_size"        "ex_01_test_size_ok"
 
-end
+    end
+}
+
+
 
 
 #*------------------------------------*\
 #    ex 02
 #*------------------------------------*/
-cd ex02
+function ex_02
+{
+    cd ex02
 
-#test result
-ft_check_diff_EFO oddeven ad_src ad_test_text ex_02_same_output
+    #test result
+    ft_check_diff_EFO oddeven ad_src ad_test_text ex_02_same_output
 
-#dernier check
-#./oddeven.php
+    #dernier check
+    ./oddeven.php
 
-end
+    end
+}
+
 
 #*------------------------------------*\
 #    ex 03
 #*------------------------------------*/
-cd ex03
+function ex_03
+{
+    cd ex03
 
-#build my main
-cat ad_main.php | tail -n +4 > tmp
-{ echo '<?PHP  include "ad_src.php"; '; cat tmp; } > ad_main_test.php
-rm tmp
+    #build my main
+    cat ad_main.php | tail -n +4 > tmp
+    { echo '<?PHP  include "ad_src.php"; '; cat tmp; } > ad_main_test.php
+    rm tmp
 
-ft_check_diff ad_main ad_main_test ex_03_same_output
+    ft_check_diff ad_main ad_main_test ex_03_same_output
 
-end
-
+    end
+}
 
 #*------------------------------------*\
 #    ex 04
 #*------------------------------------*/
-cd ex04
-touch my your
+function ex_04
+{
+    cd ex04
+    touch my your
 
-php aff_param.php | cat -e > your
-php ad_src.php | cat -e > my
+    php aff_param.php | cat -e > your
+    php ad_src.php | cat -e > my
 
-php aff_param.php 55 22 | cat -e >> your
-php ad_src.php 55 22 | cat -e >> my
+    php aff_param.php 55 22 | cat -e >> your
+    php ad_src.php 55 22 | cat -e >> my
 
-php aff_param.php 55 22 a g aann  dafsd gqerg w qjfq eqwfqwenvy qlklqwjr hqwhr cxqew ewh cqewcr teqrkhchrtecqekwhrx qwliukcr hqwilu | cat -e >> your
-php ad_src.php 55 22 a g aann  dafsd gqerg w qjfq eqwfqwenvy qlklqwjr hqwhr cxqew ewh cqewcr teqrkhchrtecqekwhrx qwliukcr hqwilu | cat -e >> my
+    php aff_param.php 55 22 a g aann  dafsd gqerg w qjfq eqwfqwenvy qlklqwjr hqwhr cxqew ewh cqewcr teqrkhchrtecqekwhrx qwliukcr hqwilu | cat -e >> your
+    php ad_src.php 55 22 a g aann  dafsd gqerg w qjfq eqwfqwenvy qlklqwjr hqwhr cxqew ewh cqewcr teqrkhchrtecqekwhrx qwliukcr hqwilu | cat -e >> my
 
-php aff_param.php super super super | cat -e >> your
-php ad_src.php super super super | cat -e >> my
+    php aff_param.php super super super | cat -e >> your
+    php ad_src.php super super super | cat -e >> my
 
-php aff_param.php "super super super" | cat -e >> your
-php ad_src.php "super super super" | cat -e >> my
+    php aff_param.php "super super super" | cat -e >> your
+    php ad_src.php "super super super" | cat -e >> my
 
-diff_param ex_04_same_output
+    diff_param ex_04_same_output
 
-end
+    end
+}
+
 
 #*------------------------------------*\
 #    ex 05
 #*------------------------------------*/
-cd ex05
+function ex_05
+{
+    cd ex05
 
-touch my your
+    touch my your
 
-php epur_str.php | cat -e > your
-php ad_src.php | cat -e > my
+    php epur_str.php | cat -e > your
+    php ad_src.php | cat -e > my
 
-php epur_str.php "" | cat -e >> your
-php ad_src.php "" | cat -e >> my
+    php epur_str.php "" | cat -e >> your
+    php ad_src.php "" | cat -e >> my
 
-php epur_str.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> your
-php ad_src.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> my
+    php epur_str.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> your
+    php ad_src.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> my
 
-php epur_str.php "    55    " | cat -e >> your
-php ad_src.php "    55    " | cat -e >> my
+    php epur_str.php "    55    " | cat -e >> your
+    php ad_src.php "    55    " | cat -e >> my
 
-php epur_str.php "    " | cat -e >> your
-php ad_src.php "    "| cat -e >> my
+    php epur_str.php "    " | cat -e >> your
+    php ad_src.php "    "| cat -e >> my
 
-php epur_str.php "  a a  " | cat -e >> your
-php ad_src.php "    a  a  "| cat -e >> my
+    php epur_str.php "  a a  " | cat -e >> your
+    php ad_src.php "    a  a  "| cat -e >> my
 
-diff_param ex_05_same_output
+    diff_param ex_05_same_output
 
-end 
-
+    end
+}
 
 ##*------------------------------------*\
 ##    ex 06
 ##*------------------------------------*/
-cd ex06
+function ex_06
+{
+    cd ex06
 
-php ssap.php | cat -e > your
-php ad_src.php | cat -e > my
+    php ssap.php | cat -e > your
+    php ad_src.php | cat -e > my
 
-php ssap.php "" | cat -e >> your
-php ad_src.php "" | cat -e >> my
+    php ssap.php "" | cat -e >> your
+    php ad_src.php "" | cat -e >> my
 
-php ssap.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> your
-php ad_src.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> my
+    php ssap.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> your
+    php ad_src.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> my
 
-php ssap.php foo bar "yo man" "A moi compte, deux mots" Xibul | cat -e >> your
-php ad_src.php foo bar "yo man" "A moi compte, deux mots" Xibul | cat -e >> my
+    php ssap.php foo bar "yo man" "A moi compte, deux mots" Xibul | cat -e >> your
+    php ad_src.php foo bar "yo man" "A moi compte, deux mots" Xibul | cat -e >> my
 
-php ssap.php "    " | cat -e >> your
-php ad_src.php "    "| cat -e >> my
+    php ssap.php "    " | cat -e >> your
+    php ad_src.php "    "| cat -e >> my
 
-php ssap.php "  a a  " | cat -e >> your
-php ad_src.php "    a  a  "| cat -e >> my
+    php ssap.php "  a a  " | cat -e >> your
+    php ad_src.php "    a  a  "| cat -e >> my
 
-diff_param ex_06_same_output
+    diff_param ex_06_same_output
 
 end
-
+}
 
 #*------------------------------------*\
 #    ex 07
 #*------------------------------------*/
-cd ex07
+function ex_07
+{
+    cd ex07
 
-echo ;echo "ex07 ============================="
-echo ++++++++++
-php rostring.php  | cat -e
-echo ++++++++++
-php rostring.php "    2   1  " | cat -e
-echo ++++++++++
-php rostring.php "    3 1  2  " | cat -e
-echo ++++++++++
-php rostring.php "  1  " | cat -e
-echo ++++++++++
-php rostring.php "  2 dsfh adsfhjaksdf              jdjklsjkadfs          ioerwfioefrwj        jadsjkfl      1  " | cat -e
-echo ++++++++++
+    php rostring.php | cat -e > your
+    php ad_src.php | cat -e > my
 
-php rostring.php | cat -e > your
-php ad_src.php | cat -e > my
+    php rostring.php "" | cat -e >> your
+    php ad_src.php "" | cat -e >> my
 
-php rostring.php "" | cat -e >> your
-php ad_src.php "" | cat -e >> my
+    php rostring.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> your
+    php ad_src.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> my
 
-php rostring.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> your
-php ad_src.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> my
+    php rostring.php foo bar "yo man" "A moi compte, deux mots" Xibul | cat -e >> your
+    php ad_src.php foo bar "yo man" "A moi compte, deux mots" Xibul | cat -e >> my
 
-php rostring.php foo bar "yo man" "A moi compte, deux mots" Xibul | cat -e >> your
-php ad_src.php foo bar "yo man" "A moi compte, deux mots" Xibul | cat -e >> my
+    php rostring.php "    " | cat -e >> your
+    php ad_src.php "    "| cat -e >> my
 
-php rostring.php "    " | cat -e >> your
-php ad_src.php "    "| cat -e >> my
+    php rostring.php sdfkjsdkl sdkjfskljdf | cat -e >> your
+    php ad_src.php sdfkjsdkl sdkjfskljdf| cat -e >> my
 
-php rostring.php sdfkjsdkl sdkjfskljdf | cat -e >> your
-php ad_src.php sdfkjsdkl sdkjfskljdf| cat -e >> my
+    php rostring.php "hello world  aaa" fslkdjf | cat -e >> your
+    php ad_src.php "hello world  aaa" fslkdjf | cat -e >> my
 
-php rostring.php "hello world  aaa" fslkdjf | cat -e >> your
-php ad_src.php "hello world  aaa" fslkdjf | cat -e >> my
+    diff_param ex_07_same_output
 
-diff_param ex_06_same_output
+    end
+}
 
 
+#*------------------------------------*\
+#    ex 08
+#*------------------------------------*/
+function ex_08
+{
+    cd ex08
 
-##*------------------------------------*\
-##    ex 08
-##*------------------------------------*/
-#cd d_01
-#echo ;echo "ex08 ============================="
-#php test_2.php
-#cd ..
-#read
-#
-##*------------------------------------*\
-##    ex 09
-##*------------------------------------*/
-#cd ex09
-#echo ;echo "ex09 ============================="
-##php ssap2.php p toto tutu 4234 "_hop XXX" '##' "1948372 AhAhAh"
-#echo ++++++++++
-#php ssap2.php
-#echo ++++++++++
-#php ssap2.php %D a3 a1 "4?  d" _4 a+ ab 420 0A2 test test super super
-#echo ++++++++++
-#php ssap2.php %D a3 a1 "4?  d" _4 b- a00 00+ ab 420 0A2 test 0 00 00000 00 test super super
-#echo ++++++++++
-#php ssap2.php 00 00 0000 0
-#echo ++++++++++
-#php ssap2.php "0000 00000 00 0 00000 00 0 00 0000 000 0 0"
-#echo ++++++++++
-#php ssap2.php %D a3 a1 "4?  d" _4 a+ ab 420 0A2
-#echo ++++++++++
-#cd ..
-#read
-#
-#
+    #build my main
+    cat ad_main.php | tail -n +4 > tmp
+    { echo '<?PHP  include "ad_src.php"; '; cat tmp; } > ad_main_test.php
+    rm tmp
+
+    ft_check_diff ad_main ad_main_test ex_08_same_output
+
+    end
+}
+
+#*------------------------------------*\
+#    ex 09
+#*------------------------------------*/
+function ex_09
+{
+    cd ex09
+
+    test_arg ssap2.php p toto tutu 4234 "_hop XXX" '##' "1948372 AhAhAh"
+
+    test_arg ssap2.php
+
+    test_arg ssap2.php "             "
+
+    test_arg ssap2.php %D a3 a1 "4?  d" _4 a+ ab 420 0A2 test test super super
+
+    test_arg ssap2.php %D a3 a1 "4?  adsf AEFF d" _4 b- a00 00+ ab 420 0A2 NM test 0 00 00000 00 test super super
+
+    test_arg ssap2.php 00 00 0000 0
+
+    test_arg ssap2.php "0000 00000 false 00 0 00000 00 0 00 0000 000 0 0"
+
+    test_arg ssap2.php %D a3 a1 "4?  d" _4 a+ ab 420 0A2
+
+    test_arg ssap2.php %D a3 a1 "4?  d" _4 a+ ab 420 0A2
+
+    diff_param ex_09_same_output
+
+    end
+}
+
 ###*------------------------------------*\
 ###    ex 10
 ###*------------------------------------*/

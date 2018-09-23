@@ -1,19 +1,27 @@
 #!/usr/bin/php
 <?php
 
-include "../ex03/ft_split.php";
+
+function delete_empty($value)
+{
+  return $value !== "";
+}
 
 if ($argc >= 2) {
-    $rot = $argv[1];
+  $line = $argv[1];
 
-    $rot = ft_split($rot);
-    if(count($rot) === 0)
-        exit;
-    echo  count($rot);
-    if (count($rot) > 1) {
+  $tab = explode(' ', $line);
 
-        array_push($rot, array_shift($rot));
-    }
-    echo implode(" ", $rot);
-    echo "\n";
+  if (count($tab) > 0) {
+
+	$tab = array_filter($tab, "delete_empty");
+
+	if (count($tab) > 1) {
+	  array_push($tab, array_shift($tab));
+	}
+
+	echo implode(" ", $tab);
+  }
+
+  echo "\n";
 }

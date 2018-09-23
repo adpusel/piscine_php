@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 
 include "../ex03/ft_split.php";
