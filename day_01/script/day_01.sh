@@ -4,99 +4,11 @@
 # comment check si les fonctions sont bien celle qui sont authoriser ?
 
 #clean tout les fichiers a la fin
-
-
-#*------------------------------------*\
-#    $1 --> le fichier ou prendre les fichiers
-#    $2 --> le nom du fichier a cp
-#*------------------------------------*/
-
-function copie_all()
-{
-    cd $1
-    for directory in `ls`; do
-
-        cd $directory
-
-        for file in `ls` ; do
-#            echo $file
-
-            if [ "$file" = "main.php" ]; then
-                cp $file "../../../$directory/main_ad.php"
-            else
-                cp $file "../../../$directory/src_ad.php"
-            fi
-        done
-
-        cd ..
-    done
-    cd ..
-}
-
-# delete
-function delete_trace()
-{
-    find . -type f  -name '*adpusel*' -exec rm -rf {} \;
-}
-
-
-function ft_cmp()
-{
-    if  [ "$1" "$2" "$3" ]; then
-        echo 1
-    else
-        echo 0
-    fi
-}
-
-function test_res()
-{
-    if  [ "$1" -eq 1 ]; then
-        printf "\e[1;32m--> OK   $2 \e[0m\n"
-    else
-        printf "\e[1;31m--> FAIL $2  \e[0m\n"
-    fi
-}
-
-function ft_do_diff()
-{
-    php "./$1.php"    | cat -e > your
-    php "./$2.php"    | cat -e > my
-
-    DIFF=$(diff your my)
-
-    if  [ "$DIFF" == "" ]; then
-        echo 1
-    else
-        echo 0
-    fi
-}
-
-#*------------------------------------*\
-#    $1 => fichier a test || $2 => ficher de test || $3 => nom exo
-#*------------------------------------*/
-function ft_check_diff()
-{
-    res=$(ft_do_diff $1 $2)
-
-    if  [ "$res" -eq 0 ];  then
-            diff your my
-    fi
-
-    test_res "$res" $2
-}
-
-function end()
-{
-    echo
-    cd ..
-}
-
-#copie_all code
+. "function.sh"
 
 
 
-#copie_all php_file
+copie_all code
 
 
 cd ..
@@ -108,83 +20,56 @@ cd ..
 cd ex00;
 
 #test du result
-ft_check_diff hw src_ad ex_00
+ft_check_diff hw ad_src ex_00
 
 end
 
 
-###*------------------------------------*\
-###    ex 01
-###*------------------------------------*/
-#cd ex01
-#
-##test result
-#ft_check_diff mlx.php ` echo "ex_01_test_same_outpout"`
-#
-##test size prog
-#size_program=`cat -e mlx.php | wc -c`
-#res_size=`ft_cmp "$size_program" "-le" 99`
-#test_res "$res_size"   "ex_01_test_size_ok"
-#
-#end
-#
-#
 ##*------------------------------------*\
-##    ex 02
+##    ex 01
 ##*------------------------------------*/
-#function ex_02()
-#{
-#cd ex02
-#
-##ret
-#ret=`./oddeven.php << F
-#42sf24
-#q4224
-#4224a
-#asdf
-#
-#0
-#42
-#23
-#465465432134643136541654163513165416613654167496146456646465464646464987498744647
-#465465432134643136541654163513165416613654167496146464175465484616164169841641844
-#23aa
-#adsf
-#aa55
-#0
-#F
-#`
-#
-##generate diff
-#echo "$ret"  | cat -e > ret
-#
-## do diff
-#res=$(ft_do_diff diff_ex_02 ret)
-#
-##check la diff
-#ft_check_diff diff_ex_02 ret
-#
-##check le res
-#check_res "$res"        "ex_02 --> diff ok"
-#
-##dernier check
-#./oddeven.php
-#
-#end
-#}
-#ex_02
+cd ex01
 
-# je met le script dans le repertoire, je copie tout les fichier
-# dans les dossiers correspondant
+#test result
+ft_check_diff mlx ad_src    ex_01_test_same_outpout
+
+#test size prog
+size_program=`cat -e mlx.php | wc -c`
+res_size=`ft_cmp "$size_program" "-le" 99`
+test_res "$res_size"        "ex_01_test_size_ok"
+
+end
+
+
+#*------------------------------------*\
+#    ex 02
+#*------------------------------------*/
+cd ex02
+
+#test result
+ft_check_diff_EFO oddeven ad_src ad_test_text ex_02_same_output
+
+#dernier check
+#./oddeven.php
+
+end
+
 #*------------------------------------*\
 #    ex 03
 #*------------------------------------*/
-#cd ex03
-#
+cd ex03
+
+#build my main
+cat ad_main.php | tail -n +4 > tmp
+{ echo '<?PHP  include "ad_src.php"; '; cat tmp; } > ad_main_test.php
+rm tmp
+
+ft_check_diff ad_main ad_main_test ex_03_same_output
 #php ex_03.php | cat -e > your
 #php code.php | cat -e > my
-#cd ..
-#read
+
+
+end
 #
 ##*------------------------------------*\
 ##    ex 04
