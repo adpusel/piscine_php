@@ -282,67 +282,71 @@ function ex_10
 #*------------------------------------*\
 #    ex 11
 #*------------------------------------*/
-#function ex_11
-#{
-#
-#}
+function ex_11
+{
+    cd ex11
+
+    # Incorrect Parameters
+    test_arg do_op_2.php
+    test_arg do_op_2.php "4" "4"
+    test_arg do_op_2.php "4" "4" "4" "4"
+
+    # Syntax Error
+    test_arg do_op_2.php "4"
+    test_arg do_op_2.php "4 8"
+    test_arg do_op_2.php "4 dd 8"
+    test_arg do_op_2.php "42 / 0"
+    test_arg do_op_2.php "42 % 0"
+    test_arg do_op_2.php "aa42 % 4"
+    test_arg do_op_2.php "42 % a4"
+    test_arg do_op_2.php "asdfgs42 % adfs4"
+    test_arg do_op_2.php "toto % 55"
+    test_arg do_op_2.php "six6*7sept"
+    test_arg do_op_2.php "55 % toto"
+    test_arg do_op_2.php "55 toto 44"
+
+    #ok
+    test_arg do_op_2.php "21    +    21"
+    test_arg do_op_2.php "43-1"
+    test_arg do_op_2.php "43   -   1"
+    test_arg do_op_2.php "1764/42"
+    test_arg do_op_2.php "1764   /   42"
+    test_arg do_op_2.php "1*42"
+    test_arg do_op_2.php "1        *            42          "
+
+    #dur
+    test_arg do_op_2.php "000021 + 0000021"
+    test_arg do_op_2.php "021 + 21"
+
+    test_arg do_op_2.php "    1807           %     42   "
+    test_arg do_op_2.php "   1           *     4200000   "
+
+    diff_param ex_11_same_output
+
+    end
+}
+
+#*------------------------------------*\
+#    ex 12
+#*------------------------------------*/
+function ex_12
+{
+    cd ex12
+
+    test_arg search_it!.php  minh "toto:naher" "minh:belle" 
+    test_arg search_it!.php  toto "key1:val1" "key2:val2" "toto:42"
+    test_arg search_it!.php  toto  toto "toto:val1" "key2:val2" "toto:42"
+    test_arg search_it!.php  p "toto" "key1:val1" "key2:val2" "0:hop"
+    test_arg search_it!.php   "0" "key1:val1" "key2:val2" "0:hop"
+    test_arg search_it!.php   "key1:val1" "key2:val2" "0:hop"
+    test_arg search_it!.php
+
+    diff_param ex_12_same_output
+
+    end
+}
 
 
-cd ex11
-echo ;echo "ex11 ============================="
-
-php do_op_2.php
-php do_op_2.php "4" "4"
-
-echo ==
-
-php do_op_2.php "4"
-php do_op_2.php "4 8"
-php do_op_2.php "4 dd 8"
-php do_op_2.php "42 / 0"
-php do_op_2.php "42 % 0"
-php do_op_2.php "aa42 % 4"
-php do_op_2.php "42 % a4"
-php do_op_2.php "asdfgs42 % adfs4"
-php do_op_2.php "toto % 55"
-php do_op_2.php "55 % toto"
-php do_op_2.php "55 toto 44"
-
-echo ==
-
-php do_op_2.php "21    +    21"
-php do_op_2.php "43-1"
-php do_op_2.php "43   -   1"
-php do_op_2.php "1764/42"
-php do_op_2.php "1764   /   42"
-php do_op_2.php "1*42"
-
-echo ==
-
-php do_op_2.php "000021 + 0000021"
-php do_op_2.php "021 + 21"
-
-
-php do_op_2.php "    1807           %     42   "
-php do_op_2.php "   1           *     4200000   "
-
-cd ..
-#
-###*------------------------------------*\
-###    ex 12
-###*------------------------------------*/
-#cd ex12
-#echo ;echo "ex12 ============================="
-#
-#php search_it!.php minh "toto:naher" "minh:belle"
-#php search_it!.php  toto "key1:val1" "key2:val2" "toto:42"
-#php search_it!.php  toto  toto "toto:val1" "key2:val2" "toto:42"
-#php search_it!.php  p "toto" "key1:val1" "key2:val2" "0:hop"
-#php search_it!.php   "0" "key1:val1" "key2:val2" "0:hop"
-#php search_it!.php   "key1:val1" "key2:val2" "0:hop"
-#php search_it!.php
-#cd ..
-#
 #read
 ####*------------------------------------*\
 ####    ex 14
@@ -350,3 +354,18 @@ cd ..
 ##cd ex14
 ##echo ;echo "ex14 ============================="
 ##cat peer_notes_1.csv | ./agent_stats.php
+
+##go
+ex_00
+ex_01
+ex_02
+ex_03
+ex_04
+ex_05
+ex_06
+ex_07
+ex_08
+ex_09
+ex_10
+ex_11
+ex_12
