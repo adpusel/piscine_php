@@ -65,53 +65,88 @@ cat ad_main.php | tail -n +4 > tmp
 rm tmp
 
 ft_check_diff ad_main ad_main_test ex_03_same_output
-#php ex_03.php | cat -e > your
-#php code.php | cat -e > my
-
 
 end
-#
-##*------------------------------------*\
-##    ex 04
-##*------------------------------------*/
-#
-#cd ex04
-#echo ;echo "ex04 ============================="
-#echo - vide
-#php aff_param.php | cat -e
-#echo -
-#php aff_param.php 55 22 | cat -e
-#echo -
-#php aff_param.php 55 22 a g aann  dafsd gqerg w qjfq eqwfqwenvy qlklqwjr hqwhr cxqew ewh cqewcr teqrkhchrtecqekwhrx qwliukcr hqwilu | cat -e
-#echo -
-#php aff_param.php super super super | cat -e
-#echo -
-#php aff_param.php "super super super" | cat -e
-#cd ..
-#read
-#
-##*------------------------------------*\
-##    ex 05
-##*------------------------------------*/
-#cd ex05
-#echo ;echo "ex05 ============================="
-#echo - vide
-#php epur_str.php | cat -e
-#echo - vide
-#php epur_str.php "" | cat -e
-#echo -
-#php epur_str.php "    55    " | cat -e
-#echo -
-#php epur_str.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e
-#echo - vide
-#php epur_str.php "    " | cat -e
-#echo -
-#php epur_str.php "  a a " | cat -e
-#echo -
-#cd ..
-#read
-#
-#
+
+
+#*------------------------------------*\
+#    ex 04
+#*------------------------------------*/
+cd ex04
+touch my your
+
+php aff_param.php | cat -e > your
+php ad_src.php | cat -e > my
+
+php aff_param.php 55 22 | cat -e >> your
+php ad_src.php 55 22 | cat -e >> my
+
+php aff_param.php 55 22 a g aann  dafsd gqerg w qjfq eqwfqwenvy qlklqwjr hqwhr cxqew ewh cqewcr teqrkhchrtecqekwhrx qwliukcr hqwilu | cat -e >> your
+php ad_src.php 55 22 a g aann  dafsd gqerg w qjfq eqwfqwenvy qlklqwjr hqwhr cxqew ewh cqewcr teqrkhchrtecqekwhrx qwliukcr hqwilu | cat -e >> my
+
+php aff_param.php super super super | cat -e >> your
+php ad_src.php super super super | cat -e >> my
+
+php aff_param.php "super super super" | cat -e >> your
+php ad_src.php "super super super" | cat -e >> my
+
+DIFF=$(diff your my)
+
+    if  [ "$DIFF" == "" ]; then
+        res=1
+    else
+        res=0
+    fi
+    #------------------------------------------
+    if  [ "$res" -eq 0 ];  then
+            diff your my
+    fi
+
+    test_res "$res" ex_04_same_output
+
+end
+
+#*------------------------------------*\
+#    ex 05
+#*------------------------------------*/
+cd ex05
+
+touch my your
+
+php epur_str.php | cat -e > your
+php ad_src.php | cat -e > my
+
+php epur_str.php "" | cat -e >> your
+php ad_src.php "" | cat -e >> my
+
+php epur_str.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> your
+php ad_src.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> my
+
+php epur_str.php "    55    " | cat -e >> your
+php ad_src.php "    55    " | cat -e >> my
+
+php epur_str.php "    " | cat -e >> your
+php ad_src.php "    "| cat -e >> my
+
+php epur_str.php "  a a  " | cat -e >> your
+php ad_src.php "    a  a  "| cat -e >> my
+
+DIFF=$(diff your my)
+
+    if  [ "$DIFF" == "" ]; then
+        res=1
+    else
+        res=0
+    fi
+    #------------------------------------------
+    if  [ "$res" -eq 0 ];  then
+            diff your my
+    fi
+
+    test_res "$res" ex_05_same_output
+
+end 
+
 ##*------------------------------------*\
 ##    ex 06
 ##*------------------------------------*/
