@@ -21,17 +21,17 @@ function ex_00
     cd ex00;
 
     #test
-    sentence="		ss eed" ;
-    test_arg another_world.php "		ss eed"
+    php another_world.php   "		ss eed   " | cat -e >> your
+    ###php ad_src.php       "		ss eed" | cat -e >> my
 
-    sentence="		ss eed" ;
-    test_arg another_world.php
+    php another_world.php   "		ss eed   " | cat -e >> your
+    ###php ad_src.php "		ss eed" | cat -e >> my
 
-    sentence="		ss		 e		e	d		" ;
-    test_arg another_world.php "$sentence"
+    php another_world.php   "		ss		 e		e	d		" | cat -e >> your
+    ###php ad_src.php "		ss		 e		e	d		" | cat -e >> my
 
-    sentence="adsf	 	ss	 	 e	 asdf	e	 d	asdfasdf 	asdf" ;
-    test_arg another_world.php "$sentence" "pieger"
+    php another_world.php   "adsf	 	ss	 	 e	 asdf	e	 d	asdfasdf 	asdf" | cat -e >> your
+    ###php ad_src.php "adsf	 	ss	 	 e	 asdf	e	 d	asdfasdf 	asdf" | cat -e >> my
 
     #diff
     diff_param ex_00_same_output
@@ -39,7 +39,7 @@ function ex_00
     end
 }
 
-ex_00
+#ex_00
 
 #*------------------------------------*\
 #    ex 01
@@ -49,15 +49,17 @@ function ex_01
     cd ex01
 
     #test result
-    ft_check_diff mlx ad_src    ex_01_test_same_outpout
+
+
+
+#    ft_check_diff mlx ad_src    ex_01_test_same_outpout
 
     #test size prog
-    size_program=`cat -e mlx.php | wc -c`
-    res_size=`ft_cmp "$size_program" "-le" 99`
-    test_res "$res_size"        "ex_01_test_size_ok"
 
     end
 }
+ex_01
+
 
 #*------------------------------------*\
 #    ex 02
