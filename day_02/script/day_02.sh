@@ -22,7 +22,7 @@ function ex_00
 
     #test
     sentence="		ss eed" ;
-    test_arg another_world.php "$sentence"
+    test_arg another_world.php "		ss eed"
 
     sentence="		ss eed" ;
     test_arg another_world.php

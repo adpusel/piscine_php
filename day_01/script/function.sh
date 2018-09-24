@@ -32,8 +32,7 @@ function copie_all()
 # delete
 function delete_trace()
 {
-    find . -type f  -name '*_ad*' -exec rm -rf {} \;
-    find . -type f  -name '*ad_*' -exec rm -rf {} \;
+    find . -type f  -name '*ad*' -exec rm -rf {} \;
     find . -type f  -name 'my' -exec rm -rf {} \;
     find . -type f  -name 'your' -exec rm -rf {} \;
 }
@@ -141,6 +140,7 @@ function test_arg()
 
 function end()
 {
+    unset IFS
     echo
     cd ..
 }

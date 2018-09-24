@@ -228,7 +228,7 @@ function ex_08
 function ex_09
 {
     cd ex09
-
+    IFS=$'\n'
     test_arg ssap2.php p toto tutu 4234 "_hop XXX" '##' "1948372 AhAhAh"
 
     test_arg ssap2.php
@@ -258,6 +258,7 @@ function ex_09
 function ex_10
 {
     cd ex10
+    IFS=$'\n'
 
     #false
     test_arg do_op.php
@@ -285,7 +286,7 @@ function ex_10
 function ex_11
 {
     cd ex11
-
+    IFS=$'\n'
     # Incorrect Parameters
     test_arg do_op_2.php
     test_arg do_op_2.php "4" "4"
@@ -322,7 +323,7 @@ function ex_11
     test_arg do_op_2.php "   1           *     4200000   "
 
     diff_param ex_11_same_output
-
+    unset IFS
     end
 }
 
@@ -332,7 +333,7 @@ function ex_11
 function ex_12
 {
     cd ex12
-
+    IFS=$'\n'
     test_arg search_it!.php  minh "toto:naher" "minh:belle" 
     test_arg search_it!.php  toto "key1:val1" "key2:val2" "toto:42"
     test_arg search_it!.php  toto  toto "toto:val1" "key2:val2" "toto:42"
