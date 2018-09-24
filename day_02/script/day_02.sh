@@ -6,10 +6,8 @@
 #clean tout les fichiers a la fin
 . "function.sh"
 
-cd ..
-delete_trace;
+cd .. ;delete_trace; cd script;
 
-cd script
 copie_all code
 
 
@@ -22,11 +20,26 @@ function ex_00
 {
     cd ex00;
 
-    #test du result
-    ft_check_diff hw ad_src ex_00
+    #test
+    sentence="		ss eed" ;
+    test_arg another_world.php "$sentence"
+
+    sentence="		ss eed" ;
+    test_arg another_world.php
+
+    sentence="		ss		 e		e	d		" ;
+    test_arg another_world.php "$sentence"
+
+    sentence="adsf	 	ss	 	 e	 asdf	e	 d	asdfasdf 	asdf" ;
+    test_arg another_world.php "$sentence" "pieger"
+
+    #diff
+    diff_param ex_00_same_output
 
     end
 }
+
+ex_00
 
 #*------------------------------------*\
 #    ex 01
@@ -173,10 +186,10 @@ end
 
 
 ##go
-ex_00
-ex_01
-ex_02
-ex_03
-ex_04
-ex_05
-ex_06
+#ex_00
+#ex_01
+#ex_02
+#ex_03
+#ex_04
+#ex_05
+#ex_06
