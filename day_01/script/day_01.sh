@@ -270,9 +270,13 @@ function ex_10
     test_arg do_op.php 21 + 21
     test_arg do_op.php 43 - 1
     test_arg do_op.php 1764 / 42
-    test_arg do_op.php 1 "*" 42
+
+    php do_op.php 1 '*' 42 >> your
+    php ad_src.php 1 '*' 42 >> my
+
     test_arg do_op.php 1807 % 42
 
+    # diff
     diff_param ex_10_same_output
 
     end
@@ -286,12 +290,15 @@ function ex_10
 function ex_11
 {
     cd ex11
-    IFS=$'\n'
+
     # Incorrect Parameters
     test_arg do_op_2.php
-    test_arg do_op_2.php "4" "4"
-    test_arg do_op_2.php "4" "4" "4" "4"
+    test_arg do_op_2.php
 
+    test_arg do_op_2.php "4 - 4" "4"
+    test_arg do_op_2.php "4 - 4" "4"
+
+    test_arg do_op_2.php "4" "4" "4" "4"
     # Syntax Error
     test_arg do_op_2.php "4"
     test_arg do_op_2.php "4 8"
@@ -322,8 +329,7 @@ function ex_11
     test_arg do_op_2.php "    1807           %     42   "
     test_arg do_op_2.php "   1           *     4200000   "
 
-    diff_param ex_11_same_output
-    unset IFS
+#    diff_param ex_11_same_output
     end
 }
 
@@ -357,16 +363,16 @@ function ex_12
 ##cat peer_notes_1.csv | ./agent_stats.php
 
 ##go
-ex_00
-ex_01
-ex_02
-ex_03
-ex_04
-ex_05
-ex_06
-ex_07
-ex_08
-ex_09
-ex_10
+#ex_00
+#ex_01
+#ex_02
+#ex_03
+#ex_04
+#ex_05
+#ex_06
+#ex_07
+#ex_08
+#ex_09
+#ex_10
 ex_11
-ex_12
+#ex_12

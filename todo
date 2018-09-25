@@ -1,1 +1,2 @@
-atch ?
+comment faire avec ce putain de     IFS=$'\n' qui change les arguements de mon
+shell pas du tout comme je le veux

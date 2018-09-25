@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 
-
+print_r($argv);
 function for_return($s)
 {
   $s = ltrim($s, '0');

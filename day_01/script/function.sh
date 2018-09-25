@@ -13,7 +13,7 @@ function copie_all()
         cd "$directory"
 
         for file in `ls` ; do
-            echo "$file"
+#            echo "$file"
 
             if [ "$file" = "main.php" ]; then
                 cp "$file" "../../../$directory/ad_main.php"
@@ -133,14 +133,22 @@ function diff_param()
 
 function test_arg()
 {
+#    unset IFS
+    IFS=$'\n'
     php $@ | cat -e >> your
-    php  ad_src.php ${@:2}| cat -e >> my
+    php  ad_src.php ${@:2} | cat -e >> my
+
+    echo ++++++
+    echo $@
+    echo ${@:2}
+    echo $2
+    echo =======
+
 }
 
 
 function end()
 {
-    unset IFS
     echo
     cd ..
 }
