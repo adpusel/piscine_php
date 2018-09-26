@@ -30,9 +30,14 @@ $a = "<html><head><title>Nice page</title></head>
 <br /> sadkhfaskdfh askjdfhkasfhdh sadfhasdfh<a href=http://www.riven.com> Et ca aussi <img src=wrong.image title=\"et encore ca\"></a>
 </body></html>";
 
-$tab = array();
+// get les links
+$tab;
 preg_match_all("/href=.*<\/a/", $a, $tab);
-print_r($tab);
+
+// get les data dans titles, gt
+$title =
+
+    print_r($tab);
 
 
 
