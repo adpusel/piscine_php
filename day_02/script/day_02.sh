@@ -49,6 +49,48 @@ function ex_01
     cd ex01
 
     #test result
+    php one_more_time.php "lundi 05 septembre 2045"         | cat -e
+    php one_more_time.php "Lundi 20 Septembre 2000"         | cat -e
+
+    php one_more_time.php "mardi 30 octobre 0021"           | cat -e
+    php one_more_time.php "Mardi 31 Octobre 1920"           | cat -e
+
+    php one_more_time.php "mercredi 20 novembre 0056"       | cat -e
+    php one_more_time.php "Mercredi 21 Novembre 2200"       | cat -e
+
+    php one_more_time.php "jeudi 10 decembre"          | cat -e
+    php one_more_time.php "Jeudi 11 Decembre"          | cat -e
+
+    php one_more_time.php "vendredi 01 janvier"       | cat -e
+    php one_more_time.php "Vendredi 02 Janvier"       | cat -e
+
+    php one_more_time.php "samedi 03 fevrier"         | cat -e
+    php one_more_time.php "Samedi 04 Fevrier"         | cat -e
+
+    php one_more_time.php "dimanche 05 mars"          | cat -e
+    php one_more_time.php "Dimanche 06 Mars"          | cat -e
+
+    php one_more_time.php "lundi 07 avril"         | cat -e
+    php one_more_time.php "Lundi 08 Avril"         | cat -e
+
+    php one_more_time.php "lundi 09 mai"         | cat -e
+    php one_more_time.php "Lundi 10 Mai"         | cat -e
+
+    php one_more_time.php "lundi 11 juin"         | cat -e
+    php one_more_time.php "Lundi 12 Juin"         | cat -e
+
+    php one_more_time.php "lundi 13 juillet"         | cat -e
+    php one_more_time.php "Lundi 19 Juillet"         | cat -e
+
+    php one_more_time.php "lundi 29 aout"         | cat -e
+    php one_more_time.php "Lundi 25 Aout"         | cat -e
+
+    php one_more_time.php "lundi 21 aout"         | cat -e
+    php one_more_time.php "Lundi 01 aout"         | cat -e
+
+
+
+
 
 
 
