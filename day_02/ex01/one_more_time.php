@@ -16,20 +16,62 @@
 
 
 // je fais un tab avec tout les jours et ca me retourn false if rien, le jour sinon ?
-$day_tab =  ["#L|lundi#", "#M|mardi", "#M|mercredi#", "#J|jeudi#", "#V|vendredi#", "#S|samedi#", "#D|dimanche#"];
-$day_num = "(0[1-9]|[12]\d|3[01])";
-$month = ["S|septembre", "O|octobre", "N|novembre", "D|decembre", "J|javier", "F|fevier", "M|mars", "A|avril", "M|mai", "J|juin", "J|juillet", "A|aout"];
-$
-//$number   je peux check dans la date si les nb sont ok
+$day_tab =
+  ["/[L|l]undi/", "/[M|m]ardi/", "/[M|m]ercredi/", "/[J|j]eudi/",
+	"/[V|v]endredi/",
+	"/[S|s]amedi/", "/[D|d]imanche/"];
+$day_num = "/0[1-9]|[12]\d|3[01]/";
+$tab_month =
+  ["/z/",
+	"/[J|j]anvier/", "/[F|f]evrier/", "/[M|m]ars/", "/[A|a]vril/", "/[M|m]ai/",
+	"/[J|j]uin/", "/[J|j]uillet/", "/[A|a]out/", "/[S|s]eptembre/",
+	"/[O|o]ctobre/", "/[N|n]ovembre/", "/[D|d]ecembre/"];
+$annee = "/[0-9]{4}/";
 
-if (preg_match($day_tab[0], "Lundi"))
+
+function check_reg($reg, $string)
 {
-  echo 'Le mot que vous cherchez se trouve dans la chaîne';
+  if (preg_match($reg, $string)) {
+	return true;
+  }
+  return false;
 }
 
+// je peux mettre un ptr et set le nb ici :)
+function check_reg_tab($tab, $string, &$res)
+{
+  foreach ($tab as $index => $item) {
+	if (preg_match($item, $string)) {
+	  {
+		$res = $index;
+		return true;
+	  }
+	}
+  }
+  return false;
+}
 
-" #[\w\.-]+@([\w\-]+|\.)+[A-Z0-9]{2,4}(?x)# ";
-// pas de solution faire la regex pour tout :)
-// si c'est ok je dois encore passer dans un tab pour le comvertir et ca c'est relou
-// sinon ? [reg pour verifier], si ok, je passe tout en minuscule, je split pour avoir le tab
-// je convertit avec un tab pour avoir les valeur, je passe sa pour avoir le time stamp
+// checck le retour de strtotime
+if ($argc > 1) {
+//    echo "$argv[1] \n";
+  $tab = explode(" ", $argv[1]);
+
+  if (1
+	&& count($tab) === 5
+	&& check_reg_tab($day_tab, $tab[0], $day) === true
+	&& check_reg($day_num, $tab[1]) === true
+	&& check_reg_tab($tab_month, $tab[2], $month) === true) {
+
+	$format = "$tab[1]-$month-$tab[3] $tab[4]";
+	$date = strtotime($format);
+	if ($date === false) {
+	  echo "err $argv[1] \n";
+	}
+	else {
+	  echo "$date 5\n";
+	}
+  }
+  else {
+	echo "err $argv[1] \n";
+  }
+}

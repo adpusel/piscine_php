@@ -3,7 +3,7 @@
 # une fonction pour comparer du texte
 # comment check si les fonctions sont bien celle qui sont authoriser ?
 
-#clean tout les fichiers a la fin
+#importe les function
 . "function.sh"
 
 cd .. ;delete_trace; cd script;
@@ -21,6 +21,9 @@ function ex_00
     cd ex00;
 
     #test
+    php another_world.php   | cat -e >> your
+    ###php another_world.php                    | cat -e >> my
+
     php another_world.php   "		ss eed   " | cat -e >> your
     ###php ad_src.php       "		ss eed" | cat -e >> my
 
@@ -47,50 +50,108 @@ function ex_00
 function ex_01
 {
     cd ex01
+    IFS=$'\n'
+    array_good=(
+            "lundi 05 septembre 1753 00:59:00"
+            "Lundi 20 Septembre 2000 24:59:00"
 
-    #test result
-    php one_more_time.php "lundi 05 septembre 2045"         | cat -e
-    php one_more_time.php "Lundi 20 Septembre 2000"         | cat -e
+            "mardi 30 octobre 1753 12:00:00"
+            "Mardi 31 Octobre 1920 12:00:44"
 
-    php one_more_time.php "mardi 30 octobre 0021"           | cat -e
-    php one_more_time.php "Mardi 31 Octobre 1920"           | cat -e
+            "mercredi 20 novembre 1753 15:42:42"
+            "Mercredi 21 Novembre 2200 15:42:42"
 
-    php one_more_time.php "mercredi 20 novembre 0056"       | cat -e
-    php one_more_time.php "Mercredi 21 Novembre 2200"       | cat -e
+            "jeudi 10 decembre 1982 15:42:42"
+            "Jeudi 11 Decembre 1982 15:42:42"
 
-    php one_more_time.php "jeudi 10 decembre"          | cat -e
-    php one_more_time.php "Jeudi 11 Decembre"          | cat -e
+            "vendredi 01 janvier 1982 15:42:42"
+            "Vendredi 02 Janvier 1982 15:42:42"
 
-    php one_more_time.php "vendredi 01 janvier"       | cat -e
-    php one_more_time.php "Vendredi 02 Janvier"       | cat -e
+            "samedi 03 fevrier 1982 15:42:42"
+            "Samedi 04 Fevrier 1982 15:42:42"
 
-    php one_more_time.php "samedi 03 fevrier"         | cat -e
-    php one_more_time.php "Samedi 04 Fevrier"         | cat -e
+            "dimanche 05 mars 1982 15:42:42"
+            "Dimanche 06 Mars 1982 15:42:42"
 
-    php one_more_time.php "dimanche 05 mars"          | cat -e
-    php one_more_time.php "Dimanche 06 Mars"          | cat -e
+            "lundi 07 avril 1982 15:42:42"
+            "Lundi 08 Avril 1982 15:42:42"
 
-    php one_more_time.php "lundi 07 avril"         | cat -e
-    php one_more_time.php "Lundi 08 Avril"         | cat -e
+            "lundi 09 mai 1982 15:42:42"
+            "Lundi 10 Mai 1982 15:42:42"
 
-    php one_more_time.php "lundi 09 mai"         | cat -e
-    php one_more_time.php "Lundi 10 Mai"         | cat -e
+            "lundi 11 juin 1982 15:42:42"
+            "Lundi 12 Juin 1982 15:42:42"
 
-    php one_more_time.php "lundi 11 juin"         | cat -e
-    php one_more_time.php "Lundi 12 Juin"         | cat -e
+            "lundi 13 juillet 1982 15:42:42"
+            "Lundi 19 Juillet 1982 15:42:42"
 
-    php one_more_time.php "lundi 13 juillet"         | cat -e
-    php one_more_time.php "Lundi 19 Juillet"         | cat -e
+            "lundi 29 aout 1982 15:42:42"
+            "Lundi 25 Aout 1982 15:42:42"
 
-    php one_more_time.php "lundi 29 aout"         | cat -e
-    php one_more_time.php "Lundi 25 Aout"         | cat -e
-
-    php one_more_time.php "lundi 21 aout"         | cat -e
-    php one_more_time.php "Lundi 01 aout"         | cat -e
+            "lundi 21 aout 1982 15:42:42"
+            "Lundi 01 aout 1982 15:42:42"
+          )
 
 
+#    for i in "${array_good[@]}"
+#    do :
+#        php one_more_time.php $i | cat -e
+##        php one_more_time.php $i cat -e > your
+#    done
 
+    array_bad=(
+            "lundi 0 septembre 1753 00:59:00"
+            "Lundi 20 Sepembre 2000 24:59:00"
 
+            "mardi 30 otobre 1753 12:00:00"
+            "Mardi 31 Octobe 1920 12:00:44"
+
+            "mercredi 20 novemre 1753 15:42:42"
+            "Mercredi 21 ovembre 2200 15:42:42"
+
+            "jeudi 10 decembe 1982 15:42:42"
+            "Jedi 11 Decembre 1982 15:42:42"
+
+            "vendredi 01 janvier 198 15:42:42"
+            "Vendred 02 Janvier 1982 15:42:42"
+
+            "samedi 03 fevrier 1982 1:42:42"
+            "Samedi 04 Fevrier 1982 15:42:4"
+
+            "dimanche 05 mrs 1982 15:42:42"
+            "Dmanche 06 Mars 1982 15:42:42"
+
+            "ludi 07 avril 1982 15:42:42"
+            "Lundi 08 Avil 1982 15:42:42"
+
+            "lundi 09 mi 1982 15:42:42"
+            "Lundi 10 Mai 182 15:42:42"
+
+            "lundi 11 juin 1982 1542:42"
+            "Lundi 12 Juin 1982 15:42:42"
+
+            "lundi 13 juillet1982 15:42:42"
+            "Lundi 19 Juillet 1982 15:42:42"
+
+            "lundi aout 1982 15:42:42"
+            "Lundi 25 Aout 1982 15:42:42"
+
+            "lundi 21 aout 1982"
+            "Lundi  aout 01 1982 15:42:42"
+
+            "u"
+            "Lundi"
+
+            "Lundi 01 aout 1982 15:42"
+            "Lundi 01 aout 1982 15:4:42"
+          )
+
+    for i in "${array_bad[@]}"
+    do :
+#        php one_more_time.php $i | cat -e
+#        php one_more_time.php $i cat -e > your
+    done
+        php   one_more_time.php  "Lundi 12 Juin 1982 1:2:2"
 
 
 
@@ -127,11 +188,6 @@ function ex_03
 {
     cd ex03
 
-    #build my main
-    cat ad_main.php | tail -n +4 > tmp
-    { echo '<?PHP  include "ad_src.php"; '; cat tmp; } > ad_main_test.php
-    rm tmp
-
     ft_check_diff ad_main ad_main_test ex_03_same_output
 
     end
@@ -145,20 +201,6 @@ function ex_04
     cd ex04
     touch my your
 
-    php aff_param.php | cat -e > your
-    php ad_src.php | cat -e > my
-
-    php aff_param.php 55 22 | cat -e >> your
-    php ad_src.php 55 22 | cat -e >> my
-
-    php aff_param.php 55 22 a g aann  dafsd gqerg w qjfq eqwfqwenvy qlklqwjr hqwhr cxqew ewh cqewcr teqrkhchrtecqekwhrx qwliukcr hqwilu | cat -e >> your
-    php ad_src.php 55 22 a g aann  dafsd gqerg w qjfq eqwfqwenvy qlklqwjr hqwhr cxqew ewh cqewcr teqrkhchrtecqekwhrx qwliukcr hqwilu | cat -e >> my
-
-    php aff_param.php super super super | cat -e >> your
-    php ad_src.php super super super | cat -e >> my
-
-    php aff_param.php "super super super" | cat -e >> your
-    php ad_src.php "super super super" | cat -e >> my
 
     diff_param ex_04_same_output
 
@@ -173,25 +215,7 @@ function ex_05
 {
     cd ex05
 
-    touch my your
 
-    php epur_str.php | cat -e > your
-    php ad_src.php | cat -e > my
-
-    php epur_str.php "" | cat -e >> your
-    php ad_src.php "" | cat -e >> my
-
-    php epur_str.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> your
-    php ad_src.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> my
-
-    php epur_str.php "    55    " | cat -e >> your
-    php ad_src.php "    55    " | cat -e >> my
-
-    php epur_str.php "    " | cat -e >> your
-    php ad_src.php "    "| cat -e >> my
-
-    php epur_str.php "  a a  " | cat -e >> your
-    php ad_src.php "    a  a  "| cat -e >> my
 
     diff_param ex_05_same_output
 
@@ -205,25 +229,7 @@ function ex_06
 {
     cd ex06
 
-    php ssap.php | cat -e > your
-    php ad_src.php | cat -e > my
 
-    php ssap.php "" | cat -e >> your
-    php ad_src.php "" | cat -e >> my
-
-    php ssap.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> your
-    php ad_src.php "    55 dsfadsf  asdf     adsf      adsfasdf   ads  " | cat -e >> my
-
-    php ssap.php foo bar "yo man" "A moi compte, deux mots" Xibul | cat -e >> your
-    php ad_src.php foo bar "yo man" "A moi compte, deux mots" Xibul | cat -e >> my
-
-    php ssap.php "    " | cat -e >> your
-    php ad_src.php "    "| cat -e >> my
-
-    php ssap.php "  a a  " | cat -e >> your
-    php ad_src.php "    a  a  "| cat -e >> my
-
-    diff_param ex_06_same_output
 
 end
 }
