@@ -100,7 +100,13 @@ $a = '<html><head><title>Nice page</title></head>
 
 // <a.*>.*< mettre ca en maj
 
+// il me faudrait une meill===================
+
 //// si je le met pas check si bien un a avant pour pas que ce bug
+/// // il faudrait le faire en recursif pour get les text apres la balise//
+// --> texte qui s'arrete a <> des mot qui compose le  <a> avec dedans des
+// faire une regex qui refuse de prendre
+// je me fais trop chiez tu pense, j'avance dessus et ensuite je continue ?
 //// todo keep en premier le <a || faire attention, comment ce truc va finir ?
 $out = preg_replace_callback(
 //  '/href=[^>]*\K.*\/a>/is',
@@ -114,7 +120,7 @@ $out = preg_replace_callback(
 
 
 // la reg est ok mec !!!!
-<a[^>]*.\K[^<]*
+//  <a[^>]*.\K[^<]*
 ///////////////////////////////////////////////////////
 
 
