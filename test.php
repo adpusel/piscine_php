@@ -17,19 +17,24 @@
 // je dois le faire a la main pour comparer les deux date
 // check les
 
-//echo date_default_timezone_set("Europe/Paris");
-date_default_timezone_set("Europe/Paris");
+////echo date_default_timezone_set("Europe/Paris");
+//date_default_timezone_set("Europe/Paris");
+//
+//$format = 'Y-m-d H:i:s';
+//$date = DateTime::createFromFormat($format, '2018-10-1 15:16:60');
+//echo "Format: $format; " . $date->format('D Y-m-d H:i:s') . "\n";
+//
+//
+////$date = date_create_from_format('j-M-Y', '12-07-1982 01:20:20');
+//$date = DateTime::createFromFormat('d-m-Y H:i:s', '12-07-1982 01:20:20');
+//echo date_format($date, 'Y-m-d H:i:s');
 
-$format = 'Y-m-d H:i:s';
-$date = DateTime::createFromFormat($format, '2018-10-1 15:16:17');
-echo "Format: $format; " . $date->format('D Y-m-d H:i:s') . "\n";
 
+//echo preg_match("/([0-5][0-6])|60/", "60")."\n";
+//echo preg_match("/([0-5][0-6])|60/", "00")."\n";
+//echo preg_match("/([0-5][0-6])|60/", "61")."\n";
+//echo preg_match("/([0-5][0-6])|60/", "10")."\n";
 
-//$date = date_create_from_format('j-M-Y', '12-07-1982 01:20:20');
-$date = DateTime::createFromFormat('d-m-Y H:i:s', '12-07-1982 01:20:20');
-echo date_format($date, 'Y-m-d H:i:s');
-
-
-
+echo count("");
 // les dat sont ok, faut que je check si : cest bien le bom jour et ensuite je peux valider ou pas
 //

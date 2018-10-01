@@ -146,12 +146,12 @@ function ex_01
             "Lundi 01 aout 1982 15:4:42"
           )
 
-    for i in "${array_bad[@]}"
+    for i in "${array_good[@]}"
     do :
-#        php one_more_time.php $i | cat -e
+        php one_more_time.php $i | cat -e
 #        php one_more_time.php $i cat -e > your
     done
-        php   one_more_time.php  "Lundi 12 Juin 1982 1:2:2"
+#        php   one_more_time.php  "lundi 29 aout 1982 15:42:42"
 
 
 
