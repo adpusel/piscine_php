@@ -98,17 +98,25 @@ $a = '<html><head><title>Nice page</title></head>
 //  },
 //  $a);
 
-// si je le met pas check si bien un a avant pour pas que ce bug
-// todo keep en premier le <a || faire attention, comment ce truc va finir ?
+// <a.*>.*< mettre ca en maj
+
+//// si je le met pas check si bien un a avant pour pas que ce bug
+//// todo keep en premier le <a || faire attention, comment ce truc va finir ?
 $out = preg_replace_callback(
 //  '/href=[^>]*\K.*\/a>/is',
-//  '/<a[^>]*.\K[^(a\>)]*/is',
-  '/<a[^>]*.\K[]*/is',
+  '/(<a.*>)\K(.*<)/is',
+//  '/\b(?!ignoreme|ignoreyou)\b\S+/is',
   function ($m) {
 	print_r($m);
 //    return strtoupper($m[0]);
   },
   $a);
+
+
+// la reg est ok mec !!!!
+<a[^>]*.\K[^<]*
+///////////////////////////////////////////////////////
+
 
 
 echo $out;
@@ -122,14 +130,13 @@ echo $out;
 
 
 //
-//if ($argc > 1) {
-//  $file = file_get_contents("$argv[1]");
-//  $file = preg_replace_callback('/<a .+?<\/a>/sei', 'strtoupper("$0")', $file);
-/*  $file = preg_replace_callback('/<.+?>/sei', 'strtolower("$0")', $file);*/
-//  $file =
-//	preg_replace_callback('/(?<=title=["\'])[^"^\']+/sei', 'strtoupper("$0")',
-//	  $file);
-//  print($file);
-//}
+if ($argc > 1)
+{
+    $file = file_get_contents("$argv[1]");
+    $file = preg_replace('/<a .+?<\/a>/sei', 'strtoupper("$0")', $file);
+    $file = preg_replace('/<.+?>/sei', 'strtolower("$0")', $file);
+    $file = preg_replace('/(?<=title=["\'])[^"^\']+/sei', 'strtoupper("$0")', $file);
+    print($file);
+}
 
 //
