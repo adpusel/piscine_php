@@ -19,9 +19,9 @@
 //echo date_default_timezone_set("Europe/Paris");
 date_default_timezone_set("Europe/Paris");
 
-$format = 'D Y-m-d H:i:s';
+$format = 'Y-m-d H:i:s';
 $date = DateTime::createFromFormat($format, 'Sun 2018-10-1 15:16:17');
-echo "Format: $format; " . $date->format('Y-m-d H:i:s') . "\n";
+echo "Format: $format; " . $date->format('D Y-m-d H:i:s') . "\n";
 
 
 //$date = date_create_from_format('j-M-Y', '12-07-1982 01:20:20');
