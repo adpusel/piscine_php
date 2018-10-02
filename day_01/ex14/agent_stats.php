@@ -1,6 +1,7 @@
 #!/usr/bin/php
 <?PHP
 
+$d;
 // le document a 4 colomne, chaque colomne represente un type,
 // je lis sur l'entree
 // en fonction des option, je construit mon tab,
@@ -8,10 +9,39 @@
 // je le parcours si regmolinettre, f
 
 
-// est ce que je peux avoir plusieur cles valeur sur le meme dico? --> non
-// est ce que je peux,
-
+// je fais un arret filter qui retourn selement les truc avec le bon id
 $stdin = fopen("php://stdin", "r"); // check si pas de pb ?
+if ($stdin === false)
+    exit("wrong input");
+
+$all_data = array();
+while (1) {
+    $line = trim(fgets(STDIN));
+    if (feof(STDIN) == true)
+        break;
+    array_push($all_data, explode(";", $line));
+}
+
+
+// j'ai ma variable qui va get les nom si la regex moulinette est fausse
+
+function get_all_average($tab)
+{
+    $average = 0;
+    $nb_of_note = 0;
+    foreach ($tab as $item) {
+        if (preg_match("/moulinette/", $item[2]) === 0 && $item[1] !== "")
+        {
+            $average += intval($item[1]);
+            $nb_of_note++;
+//            echo $item[2]."\n";
+        }
+    }
+    return $average / ($nb_of_note - 1);
+}
+
+print_r($all_data);
+echo get_all_average($all_data);
 //
 //
 //function get_ob(&$tab, $key)
@@ -54,4 +84,4 @@ $stdin = fopen("php://stdin", "r"); // check si pas de pb ?
 ////    }
 //}
 
-?>
+fclose($stdin);
