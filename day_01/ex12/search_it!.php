@@ -15,7 +15,6 @@ if ($argc >= 2) {
 	}
   }
   if (array_key_exists($argv[1], $tab)) {
-	echo $tab[$argv[1]];
+	echo $tab[$argv[1]]. "\n";
   }
-  echo "\n";
 }
