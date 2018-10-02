@@ -1,7 +1,18 @@
 #!/usr/bin/php
 <?php
 
-include "../ex03/ft_split.php";
+function delete_empty($value)
+{
+    return $value !== "";
+}
+
+function ft_split($tab)
+{
+    $tab = explode(" ", $tab);
+
+    $tab = array_filter($tab, "delete_empty");
+    return $tab;
+}
 
 if ($argc == 2) {
     $message = $argv[1];
