@@ -14,4 +14,3 @@ if ($argc == 2)
             echo "Oui il a vraiment des enfants\n";
     }
 }
-?>
