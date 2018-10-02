@@ -23,15 +23,12 @@ while (1) {
 }
 
 
-// j'ai ma variable qui va get les nom si la regex moulinette est fausse
-
 function get_all_average($tab)
 {
     $average = 0;
     $nb_of_note = 0;
     foreach ($tab as $item) {
-        if (preg_match("/moulinette/", $item[2]) === 0 && $item[1] !== "")
-        {
+        if ("moulinette" !== $item[2] && $item[1] !== "") {
             $average += intval($item[1]);
             $nb_of_note++;
 //            echo $item[2]."\n";
@@ -40,48 +37,61 @@ function get_all_average($tab)
     return $average / ($nb_of_note - 1);
 }
 
-print_r($all_data);
-echo get_all_average($all_data);
-//
-//
-//function get_ob(&$tab, $key)
-//{
-//    if (array_key_exists($key, $tab) === false)
-//        return $tab[$key];
-//    else
-//    {
-//        $obj = new user($key);
-//        array_push($tab, $obj);
-//        print_r($obj);
-//        return $obj;
-//    }
-//}
-//
-//while (1) {
-//
-//    if (feof($stdin) == true)
-//        break;
-//    $line = fgets($stdin);
-//    $line = str_replace("\n", "", $line);
-//    $line = explode(';', $line);
-//    $user = get_ob($tab, $line[0]);
-//    print_r($user);
-//    array_push($user->note_user, $line[1]);
-//}
-//print_r($user);
+//print_r($all_data);
+// reflechir a comment le faire en regex
+//echo get_all_average($all_data);
 
 
-//if ($argc >= 2) {
-//    $tab = array();
-//    foreach ($argv as $key => $item) {
-//        if ($key > 1)
-//            add_key($argv[$key], $tab);
-//    }
-//
-////    if (array_key_exists($argv[1], $tab)) {
-////        echo $tab[$argv[1]];
-////        echo "\n";
-////    }
-//}
+function get_average_by_user($all_data)
+{
+    $user_tab = array();
+
+    // je genere un tab avec tout les gens corriger dedans
+    foreach ($all_data as $key => $item) {
+        if ($key > 1) {
+            $user_tab[$item[0]] = ["mate" => [], "mou" => []];
+        }
+    }
+
+    // trie en fonction de la key
+    ksort($user_tab);
+
+    // je fill avec les moyennes des gens
+    foreach ($all_data as $index => $line) {
+        if ($index > 1) {
+            if ($line[1] !== '' && $line[2] !== "moulinette")
+                array_push($user_tab[$line[0]]["mate"], $line[1]);
+            if ($line[1] !== '' && $line[2] === "moulinette")
+                array_push($user_tab[$line[0]]["mou"], $line[1]);
+        }
+    }
+
+    // build les moyenne des gens
+    foreach ($user_tab as $name => $user) {
+        $user_average = 0;
+        $mou_average = 0;
+
+        // moyenne des mate
+        foreach ($user["mate"] as $mate_note) {
+            $user_average += intval($mate_note);
+        }
+
+        // moyenn moulinnette
+        foreach ($user["mou"] as $item) {
+            $mou_average += intval($item);
+        }
+
+        $user_average = $user_average / (count($user["mate"]));
+        $mou_average = $mou_average / count($user["mou"]);
+        $user["mate_moy"] = $user_average;
+        $all = $user_average - $mou_average;
+//        echo "$name $user_average\n";
+//        echo "$name $all\n";
+        $user_tab[$name]["moy"] = $user_average;
+        $user_tab[$name]["diff"] = $all;
+    }
+}
+
+get_average_by_user($all_data);
 
 fclose($stdin);
