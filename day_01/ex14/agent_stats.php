@@ -1,19 +1,12 @@
 #!/usr/bin/php
 <?PHP
 
-$d;
-// le document a 4 colomne, chaque colomne represente un type,
-// je lis sur l'entree
-// en fonction des option, je construit mon tab,
-//  si moyen, je met tout dans un tab, // je split, array_filter --> si grep moulinette je prend oas, sinom ++
-// je le parcours si regmolinettre, f
-
-
-// je fais un arret filter qui retourn selement les truc avec le bon id
+// open le flux
 $stdin = fopen("php://stdin", "r"); // check si pas de pb ?
 if ($stdin === false)
     exit("wrong input");
 
+// get all data
 $all_data = array();
 while (1) {
     $line = trim(fgets(STDIN));
@@ -31,18 +24,12 @@ function get_all_average($tab)
         if ("moulinette" !== $item[2] && $item[1] !== "") {
             $average += intval($item[1]);
             $nb_of_note++;
-//            echo $item[2]."\n";
         }
     }
     return $average / ($nb_of_note - 1);
 }
 
-//print_r($all_data);
-// reflechir a comment le faire en regex
-//echo get_all_average($all_data);
-
-
-function get_average_by_user($all_data)
+function get_average_by_user($all_data, $action)
 {
     $user_tab = array();
 
@@ -85,13 +72,19 @@ function get_average_by_user($all_data)
         $mou_average = $mou_average / count($user["mou"]);
         $user["mate_moy"] = $user_average;
         $all = $user_average - $mou_average;
-//        echo "$name $user_average\n";
-//        echo "$name $all\n";
-        $user_tab[$name]["moy"] = $user_average;
-        $user_tab[$name]["diff"] = $all;
+        if ($action === "moyenne_user")
+        echo "$name:$user_average\n";
+        if ($action === "ecart_moulinette")
+        echo "$name:$all\n";
     }
 }
 
-get_average_by_user($all_data);
+if ($argc == 2) {
+    if ($argv[1] === "moyenne")
+        echo get_all_average($all_data);
+    else
+        get_average_by_user($all_data, $argv[1]);
+}
+
 
 fclose($stdin);
