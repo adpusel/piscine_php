@@ -171,14 +171,11 @@ function ex_02
     cd ex02
 
     #test result
-    ft_check_diff_EFO oddeven ad_src ad_test_text ex_02_same_output
-
-    #dernier check
-    ./oddeven.php
+    php loupe.php
 
     end
 }
-
+ex_02
 
 #*------------------------------------*\
 #    ex 03
