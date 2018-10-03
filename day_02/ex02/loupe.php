@@ -8,7 +8,12 @@
 //
 // cherche href avec la regex et get tout le rext derriere, ==> href a </a>
 
-$file = file_get_contents("t.html");
+if ($argc !== 2)
+    exit;
+
+$file = file_get_contents($argv[1]);
+if ($file === false)
+    exit;
 
 function upper($text)
 {

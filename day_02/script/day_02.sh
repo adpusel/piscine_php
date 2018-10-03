@@ -171,7 +171,7 @@ function ex_02
     cd ex02
 
     #test result
-    php loupe.php
+    php loupe.php t.html
 
     end
 }
