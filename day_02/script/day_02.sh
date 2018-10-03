@@ -43,7 +43,6 @@ function ex_00
 }
 
 #ex_00
-
 #*------------------------------------*\
 #    ex 01
 #*------------------------------------*/
@@ -52,8 +51,8 @@ function ex_01
     cd ex01
     IFS=$'\n'
     array_good=(
-            "lundi 05 septembre 1753 00:59:00"
-            "Lundi 20 Septembre 2000 24:59:00"
+            "lundi 05 septembre 1753 00:49:99"
+            "Lundi 20 Septembre 2000 12:00:00"
 
             "mardi 30 octobre 1753 12:00:00"
             "Mardi 31 Octobre 1920 12:00:44"
@@ -93,11 +92,11 @@ function ex_01
           )
 
 
-#    for i in "${array_good[@]}"
-#    do :
-#        php one_more_time.php $i | cat -e
-##        php one_more_time.php $i cat -e > your
-#    done
+    for i in "${array_good[@]}"
+    do :
+        php one_more_time.php $i | cat -e
+#        php one_more_time.php $i cat -e > your
+    done
 
     array_bad=(
             "lundi 0 septembre 1753 00:59:00"
@@ -128,16 +127,17 @@ function ex_01
             "Lundi 10 Mai 182 15:42:42"
 
             "lundi 11 juin 1982 1542:42"
-            "Lundi 12 Juin 1982 15:42:42"
+            "Lundi 12 Juin 1982 15:42:0"
+            "Lundi 12 Juin 200 15:42:0"
 
             "lundi 13 juillet1982 15:42:42"
-            "Lundi 19 Juillet 1982 15:42:42"
+            "Lundi 19 Juillet 1982 15:0:42"
 
             "lundi aout 1982 15:42:42"
-            "Lundi 25 Aout 1982 15:42:42"
+            "Lundi 25 Aout 1982 0:42:42"
 
-            "lundi 21 aout 1982"
             "Lundi  aout 01 1982 15:42:42"
+            "lundi 21 aout 1982"
 
             "u"
             "Lundi"
@@ -146,12 +146,11 @@ function ex_01
             "Lundi 01 aout 1982 15:4:42"
           )
 
-    for i in "${array_good[@]}"
+    for i in "${array_bad[@]}"
     do :
         php one_more_time.php $i | cat -e
 #        php one_more_time.php $i cat -e > your
     done
-#        php   one_more_time.php  "lundi 29 aout 1982 15:42:42"
 
 
 
@@ -161,7 +160,7 @@ function ex_01
 
     end
 }
-ex_01
+#ex_01
 
 
 #*------------------------------------*\

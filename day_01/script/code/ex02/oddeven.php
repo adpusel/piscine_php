@@ -2,6 +2,8 @@
 <?PHP
 
 $stdin = fopen("php://stdin", "r");
+if ($stdin === false)
+    exit();
 
 while (1) {
     $line;

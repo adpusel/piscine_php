@@ -7,13 +7,13 @@ if ($argc === 4) {
     $nb2 = trim($argv[3]);
     if ($op === "+")
         $nb1 = $nb1 + $nb2;
-    else if ($op === "-")
+    elseif ($op === "-")
         $nb1 = $nb1 - $nb2;
-    else if ($op === "/")
+    elseif ($op === "/")
         $nb1 = $nb1 / $nb2;
-    else if ($op === "*")
+    elseif ($op === "*")
         $nb1 = $nb1 * $nb2;
-    else if ($op === "%")
+    elseif ($op === "%")
         $nb1 = $nb1 % $nb2;
     echo "$nb1\n";
 } else
