@@ -18,4 +18,5 @@ if ($_GET["login"] !== NULL && $_GET["passwd"] !== NULL)
 
 <!--    curl -v -c cook.txt 'http://localhost:8888/piscine_php/day_04/ex01/index.php'
         curl -v -c cook.txt 'http://localhost:8888/piscine_php/day_04/ex01/index.php?login=sb&passwd=beeone&submit=OK'
+        curl -v 'http://localhost:8888/piscine_php/day_04/ex01/index.php'
 -->
