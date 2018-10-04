@@ -49,14 +49,13 @@ else
 
 while (1) {
   $line;
-  $last_char;
 
   echo "Entrez votre commande: ";
 
   $line = fgets(STDIN);
   if (feof(STDIN) == true)
 	break;
-//  preg_replace("#'#", '\\\'', $line);
+
   eval($line);
 }
 

@@ -15,7 +15,6 @@ while (1) {
     array_push($all_data, explode(";", $line));
 }
 
-
 function get_all_average($tab)
 {
     $average = 0;
