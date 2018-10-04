@@ -16,7 +16,7 @@ switch ($action)
 	);
 	break;
   case "get":
-	if (array_key_exists($_GET['name'], $_COOKIE))
+	if ($_COOKIE[$_GET['name']] !== NULL)
 	{
 	  echo $_COOKIE[$_GET['name']] . "\n";
 	}
