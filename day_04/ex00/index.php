@@ -10,14 +10,15 @@
 
 function ft_is_set($tab, $key)
 {
-  return ($tab[$key] !== NULL);
+  return ($tab[$key] !== NULL || $tab[$key] == '');
 }
 
-if (ft_is_set($_GET["login"]) && ft_is_set($_GET["passwd"]) &&
+session_start();
+
+if (ft_is_set($_GET, "login") &&
+    ft_is_set($_GET, "passwd") &&
     $_GET["submit"] === "OK")
 {
-  session_start();
-
   $_SESSION["login"] = $_GET["login"];
   $_SESSION["passwd"] = $_GET["passwd"];
 }
@@ -25,7 +26,7 @@ if (ft_is_set($_GET["login"]) && ft_is_set($_GET["passwd"]) &&
 
 
 <html><body>
-<form method="get">
+<form name="" method="get">
     Identifiant : <input name="login" value='<?= $_SESSION["login"] ?>'>
     <br />
     mdp : <input name="passwd" value='<?= $_SESSION["passwd"] ?>'>
