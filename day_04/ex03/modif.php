@@ -5,10 +5,15 @@
  * Time: 19:30
  *
  * // create
- * curl -d login=toto1 -d passwd=titi1 -d submit=OK 'http://localhost:8100/piscine_php/day_04/ex02/create.php'
+  rm /Users/adpusel/code/42/piscine_php/day_04/private/passwd
+   curl -d login=x -d passwd=21 -d submit=OK 'http://localhost:8100/piscine_php/day_04/ex02/create.php'
  *
  *
- * curl -d login=x -d passwd=21 -d submit=OK 'http://localhost:8100/piscine_php/day_04/ex03/modif.php'
+ * // ok car exist
+ *  curl -d login=x -d oldpw=21 -d newpw=42 -d submit=OK 'http://localhost:8100/piscine_php/day_04/ex03/modif.php'
+ *
+ * // si pas de new mdp
+ * curl -d login=x -d oldpw=42 -d newpw= -d submit=OK 'http://localhost:8100/piscine_php/day_04/ex03/modif.php'
  *
  */
 /*------------------------------------*\
@@ -101,34 +106,28 @@ check_submit();
 // get le tab
 $tab = get_tab($filename);
 
-if ($user_hash === $tab[$_POST["login"]])
-{
-  if ($_POST["newpw"] !== "")
-  {
-	$new_hash = hash("whirlpool", $_POST["newpw"]);
-	$tab[$_POST["login"]] = $new_hash;
-  }
-  echo "OK\n";
-}
-else
+// check si good user
+$user_id = get_id_user($tab);
+if ($user_id === false)
 {
   ft_exit();
 }
 
-$tab = serialize($tab);
-if (file_put_contents($filename, $tab))
-{
-  echo "OK\n";
-}
-else
+// check si good pass
+if (check_pass($tab[$user_id]["passwd"], "oldpw") !== true)
 {
   ft_exit();
 }
+
+if (ft_is_set($_POST, "newpw"))
+{
+  change_passe($tab, $user_id, $_POST["newpw"]);
 }
 else
-{
   ft_exit();
-}
+
+save_tab($filename, $tab);
+
 
 
 

@@ -102,7 +102,7 @@ check_submit();
 // get le tab
 $tab = get_tab($filename);
 
-if (get_id_user($tab) !== fa)
+if (get_id_user($tab) !== false)
 {
   ft_exit();
 }
