@@ -12,7 +12,7 @@ if ($_GET["login"] !== NULL && $_GET["passwd"] !== NULL)
     Identifiant : <input name="login" value='<?= $_SESSION["login"] ?>'>
     <br />
     mdp : <input name="passwd" value='<?= $_SESSION["passwd"] ?>'>
-    <input type="submit" value="ok">
+    <input type="submit" name="submit" value="OK">
 </form >
 </body ></html >
 
