@@ -8,8 +8,12 @@
 
  * */
 
+function ft_is_set($tab, $key)
+{
+  return ($tab[$key] !== NULL);
+}
 
-if ($_GET["login"] !== NULL && $_GET["passwd"] !== NULL &&
+if (ft_is_set($_GET["login"]) && ft_is_set($_GET["passwd"]) &&
     $_GET["submit"] === "OK")
 {
   session_start();
