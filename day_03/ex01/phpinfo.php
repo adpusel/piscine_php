@@ -7,3 +7,4 @@
  
 phpinfo();
 
+// curl 'http://127.0.0.1:8100/piscine_php/day_03/ex01/phpinfo.php'
