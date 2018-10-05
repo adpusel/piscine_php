@@ -13,7 +13,7 @@ function copie_all()
         cd "$directory"
 
         for file in `ls` ; do
-#            echo "$file"
+            echo "$file"
 
             if [ "$file" = "main.php" ]; then
                 cp "$file" "../../../$directory/ad_main.php"

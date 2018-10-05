@@ -29,9 +29,9 @@ switch ($action)
 
 /*
 
-curl -c cook.txt 'http://localhost:8888/day_03/ex03/cookie_crisp.php?action=set&name=plat&value=choucroute'
-curl -b cook.txt 'http://localhost:8888/day_03/ex03/cookie_crisp.php?action=get&name=plat'
-curl -c cook.txt 'http://localhost:8888/day_03/ex03/cookie_crisp.php?action=del&name=plat'
-curl -b cook.txt 'http://localhost:8888/day_03/ex03/cookie_crisp.php?action=get&name=plat'
+curl -c cook.txt 'http://127.0.0.1:8100/piscine_php/day_03/ex03/cookie_crisp.php?action=set&name=plat&value=choucroute'
+curl -b cook.txt 'http://127.0.0.1:8100/piscine_php/day_03/ex03/cookie_crisp.php?action=get&name=plat'
+curl -c cook.txt 'http://127.0.0.1:8100/piscine_php/day_03/ex03/cookie_crisp.php?action=del&name=plat'
+curl -b cook.txt 'http://127.0.0.1:8100/piscine_php/day_03/ex03/cookie_crisp.php?action=get&name=plat'
 
 */

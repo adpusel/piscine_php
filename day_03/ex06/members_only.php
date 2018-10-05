@@ -20,4 +20,5 @@ else
   header("WWW-Authenticate: Basic realm=''Espace membres''");
   echo '<html><body>Cette zone est accessible uniquement aux membres du site</body></html>';
 }
-//  curl --user zaz:jaimelespetitsponeys http://localhost:8888/day_03/ex06/members_only.php
+//  curl --user zaz:jaimelespetitsponeys http://127.0.0.1:8100/piscine_php/day_03/ex06/members_only.php
+//  curl -v --user root:root http://127.0.0.1:8100/piscine_php/day_03/ex06/members_only.php

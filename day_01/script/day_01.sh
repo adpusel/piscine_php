@@ -363,16 +363,16 @@ function ex_12
 ##cat peer_notes_1.csv | ./agent_stats.php
 
 ##go
-#ex_00
-#ex_01
-#ex_02
-#ex_03
-#ex_04
-#ex_05
-#ex_06
-#ex_07
-#ex_08
-#ex_09
-#ex_10
+ex_00
+ex_01
+ex_02
+ex_03
+ex_04
+ex_05
+ex_06
+ex_07
+ex_08
+ex_09
+ex_10
 ex_11
-#ex_12
+ex_12

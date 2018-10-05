@@ -22,19 +22,19 @@ function ex_00
 
     #test
     php another_world.php   | cat -e >> your
-    ###php another_world.php                    | cat -e >> my
+    php another_world.php                    | cat -e >> my
 
     php another_world.php   "		ss eed   " | cat -e >> your
-    ###php ad_src.php       "		ss eed" | cat -e >> my
+    php ad_src.php       "		ss eed" | cat -e >> my
 
     php another_world.php   "		ss eed   " | cat -e >> your
-    ###php ad_src.php "		ss eed" | cat -e >> my
+    php ad_src.php "		ss eed" | cat -e >> my
 
     php another_world.php   "		ss		 e		e	d		" | cat -e >> your
-    ###php ad_src.php "		ss		 e		e	d		" | cat -e >> my
+    php ad_src.php "		ss		 e		e	d		" | cat -e >> my
 
     php another_world.php   "adsf	 	ss	 	 e	 asdf	e	 d	asdfasdf 	asdf" | cat -e >> your
-    ###php ad_src.php "adsf	 	ss	 	 e	 asdf	e	 d	asdfasdf 	asdf" | cat -e >> my
+    php ad_src.php "adsf	 	ss	 	 e	 asdf	e	 d	asdfasdf 	asdf" | cat -e >> my
 
     #diff
     diff_param ex_00_same_output
@@ -42,7 +42,6 @@ function ex_00
     end
 }
 
-#ex_00
 #*------------------------------------*\
 #    ex 01
 #*------------------------------------*/
@@ -94,9 +93,15 @@ function ex_01
 
     for i in "${array_good[@]}"
     do :
-        php one_more_time.php $i | cat -e
-#        php one_more_time.php $i cat -e > your
+        php one_more_time.php $i | cat -e > your
+        php ad_src.php        $i | cat -e > my
+        diff_param ex_00_same_output ; echo $i;
     done
+
+    echo "==========================="
+    echo "==========================="
+    echo "==========================="
+
 
     array_bad=(
             "lundi 0 septembre 1753 00:59:00"
@@ -148,19 +153,13 @@ function ex_01
 
     for i in "${array_bad[@]}"
     do :
-        php one_more_time.php $i | cat -e
-#        php one_more_time.php $i cat -e > your
+        php one_more_time.php $i | cat -e > your
+        php ad_src.php        $i | cat -e > my
+        diff_param ex_00_same_output ; echo $i;
     done
-
-
-
-#    ft_check_diff mlx ad_src    ex_01_test_same_outpout
-
-    #test size prog
 
     end
 }
-#ex_01
 
 
 #*------------------------------------*\
@@ -170,12 +169,32 @@ function ex_02
 {
     cd ex02
 
-    #test result
-    php loupe.php t.html
+    cp ./../script/code/ex02/newPage.html .
+    cp ./../script/code/ex02/newPage2.html .
+    cp ./../script/code/ex02/page2.html .
+    cp ./../script/code/ex02/page.html .
+
+
+    #test 2
+    php loupe.php  page.html > your
+    mv newPage.html my
+
+    diff_param ex_02_same_output_page_1
+
+
+    # test 1
+    php loupe.php  page2.html > your
+    mv newPage2.html my
+
+    diff_param  ex_02_same_output_page_2
+
+    php loupe.php   | cat -e > your
+    echo            | > my
+
+    diff_param  ex_02_same_output_empty
 
     end
 }
-ex_02
 
 #*------------------------------------*\
 #    ex 03
@@ -184,7 +203,9 @@ function ex_03
 {
     cd ex03
 
-    ft_check_diff ad_main ad_main_test ex_03_same_output
+        php who.php $i | cat -e > your
+        who | cat -e > my
+        diff_param ex_03_same_output
 
     end
 }
@@ -211,8 +232,6 @@ function ex_05
 {
     cd ex05
 
-
-
     diff_param ex_05_same_output
 
     end
@@ -232,10 +251,13 @@ end
 
 
 ##go
-#ex_00
-#ex_01
-#ex_02
-#ex_03
-#ex_04
+ex_00
+ex_01
+ex_02
+ex_03
+ex_04
 #ex_05
 #ex_06
+
+
+#delete_trace
