@@ -4,7 +4,16 @@
  * Date: 04/10/2018
  * Time: 21:12
  */
- 
+
+function ft_exit()
+{
+  echo "ERROR\n";
+  die();
+}
+
+if ($_POST["submit"] !== 'OK')
+  ft_exit();
+
 
 if ($_SERVER["PHP_AUTH_USER"] === 'zaz' && $_SERVER["PHP_AUTH_PW"] === 'jaimelespetitsponeys')
 {

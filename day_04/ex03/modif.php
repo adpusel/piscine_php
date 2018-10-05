@@ -3,6 +3,13 @@
  * User: adpusel
  * Date: 04/10/2018
  * Time: 19:30
+ *
+ * // create
+ * curl -d login=toto1 -d passwd=titi1 -d submit=OK 'http://localhost:8100/piscine_php/day_04/ex02/create.php'
+ *
+ *
+ * curl -d login=x -d passwd=21 -d submit=OK 'http://localhost:8100/piscine_php/day_04/ex03/modif.php'
+ *
  */
 
 function ft_exit()
@@ -11,25 +18,30 @@ function ft_exit()
   die();
 }
 
-//if ($_POST["submit"] !== 'OK')
-//  ft_exit();
-
+if ($_POST["submit"] !== 'OK')
+  ft_exit();
 
 $filename = "../private/passwd";
 // get le tab
 $data = file_get_contents($filename);
 $tab = $data === false ? [] : unserialize($data);
 
+$id_iser =
 
-if ($_POST["login"] !== "" && $_POST["oldpw"] !== "" && $_POST["newpw"])
+
+if ($_POST["login"] !== "" && $_POST["oldpw"] !== "")
 {
-  var_dump($_POST);
 
   $user_hash = hash("whirlpool", $_POST["oldpw"]);
+  var_dump($tab);
   if ($user_hash === $tab[$_POST["login"]])
   {
-    $new_hash = hash("whirlpool", $_POST["newpw"]);
-	$tab[$_POST["login"]] = $new_hash;
+	if ($_POST["newpw"] !== "")
+	{
+	  $new_hash = hash("whirlpool", $_POST["newpw"]);
+	  $tab[$_POST["login"]] = $new_hash;
+	}
+	echo "OK\n";
   }
   else
 	ft_exit();
@@ -42,6 +54,3 @@ if ($_POST["login"] !== "" && $_POST["oldpw"] !== "" && $_POST["newpw"])
 }
 else
   ft_exit();
-
-// fonction hash de php pour hash les mdp prenre sha256 ou whirpool
-// je peux activer session start pour ne pas mettre session a chaque fois dans les fichier
