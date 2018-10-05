@@ -6,24 +6,31 @@
  *
 
 	rm /Users/adpusel/code/42/piscine_php/day_04/private/passwd
-  curl -d login=toto1 -d passwd=titi1 -d submit=OK 'http://localhost:8100/piscine_php/day_04/ex02/create.php'
+  curl -d login=toto1 -d passwd=titi1 -d submit=OK 'http://localhost:8888/piscine_php/day_04/ex01/create.php'
 
   more /Users/adpusel/code/42/piscine_php/day_04/private/passwd
  *
  *
  */
+
+
 /*------------------------------------*\
    manage tab
 \*------------------------------------*/
-function get_tab($filename)
+
+function get_tab()
 {
+  $filename = "../private/passwd";
+  if (file_exists("../private/") === false)
+	mkdir("../private");
+
   $data = file_get_contents($filename);
   return ($data === false ? [] : unserialize($data));
 }
 
-function save_tab($filename, $tab)
+function save_tab($tab)
 {
-  $filename = $filename;
+  $filename = "../private/passwd";
   $tab = serialize($tab);
   return (file_put_contents($filename, $tab));
 }
@@ -45,6 +52,11 @@ function check_submit()
   }
 }
 
+function ft_is_set($tab, $key)
+{
+  return ($tab[$key] !== NULL && $tab[$key] === '');
+}
+
 /*------------------------------------*\
     manage user
 \*------------------------------------*/
@@ -61,23 +73,6 @@ function get_id_user($tab)
   return false;
 }
 
-// true if good password
-function check_pass($hash, $name_pass)
-{
-  $pass_hash = $user_hash = hash("whirlpool", $_POST[$name_pass]);
-  return $hash === $pass_hash ? true : false;
-}
-
-function change_passe($tab, $id_user, $new_pass)
-{
-  $tab[$id_user]["passwd"] = hash("whirlpool", $new_pass);
-}
-
-function ft_is_set($tab, $key)
-{
-  return ($tab[$key] !== NULL);
-}
-
 function ft_add_user($tab)
 {
   $pass = hash("whirlpool", $_POST["passwd"]);
@@ -87,11 +82,6 @@ function ft_add_user($tab)
   ]);
   return $tab;
 }
-
-/*------------------------------------*\
-    data
-\*------------------------------------*/
-$filename = "../private/passwd";
 
 
 /*------------------------------------*\
@@ -110,7 +100,7 @@ if (get_id_user($tab) !== false)
 if (ft_is_set($_POST,"login") && ft_is_set($_POST, "passwd"))
 {
   $tab = ft_add_user($tab);
-  save_tab($filename, $tab);
+  save_tab($tab);
   echo "OK\n";
 }
 else
