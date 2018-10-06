@@ -10,9 +10,6 @@
 
 
 
-// rm /Users/adpusel/code/42/piscine_php/day_04/private/passwd
-// curl -d login=toto -d passwd=titi -d submit=OK 'http://localhost:8100/piscine_php/day_04/ex02/create.php'
-// curl 'http://localhost:8100/piscine_php/day_04/ex04/login.php?login=toto&passwd=titi'
 
 
 include("auth.php");

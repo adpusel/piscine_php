@@ -11,9 +11,9 @@
 /*------------------------------------*\
    manage tab
 \*------------------------------------*/
-function get_tab($filename)
+function get_tab()
 {
-  $data = file_get_contents($filename);
+  $data = file_get_contents("../private/passwd");
   return ($data === false ? [] : unserialize($data));
 }
 
@@ -40,15 +40,10 @@ function check_pass($hash, $passwd)
   return $hash === $pass_hash ? true : false;
 }
 
-/*------------------------------------*\
-    data
-\*------------------------------------*/
 function auth($login, $passwd)
 {
-  $filename = "../private/passwd";
+  $tab = get_tab();
 
-  // get le tab
-  $tab = get_tab($filename);
   $user_id = get_id_user($tab, $login);
   if ($user_id === false)
   {
