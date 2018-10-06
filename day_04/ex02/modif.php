@@ -5,15 +5,16 @@
  * Time: 19:30
  *
  * // create
-  rm /Users/adpusel/code/42/piscine_php/day_04/private/passwd
-   curl -d login=x -d passwd=21 -d submit=OK 'http://localhost:8100/piscine_php/day_04/ex02/create.php'
+  rmd /Users/adpusel/code/42/piscine_php/day_04/private
+   curl -d login=x -d passwd=21 -d submit=OK 'http://localhost:8888/piscine_php/day_04/ex01/create.php'
+ *  more /Users/adpusel/code/42/piscine_php/day_04/private/passwd
  *
  *
  * // ok car exist
- *  curl -d login=x -d oldpw=21 -d newpw=42 -d submit=OK 'http://localhost:8100/piscine_php/day_04/ex03/modif.php'
+ *  curl -d login=x -d oldpw=21 -d newpw=42 -d submit=OK 'http://localhost:8888/piscine_php/day_04/ex02/modif.php'
  *
  * // si pas de new mdp
- * curl -d login=x -d oldpw=42 -d newpw= -d submit=OK 'http://localhost:8100/piscine_php/day_04/ex03/modif.php'
+ * curl -d login=x -d oldpw=42 -d newpw= -d submit=OK 'http://localhost:8888/piscine_php/day_04/ex02/modif.php'
  *
  */
 /*------------------------------------*\
@@ -75,11 +76,12 @@ function check_pass($hash, $name_pass)
 function change_passe($tab, $id_user, $new_pass)
 {
   $tab[$id_user]["passwd"] = hash("whirlpool", $new_pass);
+  return $tab;
 }
 
 function ft_is_set($tab, $key)
 {
-  return ($tab[$key] !== NULL);
+  return ($tab[$key] !== NULL && $tab[$key] !== "");
 }
 
 function ft_add_user($tab)
@@ -121,11 +123,11 @@ if (check_pass($tab[$user_id]["passwd"], "oldpw") !== true)
 
 if (ft_is_set($_POST, "newpw"))
 {
-  change_passe($tab, $user_id, $_POST["newpw"]);
+  $tab = change_passe($tab, $user_id, $_POST["newpw"]);
 }
 else
   ft_exit();
-
+echo "OK\n";
 save_tab($filename, $tab);
 
 

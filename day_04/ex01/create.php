@@ -54,7 +54,7 @@ function check_submit()
 
 function ft_is_set($tab, $key)
 {
-  return ($tab[$key] !== NULL && $tab[$key] === '');
+  return ($tab[$key] !== NULL && $tab[$key] !== '');
 }
 
 /*------------------------------------*\

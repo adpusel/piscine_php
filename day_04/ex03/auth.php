@@ -52,12 +52,10 @@ function auth($login, $passwd)
   $user_id = get_id_user($tab, $login);
   if ($user_id === false)
   {
-//	echo "1\n";
     return (false);
   }
   if (check_pass($tab[$user_id]["passwd"], $passwd) !== true)
   {
-//	echo "2\n";
     return (false);
   }
   return (true);
