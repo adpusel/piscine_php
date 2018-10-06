@@ -112,14 +112,10 @@ function auth($login, $pass, &$id)
 }
 
 
+function ft_new_client($login, $passwd, $panier)
+{
 
-
-
-
-
-
-
-
+}
 
 
 

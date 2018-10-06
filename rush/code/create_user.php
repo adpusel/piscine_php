@@ -6,7 +6,7 @@
  * Time: 8:04 PM
  */
 
-
+// TODO : set le panier ici de la session au client s'il se log
 require_once "header.php";
 
 if (is_sub() && ($_POST["passwd"] !== '') && $_POST["login"] !== '')
@@ -16,7 +16,8 @@ if (is_sub() && ($_POST["passwd"] !== '') && $_POST["login"] !== '')
   	  echo "l'id existe deja bollos";
   	else
 	{
-	  
+	  $client = ft_new_client($_POST["login"], $_POST["passwd"]);
+	  save_new_client_in_db($client);
 	}
   	// inscription et redirection
 
