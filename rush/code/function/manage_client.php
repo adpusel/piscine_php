@@ -40,6 +40,9 @@ function save_new_client_in_db($client)
   save_tab_clients($client_tab);
 }
 
+// todo create user
+// ?
+
 // return l'index de l'user
 function get_id_user($tab)
 {
@@ -96,13 +99,13 @@ function delete_user($id)
 /*
  * return
  * */
-function auth($login, $pass)
+function auth($login, $pass, &$id)
 {
   $id = get_id_client($login);
   if ($id === false)
 	return (false);
   $user = get_tab_clients()[$id];
-  return check_pass($user["hash"], $pass);
+  check_pass($user["hash"], $pass);
 }
 
 

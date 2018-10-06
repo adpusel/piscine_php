@@ -77,9 +77,9 @@ function ft_add_user($tab)
 {
   $pass = hash("whirlpool", $_POST["passwd"]);
 
-  array_push($tab, [
+  $tab[] = [
 	"login" => $_POST["login"], "passwd" => $pass
-  ]);
+  ];
   return $tab;
 }
 

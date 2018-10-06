@@ -1,0 +1,42 @@
+img {
+    width: 100%;
+}
+
+/*------------------------------------*\
+    header
+\*------------------------------------*/
+
+.logo {
+    width: 75px;
+}
+
+.header {
+    height: 200px;
+    background: darkgrey;
+}
+
+.header div {
+    display: inline-block;
+    margin-right: 25%;
+}
+
+.header a {
+    display: inline-block;
+}
+
+/*------------------------------------*\
+    log 
+\*------------------------------------*/
+
+.log {
+    background: greenyellow;
+    height: 500px;
+    padding: 150px;
+}
+
+.log input {
+    margin-top: 20px;
+    width: 100%;
+    height: 45px;
+    font-size: 45px;
+}
