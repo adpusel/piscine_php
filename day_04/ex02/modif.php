@@ -6,16 +6,16 @@
  *
  * // create
  * rmd /Users/adpusel/code/42/piscine_php/day_04/private
- * curl -d login=x -d passwd=21 -d submit=OK 'http://localhost:8888/piscine_php/day_04/ex01/create.php'
+ * curl -d login=x -d passwd=21 -d submit=OK 'http://localhost:8100/piscine_php/day_04/ex01/create.php'
  *  more /Users/adpusel/code/42/piscine_php/day_04/private/passwd
  *
  *
  * // ok car exist
- *  curl -d login=x -d oldpw=21 -d newpw=42 -d submit=OK 'http://localhost:8888/piscine_php/day_04/ex02/modif.php'
+ *  curl -d login=x -d oldpw=21 -d newpw=42 -d submit=OK 'http://localhost:8100/piscine_php/day_04/ex02/modif.php'
  *     more /Users/adpusel/code/42/piscine_php/day_04/private/passwd
  *
  * // si pas de new mdp
- * curl -d login=x -d oldpw=42 -d newpw= -d submit=OK 'http://localhost:8888/piscine_php/day_04/ex02/modif.php'
+ * curl -d login=x -d oldpw=42 -d newpw= -d submit=OK 'http://localhost:8100/piscine_php/day_04/ex02/modif.php'
  *
  */
 /*------------------------------------*\
@@ -56,7 +56,7 @@ function ft_is_set($tab, $key)
 }
 
 /*------------------------------------*\
-    manage user
+    manage use
 \*------------------------------------*/
 // return l'index de l'user
 function get_id_user($tab)
@@ -110,6 +110,8 @@ if (ft_is_set($_POST, "newpw"))
 {
   $tab = change_passe($tab, $user_id, $_POST["newpw"]);
 }
+else
+  ft_exit();
 echo "OK\n";
 save_tab($tab);
 

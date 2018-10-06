@@ -6,7 +6,7 @@
  *
 
 	rm /Users/adpusel/code/42/piscine_php/day_04/private/passwd
-  curl -d login=toto1 -d passwd=titi1 -d submit=OK 'http://localhost:8888/piscine_php/day_04/ex01/create.php'
+  curl -d login=toto1 -d passwd=titi1 -d submit=OK 'http://localhost:8100/piscine_php/day_04/ex01/create.php'
 
   more /Users/adpusel/code/42/piscine_php/day_04/private/passwd
  *
