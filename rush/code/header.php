@@ -8,6 +8,8 @@ session_start();
 // dans session je met mon user ==> faire la page connection pour commencer
 // a partir de la je fais les request et faire aussi les redirections
 
+var_dump($_SESSION);
+
 ?>
 <!--todo enlever ensuite-->
 <link
@@ -30,13 +32,19 @@ session_start();
     </div>
 
     <div>
-        <a href="#">
+	  <?php
+	  if (isset($_SESSION["user"]) === false)
+		echo ' <a href="create_user.php">inscription</a>';
+	  ?>
+    </div>
 
+
+    <div>
 		  <?php
-		  if (!isset($_SESSION["user"]))
-			echo "logout";
+		  if (isset($_SESSION["user"]))
+			echo ' <a href="page/logout.php">logout</a>';
 		  else
-			echo "login";
+			echo ' <a href="login.php">login</a>';
 		  ?>
         </a>
     </div>

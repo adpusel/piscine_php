@@ -6,12 +6,12 @@
  * Time: 1:43 PM
  */
 
-require_once "manage_client.php";
+require_once "function/manage_client.php";
 
 // reset la database a chaque echange avec le clients
 shell_exec("rm -rf private");
-require_once "install.php";
-require_once "manage_panier.php";
+require_once "function/install.php";
+require_once "function/manage_panier.php";
 
 
 /*------------------------------------*\
@@ -40,8 +40,8 @@ require_once "manage_panier.php";
     test hash client
 \*------------------------------------*/
 $client = array(
-  	"login" => "ad_0",
-  	"hash" => hash_pass(42),
+  	"login" => "a",
+  	"hash" => hash_pass("a"),
   	"panier" => []
 );
 
@@ -74,10 +74,9 @@ add_product_panier(22, 45, 1);
 add_product_panier(222, 8, 1);
 
 remove_product_panier(22, 1);
-var_dump(get_tab_clients()[1]);
 
 
-
+//echo auth("ad_0", 42, $id);
 
 /*------------------------------------*\
     test rajouter 

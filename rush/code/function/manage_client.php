@@ -65,7 +65,10 @@ function hash_pass($pass)
 function check_pass($hash, $pass)
 {
   $pass_hash = hash("whirlpool", $pass);
-  return $hash === $pass_hash ? true : false;
+  if ($hash === $pass_hash)
+    return true;
+  else
+    return false;
 }
 
 function change_passe($tab, $id_user, $new_pass)
@@ -105,7 +108,7 @@ function auth($login, $pass, &$id)
   if ($id === false)
 	return (false);
   $user = get_tab_clients()[$id];
-  check_pass($user["hash"], $pass);
+  return check_pass($user["hash"], $pass);
 }
 
 

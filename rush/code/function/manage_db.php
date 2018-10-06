@@ -9,13 +9,13 @@
 
 function get_tab($name)
 {
-  $file = fopen("private/$name", "r");
+  $file = fopen("../private/$name", "r");
 
   while (flock($file, LOCK_EX) === false)
   {
   };
 
-  $data = file_get_contents("private/" . $name);
+  $data = file_get_contents("../private/" . $name);
 
   // libère le contenu avant d'enlever le verrou
   fflush($file);
@@ -35,7 +35,7 @@ function get_tab($name)
 // save le tab en memoire
 function save_tab($name, $tab)
 {
-  $file = fopen("private/$name", "r+");
+  $file = fopen("../private/$name", "r+");
 
   // boucle tant que le fichier n'est pas libre
   while (flock($file, LOCK_EX) === false)

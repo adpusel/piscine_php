@@ -13,10 +13,10 @@ require_once "manage_db.php";
 // pas besoin de flock
 function create_all_tab()
 {
-  $path = "private/";
+  $path = "../private/";
   if (file_exists($path) === false)
   {
-	mkdir("private");
+	mkdir($path);
   }
 
   file_put_contents($path . "clients", []);

@@ -18,7 +18,8 @@ if (is_sub())
   else
 	echo "wrong pass man\n";
 }
-
+var_dump($_SESSION);
+var_dump($_POST);
 ?>
 
 
@@ -26,7 +27,8 @@ if (is_sub())
     <form
             action=""
             method="post">
-        log <input
+        <p>CONNECTION</p>
+        login <input
                 type="text"
                 name="login"> <br/>
         pass <input
