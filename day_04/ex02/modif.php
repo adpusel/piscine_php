@@ -5,13 +5,14 @@
  * Time: 19:30
  *
  * // create
-  rmd /Users/adpusel/code/42/piscine_php/day_04/private
-   curl -d login=x -d passwd=21 -d submit=OK 'http://localhost:8888/piscine_php/day_04/ex01/create.php'
+ * rmd /Users/adpusel/code/42/piscine_php/day_04/private
+ * curl -d login=x -d passwd=21 -d submit=OK 'http://localhost:8888/piscine_php/day_04/ex01/create.php'
  *  more /Users/adpusel/code/42/piscine_php/day_04/private/passwd
  *
  *
  * // ok car exist
  *  curl -d login=x -d oldpw=21 -d newpw=42 -d submit=OK 'http://localhost:8888/piscine_php/day_04/ex02/modif.php'
+ *     more /Users/adpusel/code/42/piscine_php/day_04/private/passwd
  *
  * // si pas de new mdp
  * curl -d login=x -d oldpw=42 -d newpw= -d submit=OK 'http://localhost:8888/piscine_php/day_04/ex02/modif.php'
@@ -20,17 +21,16 @@
 /*------------------------------------*\
    manage tab
 \*------------------------------------*/
-function get_tab($filename)
+function get_tab()
 {
-  $data = file_get_contents($filename);
+  $data = file_get_contents("../private/passwd");
   return ($data === false ? [] : unserialize($data));
 }
 
-function save_tab($filename, $tab)
+function save_tab($tab)
 {
-  $filename = $filename;
   $tab = serialize($tab);
-  return (file_put_contents($filename, $tab));
+  return (file_put_contents("../private/passwd", $tab));
 }
 
 /*------------------------------------*\
@@ -48,6 +48,11 @@ function check_submit()
   {
 	ft_exit();
   }
+}
+
+function ft_is_set($tab, $key)
+{
+  return ($tab[$key] !== NULL && $tab[$key] !== "");
 }
 
 /*------------------------------------*\
@@ -79,26 +84,6 @@ function change_passe($tab, $id_user, $new_pass)
   return $tab;
 }
 
-function ft_is_set($tab, $key)
-{
-  return ($tab[$key] !== NULL && $tab[$key] !== "");
-}
-
-function ft_add_user($tab)
-{
-  $pass = hash("whirlpool", $_POST["passwd"]);
-
-  array_push($tab, [
-	"login" => $_POST["login"], "passwd" => $pass
-  ]);
-  return $tab;
-}
-
-/*------------------------------------*\
-    data
-\*------------------------------------*/
-$filename = "../private/passwd";
-
 /*------------------------------------*\
     //////////////////////////////////////////////////////////////////////////////
 \*------------------------------------*/
@@ -106,7 +91,7 @@ $filename = "../private/passwd";
 check_submit();
 
 // get le tab
-$tab = get_tab($filename);
+$tab = get_tab();
 
 // check si good user
 $user_id = get_id_user($tab);
@@ -125,10 +110,8 @@ if (ft_is_set($_POST, "newpw"))
 {
   $tab = change_passe($tab, $user_id, $_POST["newpw"]);
 }
-else
-  ft_exit();
 echo "OK\n";
-save_tab($filename, $tab);
+save_tab($tab);
 
 
 
