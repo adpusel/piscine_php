@@ -39,16 +39,33 @@ require_once "install.php";
     test hash client
 \*------------------------------------*/
 $client = array(
-    "id" => hash_pass(42),
+  	"login" => "ad_0",
+  	"hash" => hash_pass(42),
 	"address" => "ponneyponny"
 );
 
-//save_new_client_in_db($client);
+$client_1 = array(
+  "login" => "ad_1",
+  "hash" => hash_pass(42),
+  "address" => "ponneyponny"
+);
+
+$client_2 = array(
+  "login" => "ad_2",
+  "hash" => hash_pass(42),
+  "address" => "ponneyponny"
+);
+
+save_new_client_in_db($client);
+save_new_client_in_db($client_1);
+save_new_client_in_db($client_2);
 //$hash = get_tab_clients()[0]["id"];
 //echo check_pass($hash, 42) ? "true" : "false";
 
-//var_dump(get_tab_clients()[0]["id"]);
-
+delete_user(2);
+//
+var_dump(get_tab_clients());
+//echo auth("ad", 2);
 /*------------------------------------*\
     test rajouter 
 \*------------------------------------*/

@@ -9,11 +9,11 @@ require_once "manage_db.php";
 
 /**
  * client :
- * 	  login 	== address email
- *    panier 	== [ tab avec les id des produits]
- *    mdp 		== le hash
- *    droit 	== les acces au site
- * 	  commande 	== [ tab commandes deja passe ]
+ *    login        == address email
+ *    panier    == [ tab avec les id des produits]
+ *    hash        == le hash
+ *    droit        == les acces au site
+ *    commande  == [ tab commandes deja passe ]
  *
  *    est ce que je fais des tab comme sql ? la je fais la meme chose, le truc cool c'est que je peux avoir les joint et ca c'est
  * le feu mais, je m'en fiche je fais ca comme un gros bourin et ca c'est cool :)
@@ -22,7 +22,7 @@ require_once "manage_db.php";
 function get_tab_clients()
 {
   return (
-    get_tab("clients")
+  get_tab("clients")
   );
 }
 
@@ -35,9 +35,9 @@ function save_tab_clients($tab)
 
 function save_new_client_in_db($client)
 {
-	$client_tab = get_tab_clients();
-	array_push($client_tab, $client);
-	save_tab_clients($client_tab);
+  $client_tab = get_tab_clients();
+  array_push($client_tab, $client);
+  save_tab_clients($client_tab);
 }
 
 // return l'index de l'user
@@ -78,9 +78,16 @@ function get_id_client($login)
   foreach ($tab as $index => $item)
   {
 	if ($item["login"] === $login)
-	    return $index;
+	  return $index;
   }
   return false;
+}
+
+function delete_user($id)
+{
+  $tab = get_tab_clients();
+  unset($tab[$id]);
+  save_tab_clients($tab);
 }
 
 // todo si true set la session de l'utilisateur
@@ -91,5 +98,27 @@ function get_id_client($login)
  * */
 function auth($login, $pass)
 {
-  	$id =
+  $id = get_id_client($login);
+  if ($id === false)
+	return (false);
+  $user = get_tab_clients()[$id];
+  return check_pass($user["hash"], $pass);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
