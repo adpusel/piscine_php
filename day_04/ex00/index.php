@@ -21,10 +21,10 @@ if ($_GET["submit"] === "OK")
 
 <html><body>
 <form name="index.php" method="get">
-    Identifiant : <input type="text" name="login" value='<?= $_SESSION["login"] ?>' >
+    Identifiant : <input name="login" value='<?= $_SESSION["login"] ?>'>
     <br />
     mdp : <input name="passwd" value='<?= $_SESSION["passwd"] ?>'>
-    <input type="submit" type="text" name="submit" value="OK">
+    <input type="submit" name="submit" value="OK">
 </form >
 </body ></html >
 

@@ -8,15 +8,6 @@
 
 require_once "manage_client.php";
 
-/*------------------------------------*\
-    test un nouveau client
-\*------------------------------------*/
-$client = array(
-  "name" => "super",
-  "pass"=> "lalal"
-);
-
-
 // reset la database a chaque echange avec le clients
 shell_exec("rm -rf private");
 require_once "install.php";
@@ -40,5 +31,25 @@ require_once "install.php";
 /*------------------------------------*\
     save client
 \*------------------------------------*/
-save_new_client_in_db(["1" => "lalal"]);
-var_dump(get_tab_clients());
+//save_new_client_in_db(["1" => "lalal"]);
+//var_dump(get_tab_clients());
+
+
+/*------------------------------------*\
+    test hash client
+\*------------------------------------*/
+$client = array(
+    "id" => hash_pass(42),
+	"address" => "ponneyponny"
+);
+
+//save_new_client_in_db($client);
+//$hash = get_tab_clients()[0]["id"];
+//echo check_pass($hash, 42) ? "true" : "false";
+
+//var_dump(get_tab_clients()[0]["id"]);
+
+/*------------------------------------*\
+    test rajouter 
+\*------------------------------------*/
+

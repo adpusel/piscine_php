@@ -74,7 +74,7 @@ function get_id_user($tab)
 // true if good password
 function check_pass($hash, $name_pass)
 {
-  $pass_hash = $user_hash = hash("whirlpool", $_POST[$name_pass]);
+  $pass_hash = hash("whirlpool", $_POST[$name_pass]);
   return $hash === $pass_hash ? true : false;
 }
 
