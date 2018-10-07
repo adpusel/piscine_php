@@ -108,11 +108,8 @@ $p_test = [
 
 //var_dump(get_tab_products());
 //add_product_db(["adsfadsdddhdsaflashflkasdhflkafhahflkahflkashfaksdfhsakfhaklsfhd"]);
-add_cat_product(2, 5);
-rm_cat_product(2, 5);
-add_product_db($p_test);
-rm_product(2);
+//add_cat_product(2, 5);
+//rm_cat_product(2, 5);
+//rm_product(2);
 
 
-
-var_dump(get_tab_products());

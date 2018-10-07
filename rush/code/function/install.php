@@ -45,6 +45,12 @@ function create_all_tab()
 	  "price" => "35.889",
 	  "img" => "rsc/logo.jpg",
 	  "cat" => []
+	],
+	[
+	"title" => "lama_super_pas_facher",
+	"price" => "35.889",
+	"img" => "rsc/logo.jpg",
+	"cat" => []
 	]
   );
 
