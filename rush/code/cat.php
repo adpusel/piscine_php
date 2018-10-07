@@ -12,23 +12,23 @@
 <div class="filter">
 
   <form
-    action="filter.php"
-    method="post">
+	action="filter.php"
+	method="post">
 	<?php foreach ($tab_cat as $key => $value): ?>
-      <input
-        type="checkbox"
-        name="<?= $key ?>"
-        value="<?= $key ?>"
+	  <input
+		type="checkbox"
+		name="<?= $key ?>"
+		value="<?= $key ?>"
 		<?php if (isset($product["cat"][$value])): ?>
-          checked
+		  checked
 		<?php endif; ?>
 
-      >
-      <label for=""><?= $value ?></label>
+	  >
+	  <label for=""><?= $value ?></label>
 	<?php endforeach; ?>
-    <input
-      type="submit"
-      value="filter"
-      name="submit">
+	<input
+	  type="submit"
+	  value="filter"
+	  name="submit">
   </form>
 </div>

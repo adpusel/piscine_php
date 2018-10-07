@@ -24,6 +24,14 @@ function save_tab_products($tab)
   );
 }
 
+function change_product($id, $product)
+{
+  $product_tab = get_tab_products();
+  $product_tab[intval($id)] = $product;
+  save_tab_products($product_tab);
+  var_dump(get_tab_products());
+}
+
 function add_product_db($product)
 {
   $product_tab = get_tab_products();
@@ -38,7 +46,7 @@ function get_id_product($tile)
   foreach ($product_tab as $key => $value)
   {
 	if ($value["title"] === $tile)
-	    return $key;
+	  return $key;
   }
   return;
 }
@@ -48,7 +56,7 @@ function rm_cat_product($id, $cat)
   $tab = get_tab_products();
 
   // je fais un key value
-  unset($tab[$id]["cat"][$cat]);
+  unset($tab[intval($id)]["cat"][$cat]);
   save_tab_products($tab);
 }
 
@@ -56,7 +64,7 @@ function rm_product($id)
 {
   $tab = get_tab_products();
 
-  $tab[$id] = NULL;
+  $tab[intval($id)] = NULL;
   save_tab_products($tab);
 }
 
@@ -75,10 +83,10 @@ function add_cat_product($id, $cat)
 \*------------------------------------*/
 function add_cat($name)
 {
-	$tab = get_tab("cat");
-	array_push($tab, $name);
-	save_tab("cat", $tab);
-    return;
+  $tab = get_tab("cat");
+  array_push($tab, $name);
+  save_tab("cat", $tab);
+  return;
 }
 
 function get_id_cat($name)
@@ -101,7 +109,7 @@ function rm_cat($name)
 $p_test = [
   "flute" => "asdfaf",
   "cat" => [
-    "lala"
+	"lala"
   ]
 ];
 
