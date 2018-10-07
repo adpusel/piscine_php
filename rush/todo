@@ -26,3 +26,11 @@
                 beau
     --> faire des objets tout beau tout migon
 
+
+
+/*------------------------------------*\
+    faire le filter pour les id :)
+\*------------------------------------*/
+    c'est des case a cocher pour connaitre les filtre,
+    ceci est stocker dans session
+    si l'index est

@@ -40,3 +40,22 @@ img {
     height: 45px;
     font-size: 45px;
 }
+
+
+/*------------------------------------*\
+    card
+\*------------------------------------*/
+.products
+{
+    padding: 5%;
+    text-align: center;
+}
+
+.card
+{
+    width: 150px;;
+    height: 350px;
+    padding: 20px;
+    margin: 20px;
+    background: red;
+}

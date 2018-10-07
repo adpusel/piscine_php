@@ -2,6 +2,7 @@
 
 require_once "function/manage_client.php";
 require_once "function/manage_panier.php";
+require_once "function/manage_product.php";
 require_once "function/helper.php";
 session_start();
 
