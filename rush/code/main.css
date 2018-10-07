@@ -12,7 +12,8 @@ img {
 
 .header {
     height: 200px;
-    background: darkgrey;
+    background: #F08080;
+	border-radius: 10px;
 }
 
 .header div {
@@ -29,9 +30,10 @@ img {
 \*------------------------------------*/
 
 .log {
-    background: greenyellow;
-    height: 500px;
+    background: #E0FFFF;
+    height: 800px;
     padding: 150px;
+	border-radius: 15px;
 }
 
 .log input {
@@ -39,7 +41,9 @@ img {
     width: 100%;
     height: 45px;
     font-size: 45px;
+	border-radius: 10px;
 }
+
 
 
 /*------------------------------------*\

@@ -32,7 +32,7 @@ function add_product_panier($id_product, $quantity, $id_user)
 {
   	$tab = get_tab_clients();
   	$user = $tab[$id_user];
-  	$user["pannier"][$id_product] = $quantity;
+  	$user["panier"][$id_product] = $quantity;
   	$tab[$id_user] = $user;
   	save_tab_clients($tab);
 }
@@ -42,7 +42,7 @@ function remove_product_panier($id_product, $id_user)
 {
   $tab = get_tab_clients();
   $user = $tab[$id_user];
-  unset($user["pannier"][$id_product]);
+  unset($user["panier"][$id_product]);
   $tab[$id_user] = $user;
   save_tab_clients($tab);
 }

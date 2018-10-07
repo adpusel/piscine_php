@@ -60,6 +60,3 @@ function save_tab($name, $tab)
   fclose($file);
 }
 
-
-
-
