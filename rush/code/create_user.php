@@ -12,15 +12,11 @@ require_once "header.php";
 // TODO : corriger le truc de l'id
 if (is_sub() && ($_POST["passwd"] !== '') && $_POST["login"] !== '')
 {
-  if (get_id_client($_POST["login"]) === true)
-	echo "l'id existe deja bollos";
+  if (get_id_client($_POST["login"]) !== FALSE)
+	echo "Identifiant indisponible";
   else
-  {
-	$client = ft_new_client($_POST["login"], $_POST["passwd"]);
-	save_new_client_in_db($client);
-  }
+		put_new_data_client();
   // inscription et redirection
-
 }
 else
   echo "manque un truc mec\n";
@@ -34,31 +30,16 @@ var_dump($_POST);
     <form
             action=""
             method="post">
-        log <input
+        Identifiant <input
                 type="text"
                 name="login"> <br/>
-        pass <input
+        Mot de passe <input
                 type="text"
                 name="passwd"> <br/>
-
-        name <input
-                type="text"
-                name="name"> <br/>
-        prenom <input
-                type="text"
-                name="prenom"> <br/>
-
-        address <input
-                type="text"
-                name="address"> <br/>
-        email <input
-                type="text"
-                name="email"> <br/>
         <input
                 type="submit"
                 value="ok"
                 name="submit">
-
     </form>
 
 </div>

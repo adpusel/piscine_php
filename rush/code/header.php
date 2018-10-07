@@ -1,6 +1,7 @@
 <?PHP
 
-require_once "function/manage_client.php";
+ require_once "function/manage_client.php";
+require_once "function/manage_db.php";
 require_once "function/manage_panier.php";
 require_once "function/helper.php";
 session_start();

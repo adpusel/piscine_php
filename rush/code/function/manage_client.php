@@ -43,19 +43,6 @@ function save_new_client_in_db($client)
 // todo create user
 // ?
 
-// return l'index de l'user
-function get_id_user($tab)
-{
-  foreach ($tab as $i => $item)
-  {
-	if ($item["login"] === $_POST["login"])
-	{
-	  return ($i);
-	}
-  }
-  return false;
-}
-
 function hash_pass($pass)
 {
   return (hash("whirlpool", $pass));
@@ -64,11 +51,11 @@ function hash_pass($pass)
 // true if good password
 function check_pass($hash, $pass)
 {
-  $pass_hash = hash("whirlpool", $pass);
+  $pass_hash = hash_pass($pass);
   if ($hash === $pass_hash)
-    return true;
+    return 1;
   else
-    return false;
+    return 0;
 }
 
 function change_passe($tab, $id_user, $new_pass)
@@ -102,25 +89,30 @@ function delete_user($id)
 /*
  * return
  * */
-function auth($login, $pass, &$id)
+function auth($login, $pass)
 {
-  $id = get_id_client($login);
-  if ($id === false)
-	return (false);
-  $user = get_tab_clients()[$id];
-  return check_pass($user["hash"], $pass);
+	$index = get_id_client($login);
+	$user = get_tab_clients();
+	var_dump($user);
+  echo check_pass($user[$index]["hash"], $pass)."55555\n";
+  return check_pass($user[$index]["hash"], $pass);
 }
 
-
-function ft_new_client($login, $passwd, $panier)
+function ft_new_client($login, $passwd)
 {
-
+	$client = array("login" => $login,
+				"hash" => hash_pass($passwd),
+				"panier" => []);
+	save_new_client_in_db($client);
+	return (true);
 }
 
+function put_new_data_client()
+{
+	$client = ft_new_client($_POST["login"], $_POST["passwd"]);
+	echo " nouveau client creer\n";
+}
+//function change_data_client()
+//{
 
-
-
-
-
-
-
+//}
