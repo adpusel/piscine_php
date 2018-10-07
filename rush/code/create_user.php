@@ -20,8 +20,8 @@ if (is_sub() && ($_POST["passwd"] !== '') && $_POST["login"] !== '')
 }
 else
   echo "manque un truc mec\n";
-var_dump($_SESSION);
-var_dump($_POST);
+//var_dump($_SESSION);
+//var_dump($_POST);
 ?>
 
 

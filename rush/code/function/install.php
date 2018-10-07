@@ -32,7 +32,7 @@ function create_all_tab()
 	  "title" => "lama_fache",
 	  "price" => "900",
 	  "img" => "rsc/logo.jpg",
-	  "cat" => [ 1 ]
+	  "cat" => [1]
 	],
 	[
 	  "title" => "lama__pas_fache",

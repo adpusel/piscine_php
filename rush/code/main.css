@@ -53,13 +53,25 @@ img {
 {
     padding: 5%;
     text-align: center;
+    display: inline-block;
 }
 
 .card
 {
+    display: inline-block;
     width: 150px;;
     height: 350px;
     padding: 20px;
     margin: 20px;
     background: red;
 }
+
+/*------------------------------------*\
+    filter
+\*------------------------------------*/
+.filter {
+    height: 200px;
+    background: cornflowerblue;
+}
+
+

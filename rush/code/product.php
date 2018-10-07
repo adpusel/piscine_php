@@ -5,48 +5,60 @@
  * Date: 10/7/18
  * Time: 11:34 AM
  */
-include "header.php";
+require_once "header.php";
 
 $tab = get_tab_products();
-var_dump($tab);
+//print_r($tab);
+
+
+function has_cat($tab)
+{
+  foreach ($_SESSION["filter"] as $index => $item)
+  {
+	if (isset($tab[$item]))
+	  return true;
+
+  }
+    return false;
+}
+
 
 ?>
 
+<?php require_once "filter.php" ?>
 
 <div class="products">
 
+  <?php foreach ($tab as $key => $value): ?>
 
-  <?php foreach ($tab
+  <?php if (has_cat($value["cat"])) :?>
+      <div class="card">
 
-  as $key => $value): ?>
+          <div class="title">
+              <p>title</p>
+              <p><?= $value["title"] ?></p>
+          </div>
 
-    <div class="card">
+          <div class="card_img">
+              <img
+                      src="rsc/logo.jpg"
+                      alt="<?= $value["img"] ?>">
+          </div>
 
-        <div class="title">
-            <p>title</p>
-            <p><?= $value["title"] ?></p>
-        </div>
+          <div class="price">
+              <p><?= $value["price"] ?></p>
+          </div>
 
-        <div class="card_img">
-            <img
-                    src="rsc/logo.jpg"
-                    alt="<?= $value["img"] ?>">
-        </div>
+          <div>
+              <input
+                      type="submit"
+                      value="OK"
+                      name="lama">
+          </div>
 
-        <div class="price">
-            <p><?= $value["price"] ?></p>
-        </div>
-
-        <div>
-            <input
-                    type="submit"
-                    value="OK"
-                    name="lama">
-        </div>
-	  <?php endforeach; ?>
-
-
-    </div>
+      </div>
+    <?php endif;?>
+  <?php endforeach; ?>
 
 
 </div>

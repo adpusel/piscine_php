@@ -10,7 +10,7 @@ session_start();
 // dans session je met mon user ==> faire la page connection pour commencer
 // a partir de la je fais les request et faire aussi les redirections
 
-var_dump($_SESSION);
+//var_dump($_SESSION);
 
 ?>
 <!--todo enlever ensuite-->
