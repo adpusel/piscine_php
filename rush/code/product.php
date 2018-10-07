@@ -9,7 +9,7 @@ require_once "header.php";
 
 $tab = get_tab_products();
 //print_r($tab);
-
+ 
 
 function has_cat($tab)
 {
@@ -21,8 +21,13 @@ function has_cat($tab)
   }
     return false;
 }
+if (is_sub() && ($_POST["quantity"] !== ''))
+{
+		add_product_panier($_POST["id"], $_POST["quantity"], $_POST["price"]);
+	 header('Location: http://localhost:8080/php/rushgit/rush/code/product.php');
+}
 
-
+var_dump($tab);
 ?>
 
 <?php require_once "filter.php" ?>
@@ -33,8 +38,13 @@ function has_cat($tab)
 
   <?php if (has_cat($value["cat"])) :?>
       <div class="card">
-
-          <div class="title">
+			<p> <?php echo $key  ?>  </p>
+		  
+			<input 
+				type="hidden"
+				 name="id"
+				 value="$key" >
+<div class="title">
               <p>title</p>
               <p><?= $value["title"] ?></p>
           </div>
@@ -43,7 +53,15 @@ function has_cat($tab)
               <img
                       src="rsc/logo.jpg"
                       alt="<?= $value["img"] ?>">
-          </div>
+		  </div>
+
+	<form
+		action=""
+		method="post">
+		Quantity <input
+				type="text"
+				name="quantity"> <br/>
+	</form>
 
           <div class="price">
               <p><?= $value["price"] ?></p>

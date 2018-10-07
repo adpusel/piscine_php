@@ -9,7 +9,6 @@
 // TODO : set le panier ici de la session au client s'il se log
 require_once "header.php";
 
-// TODO : corriger le truc de l'id
 if (is_sub() && ($_POST["passwd"] !== '') && $_POST["login"] !== '')
 {
   if (get_id_client($_POST["login"]) !== FALSE)
@@ -20,8 +19,6 @@ if (is_sub() && ($_POST["passwd"] !== '') && $_POST["login"] !== '')
 }
 else
   echo "manque un truc mec\n";
-//var_dump($_SESSION);
-//var_dump($_POST);
 ?>
 
 
