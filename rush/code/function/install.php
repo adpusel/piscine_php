@@ -22,8 +22,6 @@ require_once "manage_db.php";
 // pas besoin de flock
 function create_all_tab()
 {
-
-
   /*------------------------------------*\
 	  fill product
   \*------------------------------------*/
