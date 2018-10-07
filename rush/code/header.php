@@ -49,4 +49,13 @@ var_dump($_SESSION);
         </a>
     </div>
 
+    <div>
+	  <?php
+	  if (isset($_SESSION["user"]))
+		echo ' <a href="page/logout.php">modif data user</a>';
+	  ?>
+        </a>
+    </div>
+
+
 </div>

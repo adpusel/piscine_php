@@ -1,5 +1,28 @@
-// penser et faire tout les appels a la base de donner
-// les differents tab ? non juste un tab pour tout les client qui contient toute les data
-    un truc pour les objets qui contiendra un tab avec tout ca
-    comment je fais mes tests ? ==> haha :)
+// faire la page de login pour les user,
+   faire la page de modification pour les user
+   faire user delete profile
+   faire user validate commande
+   faire le panier --> avec le switch si l'user se connnect
+
+
+   faire l'interface admin --> les droits
+
+
+
+
+   faire la generation des products
+   faire les filtres pour les produits
+   faire les test de ajouts et delete des filtres
+
+
+
+/*------------------------------------*\
+    les objets a acheter :
+\*------------------------------------*/
+--> la page object
+    --> carte, mettre dans le pannier
+    --> rechercher avec des filtres,
+        ===> j'affiche en fonction des choses de session pour que ca soit
+                beau
+    --> faire des objets tout beau tout migon
 

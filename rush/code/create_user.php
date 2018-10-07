@@ -9,17 +9,17 @@
 // TODO : set le panier ici de la session au client s'il se log
 require_once "header.php";
 
+// TODO : corriger le truc de l'id
 if (is_sub() && ($_POST["passwd"] !== '') && $_POST["login"] !== '')
 {
-  	//
-  	if (get_id_client($_POST["login"]) === true)
-  	  echo "l'id existe deja bollos";
-  	else
-	{
-	  $client = ft_new_client($_POST["login"], $_POST["passwd"]);
-	  save_new_client_in_db($client);
-	}
-  	// inscription et redirection
+  if (get_id_client($_POST["login"]) === true)
+	echo "l'id existe deja bollos";
+  else
+  {
+	$client = ft_new_client($_POST["login"], $_POST["passwd"]);
+	save_new_client_in_db($client);
+  }
+  // inscription et redirection
 
 }
 else
@@ -30,21 +30,35 @@ var_dump($_POST);
 
 
 <div class="log">
-<p>INSCRIPTION</p>
-  <form
-	action=""
-	method="post">
-	log <input
-	  type="text"
-	  name="login"> <br/>
-	pass <input
-	  type="text"
-	  name="passwd"> <br/>
-	<input
-	  type="submit"
-	  value="ok"
-	  name="submit">
+    <p>INSCRIPTION</p>
+    <form
+            action=""
+            method="post">
+        log <input
+                type="text"
+                name="login"> <br/>
+        pass <input
+                type="text"
+                name="passwd"> <br/>
 
-  </form>
+        name <input
+                type="text"
+                name="name"> <br/>
+        prenom <input
+                type="text"
+                name="prenom"> <br/>
+
+        address <input
+                type="text"
+                name="address"> <br/>
+        email <input
+                type="text"
+                name="email"> <br/>
+        <input
+                type="submit"
+                value="ok"
+                name="submit">
+
+    </form>
 
 </div>
