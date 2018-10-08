@@ -23,6 +23,30 @@ $file = file_get_contents("test.twig");
 // je ne sais pas comment faire les loop
 
 
+//$file = preg_replace_callback("#\{\{(.*)\}\}#", function ($ar) {
+//
+//  $tab = array("super" => "mager", "name" => "toto");
+//
+//	foreach ($tab as $key => $item)
+//	{
+//
+//	  	if ($key === trim($ar[1]))
+//		{
+//		  echo "$item\n";
+//		  return ($item);
+//		}
+//	}
+//
+//  //trim
+////  var_dump($ar);
+//}, $file);
+
+
+/*------------------------------------*\
+
+\*------------------------------------*/
+
+
 $file = preg_replace_callback("#\{\{(.*)\}\}#", function ($ar) {
 
   $tab = array("super" => "mager", "name" => "toto");
@@ -40,6 +64,54 @@ $file = preg_replace_callback("#\{\{(.*)\}\}#", function ($ar) {
   //trim
 //  var_dump($ar);
 }, $file);
+
+
+
+
+//$file = preg_replace_callback("#\{\{(.*)\}\}#", function ($ar) {
+//
+//  $tab = array("super" => "mager", "name" => "toto");
+//
+//	foreach ($tab as $key => $item)
+//	{
+//
+//	  	if ($key === trim($ar[1]))
+//		{
+//		  echo "$item\n";
+//		  return ($item);
+//		}
+//	}
+//
+//  //trim
+////  var_dump($ar);
+//}, $file);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // si j'ai un tab de tab, comment je l'echap ?
