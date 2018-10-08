@@ -10,16 +10,17 @@ require_once "header.php";
 
 if (is_sub())
 {
-  if (auth($_POST["login"], $_POST["passwd"], $id))
+  if (auth($_POST["login"], $_POST["passwd"]))
   {
       $_SESSION["user"] = $id;
       echo "you are connected\n";
   }
   else
 	echo "wrong pass man\n";
+
 }
-var_dump($_SESSION);
-var_dump($_POST);
+//var_dump($_SESSION);
+//var_dump($_POST);
 ?>
 
 
@@ -28,16 +29,19 @@ var_dump($_POST);
             action=""
             method="post">
         <p>CONNECTION</p>
-        login <input
+        Identifiant <input
                 type="text"
                 name="login"> <br/>
-        pass <input
+        Mot de passe <input
                 type="text"
-                name="passwd"> <br/>
+				name="passwd"
+value="ss"
+> <br/>
         <input
                 type="submit"
                 value="ok"
-                name="submit">
+				name="submit"
+value="ss">
 
     </form>
 

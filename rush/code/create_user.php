@@ -11,40 +11,32 @@ require_once "header.php";
 
 if (is_sub() && ($_POST["passwd"] !== '') && $_POST["login"] !== '')
 {
-  	//
-  	if (get_id_client($_POST["login"]) === true)
-  	  echo "l'id existe deja bollos";
-  	else
-	{
-	  $client = ft_new_client($_POST["login"], $_POST["passwd"]);
-	  save_new_client_in_db($client);
-	}
-  	// inscription et redirection
-
+  if (get_id_client($_POST["login"]) !== FALSE)
+	echo "Identifiant indisponible";
+  else
+		put_new_data_client();
+  // inscription et redirection
 }
 else
   echo "manque un truc mec\n";
-var_dump($_SESSION);
-var_dump($_POST);
 ?>
 
 
 <div class="log">
-<p>INSCRIPTION</p>
-  <form
-	action=""
-	method="post">
-	log <input
-	  type="text"
-	  name="login"> <br/>
-	pass <input
-	  type="text"
-	  name="passwd"> <br/>
-	<input
-	  type="submit"
-	  value="ok"
-	  name="submit">
-
-  </form>
+    <p>INSCRIPTION</p>
+    <form
+            action=""
+            method="post">
+        Identifiant <input
+                type="text"
+                name="login"> <br/>
+        Mot de passe <input
+                type="text"
+                name="passwd"> <br/>
+        <input
+                type="submit"
+                value="ok"
+                name="submit">
+    </form>
 
 </div>
