@@ -1,2 +1,11 @@
 on fait des class en php
 les class c
+
+//consigne ==>
+    une seul et unique class par file
+    rien d'autre que la class et des require
+    le name doit etre :                                     ClassName.class.php.
+    il doit y avoir pour chaque class un fichier de doc de  ClassName.doc.txt
+    faire une doc qui explique comment utiliser la class pas comment elle marche
+    il y a pour toute les class un attribut verbose bool qui ...
+    il y a une meth doc qui retourn le contenu du fichier de documentation

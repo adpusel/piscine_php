@@ -18,11 +18,37 @@
 
 // pour pouvoir faire de la surcharge, je passe un tab a php, ==> kwargs
 
+
+// l'operateur :: me permet d'avancer dans un scoop le {} a chaque fois que je le met
+
 class Exemple
 {
+
+  // convention: mettre tout les attribut en private et y acceder uniquement avec
+  // des setteur et des getter
+
+  /**
+   * @return mixed
+   */
+  public static function getAttr()
+  {
+	return self::$attr;
+  }
+
+
+  // les attribut static c'est comme les const static
+  public static $attr = lala;
+
+
+  const LAL = 0;
+
   public function __construct(array $super)
   {
 	echo "creation" . PHP_EOL;
+
+	// le self fait reference a l'instance de ma class car, la constante est non
+	// modifiable et ne change pas, donc je la reatache a ma class
+	echo self::LAL;
   }
 
   function __destruct()
@@ -41,6 +67,21 @@ class Exemple
   {
 	return "test string";
   }
+
+
+
+function __call()
+{
+    
+    return;
+}
+
+function __calls()
+{
+    
+    return;
+}
+
 
   public function __get($att)
   {
@@ -90,3 +131,6 @@ print($instance);
 // faut clonenr les instanve en memoir, si je fais $instance_1 == $instance_2// ca me fait juste une faute
 
 // je peux check de deux maniere les $intance: --> meme place memoir : === 		 || meme donner ==
+
+
+// difference entre la class et l'instace :
