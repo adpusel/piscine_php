@@ -1,5 +1,13 @@
 {% for item in navigation %}
+    <li><a href="{{ item.link }}">{{ item.name }}</a></li>
     <li><a href="{{ link }}">{{ name }}</a></li>
     <li><a href="{{ link }}">{{ name }}</a></li>
-    <li><a href="{{ link }}">{{ name }}</a></li>
+{% endfor %}
+
+
+
+{% for index in users %}
+    <li><a href="{{ index.link }}">{{ index.name }}</a></li>
+    <li><a href="{{ index }}">{{ index }}</a></li>
+    <li><a href="{{ index }}">{{ index }}</a></li>
 {% endfor %}

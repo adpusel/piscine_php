@@ -67,10 +67,15 @@ function loop_template($data, $tab)
 
 	function ($match) use ($tab) {
 
-	  // trim le for pour get cool stuff
-	  $a = preg_replace("#\{%(.*)%\}#", "", $match[0]);
-	  echo trim($a);
+	  // get le tab
+//	  $name_tab =
+	  echo preg_replace("#{% ((\w+) ){3}#", "", $match[0]);
 
+
+	  // trim and get the template
+	  $a = preg_replace("#\{%(.*)%\}#", "", $match[0]);
+//	  echo trim($a);
+//	  var_dump($match[0]);
 
 	  //    foreach ($tab as $key => $item)
 //	  {
