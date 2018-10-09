@@ -6,48 +6,12 @@
  */
 
 // open file
-$file = file_get_contents("test.twig");
+$file = file_get_contents("test_for.twig");
 
-
-//print_r($file);
-
-
-// parse file
-// si c'est un tab ca fait ca :);
-
-
-// charger les boucle php
-// si je genere un new file php c'est pas bon ca
-// je ne sais pas comment faire les loop
-
-
-//function ($ar)
-//{
-//  $tab = array("super" => "mager", "name" => "toto", "tybus" => [
-//	["link" => "super_link",
-//	  "name" => "ce truc est cool"
-//	], ["link" => "super_link",
-//	  "name" => "ce truc est cool"]]
-//  );
-//
-//  $tab_out = array();
-//  $name = "tybus";
-//
-//  foreach ($name as $key => $item)
-//  {
-//
-//	if ($key === trim($ar[1]))
-//	{
-//	  echo "$item\n";
-//	  return ($item);
-//	}
-//  }
-//}
-//
-//;
-
-
-$tab = array("super" => "mager", "name" => "toto");
+$tab = array("super" => "mager", "name" => "toto", "tybus" => [
+  "link" => "super_link",
+  "name" => "ce truc est cool"
+]);
 
 function utils_simple_template($match, $tab)
 {
@@ -83,31 +47,44 @@ function simple_template($data, $tab)
 }
 
 
-echo simple_template($file, $tab);
+//echo simple_template($file, $tab);
 
 
+function build_tab_loob($line, $tab)
+{
+  $tab_out = array();
 
-//function template_simple($file, $data)
-//{
-//  $file = preg_replace_callback("#\{%(.*)%\}{2}#", function ($ar) {
+  foreach ($tab as $index => $item)
+  {
+
+  }
+}
+
+
+function loop_template($data, $tab)
+{
+  $data = preg_replace_callback("#\{%(.*)%\}(.*)%\}#si",
+
+	function ($match) use ($tab) {
+
+	  // trim le for pour get cool stuff
+	  $a = preg_replace("#\{%(.*)%\}#", "", $match[0]);
+	  echo trim($a);
+
+
+	  //    foreach ($tab as $key => $item)
+//	  {
 //
+//	     kepp juste les trucs entre ()
 //
-//	$tab = array("super" => "mager", "name" => "toto", "tybus" => [
-//	  "link" => "super_link",
-//	  "name" => "ce truc est cool"
-//	]);
-//
-//	foreach ($tab as $key => $item)
-//	{
-//
-//	  echo "$item\n";
-//	}
-//
-//	trim
-//	var_dump($ar[1]);
-//  }, $file);
-//  echo $file;
-//}
+//		echo "$item\n";
+//	  }
+
+//	  var_dump($match[0]);
+	}, $data);
+
+//  echo $data;
+}
 
 
-
+loop_template($file, $tab);
