@@ -43,16 +43,32 @@ class Color
 
   public function __destruct()
   {
-//	if (self::$verbose === true)
-//	  $this->print_verbose(" destructed.");
+	if (self::$verbose === true)
+	  $this->print_verbose(" destructed.");
   }
 
   public function add(Color $new_instace)
   {
 	return new Color([
-	  "red"   => ($this->red + $new_instace->red),
-	  "green" => ($this->green + $new_instace->green),
-	  "blue"  => ($this->blue + $new_instace->blue)]);
+	  "red"   => $this->red + $new_instace->red,
+	  "green" => $this->green + $new_instace->green,
+	  "blue"  => $this->blue + $new_instace->blue]);
+  }
+
+  public function sub(Color $new_instace)
+  {
+	return new Color([
+	  "red"   => $this->red - $new_instace->red,
+	  "green" => $this->green - $new_instace->green,
+	  "blue"  => $this->blue - $new_instace->blue]);
+  }
+
+  public function mult(float $nb)
+  {
+	return new Color([
+	  "red"   => ($this->red * $nb),
+	  "green" => ($this->green * $nb),
+	  "blue"  => ($this->blue * $nb)]);
   }
 
 
@@ -99,16 +115,8 @@ class Color
 
   public function __toString()
   {
-	return $this->print_verbose("");
+	return sprintf("Color( red: %3d, green: %3d, blue: %3d )",
+	  $this->red, $this->green, $this->blue);
   }
 
 }
-
-// LES TEST
-//$in_1 = new Color([]);
-//
-//$in_1::setVerbose(true);
-//$in_1::doc();
-// test mode verbose
-
-
