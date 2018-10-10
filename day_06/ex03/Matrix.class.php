@@ -43,7 +43,7 @@ class Matrix
 	  $this->matrice = $kwargs["build"];
 	}
 
-    if ($kwargs["preset"] === self::IDENTITY)
+	if ($kwargs["preset"] === self::IDENTITY)
 	{
 	  $this->_identity();
 	  $this->_current = self::IDENTITY;
@@ -110,19 +110,27 @@ class Matrix
 
   }
 
-  private function get_case($line, $col,Matrix $matrice)
+  private function get_case($line, $col, Matrix $matrice)
   {
 	$this->new_matrice[$line][$col] =
 	  $this->matrice[$line][0] * $matrice->matrice[$col][0] +
 	  $this->matrice[$line][1] * $matrice->matrice[$col][1] +
 	  $this->matrice[$line][2] * $matrice->matrice[$col][2] +
 	  $this->matrice[$line][3] * $matrice->matrice[$col][3];
+
+	print $this->matrice[$line][0] ." * ". $matrice->matrice[$col][0]. " + ";
+	print $this->matrice[$line][1] ." * ". $matrice->matrice[$col][1]. " + ";
+	print $this->matrice[$line][2] ." * ". $matrice->matrice[$col][2]. " + ";
+	print $this->matrice[$line][3] ." * ". $matrice->matrice[$col][3]. "\n";
   }
 
 
   public function mult(Matrix $matrix)
   {
-	for($i = 0; $i < 4; $i++)
+//	$this->_print_matrice();
+
+
+    for ($i = 0; $i < 4; $i++)
 	{
 	  $this->get_case($i, 0, $matrix);
 	  $this->get_case($i, 1, $matrix);
@@ -135,7 +143,7 @@ class Matrix
   }
 
 
-  private function _pro(float $ar, float $fov, float $zNear, float $zFfar)
+  private function _pro($ar, $fov, $zNear, $zFfar)
   {
 	$tanHalfFOV = tan(deg2rad($fov) / 2.0);
 	$zRange = $zNear - $zFfar;
@@ -147,7 +155,7 @@ class Matrix
   }
 
 
-  private function _rz(float $angle)
+  private function _rz($angle)
   {
 	$this->matrice[0][0] = round(cos($angle), 2);
 	$this->matrice[0][1] = round(sin($angle), 2);
@@ -157,7 +165,7 @@ class Matrix
   }
 
 
-  private function _ry(float $angle)
+  private function _ry($angle)
   {
 	$this->matrice[0][0] = round(cos($angle), 2);
 	$this->matrice[0][2] = round(sin($angle), 2);
@@ -166,7 +174,7 @@ class Matrix
 	$this->matrice[2][2] = round(cos($angle), 2);
   }
 
-  private function _rx(float $angle)
+  private function _rx($angle)
   {
 	$this->matrice[1][1] = round(cos($angle), 2);
 	$this->matrice[2][1] = round(sin($angle), 2);
@@ -176,7 +184,7 @@ class Matrix
   }
 
 
-  private function _scale(float $scale)
+  private function _scale($scale)
   {
 	$this->matrice[0][0] = $scale;
 	$this->matrice[1][1] = $scale;

@@ -58,7 +58,24 @@ print( 'Matrices are so awesome, that they can be combined !' . PHP_EOL );
 print( 'This is a model matrix that scales, then rotates around OY axis,' . PHP_EOL );
 print( 'then rotates around OX axis and finally translates.' . PHP_EOL );
 print( 'Please note the reverse operations order. It\'s not an error.' . PHP_EOL );
-$M = $T->mult( $RX )->mult( $RY )->mult( $S );
+//$M = $T->mult( $RX )->mult( $RY )->mult( $S );
+
+
+$m = new Matrix(["build" => [
+  [100, 101, 102, 103],
+  [200, 201, 202, 203],
+  [300, 101, 302, 303],
+  [400, 401, 402, 403],
+]]);
+
+$m1 = new Matrix(["build" => [
+  [1000, 1002, 1002, 1003],
+  [2000, 2001, 2002, 2003],
+  [3000, 3001, 3002, 3003],
+  [4000, 4001, 4002, 4003],
+]]);
+$M = $m->mult( $m1 );
+
 print( $M .  PHP_EOL);
 //
 //print( 'What can you do with a matrix and a vertex ?' . PHP_EOL );

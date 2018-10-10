@@ -49,7 +49,7 @@ class Vertex
   /**
    * @param mixed $color
    */
-  public function setColor($color): void
+  public function setColor($color)
   {
 	if (isset($color))
 	  $this->_color = $color;
@@ -78,7 +78,7 @@ class Vertex
   /**
    * @param mixed $w
    */
-  public function setW($w): void
+  public function setW($w)
   {
 	$this->_w = $w;
   }
@@ -94,7 +94,7 @@ class Vertex
   /**
    * @param mixed $x
    */
-  public function setX(float $x): void
+  public function setX($x)
   {
 	$this->_x = $x;
   }
@@ -110,7 +110,7 @@ class Vertex
   /**
    * @param mixed $y
    */
-  public function setY(float $y): void
+  public function setY($y)
   {
 	$this->_y = $y;
   }
@@ -126,7 +126,7 @@ class Vertex
   /**
    * @param mixed $z
    */
-  public function setZ(float $z): void
+  public function setZ($z)
   {
 	$this->_z = $z;
   }
@@ -155,7 +155,7 @@ class Vertex
   static function doc()
   {
 	print "\n";
-    print file_get_contents("Vertex.doc.txt");
+	print file_get_contents("Vertex.doc.txt");
 	print "\n";
   }
 
