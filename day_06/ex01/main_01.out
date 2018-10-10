@@ -1,6 +1,16 @@
 
 <- Vertex ----------------------------------------------------------------------
-Your documentation here.
+The Vertex class handles vertex float.
+
+An instance can be contructed from either a RGB value:
+new Vertex ( array( 'rgb' => 12345 ) );
+
+Or from distinct x, y, x, w (default == 1.0),  class Color  (white default) constitutives:
+new Vertex ( array( 'x' => 1.0, 'x' => 1.0, 'z' => 1.0 [ "w" => 1.0] ["color" => Color ] ) );
+
+x,y,z,w  constitutives should be float
+Any other use is undefined behaviour.
+
 ---------------------------------------------------------------------- Vertex ->
 Vertex( x: 0.00, y: 0.00, z:0.00, w:1.00, Color( red: 255, green: 255, blue: 255 ) ) constructed
 Vertex( x: 0.00, y: 0.00, z:0.00, w:1.00, Color( red: 255, green: 255, blue: 255 ) )

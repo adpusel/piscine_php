@@ -18,7 +18,6 @@ Vertex::$verbose = True;
 
 $vtxO  = new Vertex( array( 'x' => 0.0, 'y' => 0.0, 'z' => 0.0 ) );
 print( $vtxO  . PHP_EOL );
-
 $red   = new Color( array( 'red' => 255, 'green' =>   0, 'blue' =>   0 ) );
 $green = new Color( array( 'red' =>   0, 'green' => 255, 'blue' =>   0 ) );
 $blue  = new Color( array( 'red' =>   0, 'green' =>   0, 'blue' => 255 ) );
