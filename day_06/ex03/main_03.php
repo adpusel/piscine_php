@@ -8,8 +8,8 @@
 /* ************************************************************************** */
 
 
-//require_once 'Vertex.class.php';
-//require_once 'Vector.class.php';
+require_once 'Vertex.class.php';
+require_once 'Vector.class.php';
 require_once 'Matrix.class.php';
 
 
@@ -58,7 +58,7 @@ print( 'Matrices are so awesome, that they can be combined !' . PHP_EOL );
 print( 'This is a model matrix that scales, then rotates around OY axis,' . PHP_EOL );
 print( 'then rotates around OX axis and finally translates.' . PHP_EOL );
 print( 'Please note the reverse operations order. It\'s not an error.' . PHP_EOL );
-//$M = $T->mult( $RX )->mult( $RY )->mult( $S );
+$M = $T->mult( $RX )->mult( $RY )->mult( $S );
 
 
 $m = new Matrix(["build" => [
@@ -69,14 +69,16 @@ $m = new Matrix(["build" => [
 ]]);
 
 $m1 = new Matrix(["build" => [
-  [1000, 1002, 1002, 1003],
+  [1000, 1001, 1002, 1003],
   [2000, 2001, 2002, 2003],
   [3000, 3001, 3002, 3003],
   [4000, 4001, 4002, 4003],
 ]]);
 $M = $m->mult( $m1 );
-
-print( $M .  PHP_EOL);
+//
+//print( $M .  PHP_EOL);
+//$M = $T->mult( $RX )->mult( $RY )->mult( $S );
+//print( $M .  PHP_EOL);
 //
 //print( 'What can you do with a matrix and a vertex ?' . PHP_EOL );
 //$vtxA = new Vertex( array( 'x' => 1.0, 'y' => 1.0, 'z' => 0.0 ) );
