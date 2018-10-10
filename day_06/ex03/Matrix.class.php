@@ -12,14 +12,21 @@ class Matrix
   static public $verbose = false;
 
   const  IDENTITY = "IDENTITY";
-  const  SCALE = "SCALE";
-  const  RX = "RX";
-  const  RY = "RY";
-  const  RZ = "RZ";
   const  TRANSLATION = "TRANSLATION";
+  const  SCALE = "SCALE";
+  const  RX = "Ox ROTATION";
+  const  RY = "Oy ROTATION";
+  const  RZ = "RZ";
   const  PROJECTION = "PROJECTION";
   private $_current;
-  private $_matrice = [
+  public $matrice = [
+	[0, 0, 0, 0],
+	[0, 0, 0, 0],
+	[0, 0, 0, 0],
+	[0, 0, 0, 0]
+  ];
+
+  public $new_matrice = [
 	[0, 0, 0, 0],
 	[0, 0, 0, 0],
 	[0, 0, 0, 0],
@@ -31,16 +38,70 @@ class Matrix
   \*------------------------------------*/
   public function __construct($kwargs)
   {
-	$res = '';
+	if ($kwargs["build"] === "build")
+	{
+	  $this->matrice = $kwargs["build"];
+	}
 
     if ($kwargs["preset"] === self::IDENTITY)
 	{
-	  $res = $this->_identity();
+	  $this->_identity();
 	  $this->_current = self::IDENTITY;
 	}
 
-    if (self::$verbose === true)
+	if ($kwargs["preset"] === self::TRANSLATION)
+	{
+	  $this->_identity();
+	  $this->_translation($kwargs["vtc"]);
+	  $this->_current = self::TRANSLATION . " preset";
+	}
+
+
+	if ($kwargs["preset"] === self::SCALE)
+	{
+	  $this->_identity();
+	  $this->_scale($kwargs["scale"]);
+	  $this->_current = self::SCALE . " preset";
+	}
+
+
+	if ($kwargs["preset"] === self::RX)
+	{
+	  $this->_identity();
+	  $this->_rx($kwargs["angle"]);
+	  $this->_current = self::RX . " preset";
+	}
+
+	if ($kwargs["preset"] === self::RY)
+	{
+	  $this->_identity();
+	  $this->_ry($kwargs["angle"]);
+	  $this->_current = self::RY . " preset";
+	}
+
+
+	if ($kwargs["preset"] === self::RZ)
+	{
+	  $this->_identity();
+	  $this->_rz($kwargs["angle"]);
+	  $this->_current = self::RZ . " preset";
+	}
+
+
+	if ($kwargs["preset"] === self::PROJECTION)
+	{
+	  $this->_pro(
+		$kwargs["ratio"],
+		$kwargs["fov"],
+		$kwargs["near"],
+		$kwargs["far"]);
+	  $this->_current = self::PROJECTION . " preset";
+	}
+
+
+	if (self::$verbose === true)
 	  $this->_print_verbose($this->_current);
+	return $this->_print_matrice();
   }
 
 
@@ -49,13 +110,94 @@ class Matrix
 
   }
 
+  private function get_case($line, $col,Matrix $matrice)
+  {
+	$this->new_matrice[$line][$col] =
+	  $this->matrice[$line][0] * $matrice->matrice[$col][0] +
+	  $this->matrice[$line][1] * $matrice->matrice[$col][1] +
+	  $this->matrice[$line][2] * $matrice->matrice[$col][2] +
+	  $this->matrice[$line][3] * $matrice->matrice[$col][3];
+  }
+
+
+  public function mult(Matrix $matrix)
+  {
+	for($i = 0; $i < 4; $i++)
+	{
+	  $this->get_case($i, 0, $matrix);
+	  $this->get_case($i, 1, $matrix);
+	  $this->get_case($i, 2, $matrix);
+	  $this->get_case($i, 3, $matrix);
+	}
+	return new Matrix([
+	  "build" => $this->new_matrice
+	]);
+  }
+
+
+  private function _pro(float $ar, float $fov, float $zNear, float $zFfar)
+  {
+	$tanHalfFOV = tan(deg2rad($fov) / 2.0);
+	$zRange = $zNear - $zFfar;
+	$this->matrice[0][0] = 1.0 / ($tanHalfFOV * $ar);
+	$this->matrice[1][1] = 1.0 / $tanHalfFOV;
+	$this->matrice[2][2] = (-$zNear - $zFfar) / $zRange;
+	$this->matrice[2][3] = 2.0 * $zFfar * $zNear / $zRange;
+	$this->matrice[3][2] = 1.;
+  }
+
+
+  private function _rz(float $angle)
+  {
+	$this->matrice[0][0] = round(cos($angle), 2);
+	$this->matrice[0][1] = round(sin($angle), 2);
+
+	$this->matrice[1][0] = -round(sin($angle), 2);
+	$this->matrice[1][1] = round(cos($angle), 2);
+  }
+
+
+  private function _ry(float $angle)
+  {
+	$this->matrice[0][0] = round(cos($angle), 2);
+	$this->matrice[0][2] = round(sin($angle), 2);
+
+	$this->matrice[2][0] = -round(sin($angle), 2);
+	$this->matrice[2][2] = round(cos($angle), 2);
+  }
+
+  private function _rx(float $angle)
+  {
+	$this->matrice[1][1] = round(cos($angle), 2);
+	$this->matrice[2][1] = round(sin($angle), 2);
+
+	$this->matrice[1][2] = -round(sin($angle), 2);
+	$this->matrice[2][2] = round(cos($angle), 2);
+  }
+
+
+  private function _scale(float $scale)
+  {
+	$this->matrice[0][0] = $scale;
+	$this->matrice[1][1] = $scale;
+	$this->matrice[2][2] = $scale;
+  }
+
+
+  private function _translation(Vector $vtc)
+  {
+	$this->matrice[0][3] = $vtc->getX();
+	$this->matrice[1][3] = $vtc->getY();
+	$this->matrice[2][3] = $vtc->getZ();
+  }
+
+
   private function _identity()
   {
-	$this->_matrice[0][0] = 1;
-	$this->_matrice[1][1] = 1;
-	$this->_matrice[2][2] = 1;
-	$this->_matrice[3][3] = 1;
-	return $this->_print_matrice();
+	$this->matrice[0][0] = 1;
+	$this->matrice[1][1] = 1;
+	$this->matrice[2][2] = 1;
+	$this->matrice[3][3] = 1;
   }
 
   private function _print_matrice()
@@ -64,25 +206,25 @@ class Matrix
 	  sprintf("M | vtcX | vtcY | vtcZ | vtxO\n") .
 	  sprintf("-----------------------------\n") .
 	  sprintf("x | %.2f | %.2f | %.2f | %.2f\n",
-		$this->_matrice[0][0],
-		$this->_matrice[0][1],
-		$this->_matrice[0][2],
-		$this->_matrice[0][3]) .
+		$this->matrice[0][0],
+		$this->matrice[0][1],
+		$this->matrice[0][2],
+		$this->matrice[0][3]) .
 	  sprintf("y | %.2f | %.2f | %.2f | %.2f\n",
-		$this->_matrice[1][0],
-		$this->_matrice[1][1],
-		$this->_matrice[1][2],
-		$this->_matrice[1][3]) .
+		$this->matrice[1][0],
+		$this->matrice[1][1],
+		$this->matrice[1][2],
+		$this->matrice[1][3]) .
 	  sprintf("z | %.2f | %.2f | %.2f | %.2f\n",
-		$this->_matrice[2][0],
-		$this->_matrice[2][1],
-		$this->_matrice[2][2],
-		$this->_matrice[2][3]) .
-	  sprintf("x | %.2f | %.2f | %.2f | %.2f\n",
-		$this->_matrice[3][0],
-		$this->_matrice[3][1],
-		$this->_matrice[3][2],
-		$this->_matrice[3][3]);
+		$this->matrice[2][0],
+		$this->matrice[2][1],
+		$this->matrice[2][2],
+		$this->matrice[2][3]) .
+	  sprintf("w | %.2f | %.2f | %.2f | %.2f\n",
+		$this->matrice[3][0],
+		$this->matrice[3][1],
+		$this->matrice[3][2],
+		$this->matrice[3][3]);
   }
 
 
