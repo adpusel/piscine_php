@@ -63,7 +63,7 @@ class Color
 	  "blue"  => $this->blue - $new_instace->blue]);
   }
 
-  public function mult(float $nb)
+  public function mult($nb)
   {
 	return new Color([
 	  "red"   => ($this->red * $nb),

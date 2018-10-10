@@ -60,7 +60,7 @@ class Vector
   /**
    * @param mixed $orig
    */
-  public function setOrig($orig): void
+  public function setOrig($orig)
   {
 	$this->_orig = isset($orig) ?
 	  $orig :
@@ -70,7 +70,7 @@ class Vector
   /**
    * @param mixed $dest
    */
-  public function setDest(Vertex $dest): void
+  public function setDest(Vertex $dest)
   {
 	$this->_dest = $dest;
   }
