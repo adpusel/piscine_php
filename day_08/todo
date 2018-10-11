@@ -1,0 +1,47 @@
+// --> il y des grilles de jeu les enemie commence des deux coter du plateau
+// --> comment faire la zone de jeu ?
+// --> les obstacles
+// --> comment gerer les trucs si je touche un objet || si le vaisseau touche il est eliminer
+// que deux vaisseau pour le
+
+// quand on joue un vaisseau ca l'active
+// on ne peut jouer que un vaiseau
+// un vaisseau peux fait 3 phase ()
+// une fois que tout les vaisseau sont fait,
+
+
+
+// a chaque tour je fais click qui recharge la page
+/*------------------------------------*\
+    la map
+\*------------------------------------*/
+
+--> un tab de [][] de la ou je suis;
+--> un tab des obstacle () red;
+--> un tab des vaisseau // bleu et vert;
+--> le reste est blanc;
+
+
+la methode pour print la map ==> ligne et collomne
+-->
+#*------------------------------------*\
+#    les obstacle
+#*------------------------------------*/
+
+        /*------------------------------------*\
+            les pixel
+        \*------------------------------------*/
+            x, y, // il contiennent aussi vaisseaux ?
+                  // un vaisseau qui bouge get le nb de tout les px qu'il contient
+
+
+
+/*------------------------------------*\
+    les objets
+\*------------------------------------*/
+
+
+
+/*------------------------------------*\
+    les vaisseaux
+\*------------------------------------*/
