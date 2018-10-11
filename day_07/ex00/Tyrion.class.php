@@ -19,8 +19,4 @@ class Tyrion extends Lannister
 	return "Short";
   }
 
-  public function houseMotto()
-  {
-	return "Hear me roar!";
-  }
 }
