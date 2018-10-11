@@ -8,16 +8,21 @@
  */
 class NightsWatch implements IFighter
 {
+  private $_soldiers = array();
 
-  public function recruit($obj)
+  public function recruit($pretend)
   {
-    if (method_exists($obj, 'fight'))
+    if ($pretend instanceof IFighter)
 	{
-	  $obj->fight();
+	  array_push($this->_soldiers, $pretend);
 	}
   }
 
   public function fight()
   {
+	foreach ($this->_soldiers as $soldier)
+	{
+	  $soldier->fight();
+    }
   }
 }
