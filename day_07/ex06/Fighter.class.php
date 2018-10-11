@@ -5,12 +5,15 @@
  * Date: 10/11/18
  * Time: 3:05 PM
  */
+
 // les combatant se bate enteur, il sont des enfants de la class Fighter
 
-class Fighter {
+abstract class Fighter
+{
   protected $_type;
 
-  public function __construct($type) {
+  public function __construct($type)
+  {
 	$this->_type = $type;
   }
 
@@ -22,9 +25,5 @@ class Fighter {
 	return $this->_type;
   }
 
-//  public function fight($t)
-//  {
-//
-//      return;
-//  }
+  abstract function fight($t);
 }
