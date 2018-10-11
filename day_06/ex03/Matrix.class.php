@@ -38,9 +38,10 @@ class Matrix
   \*------------------------------------*/
   public function __construct($kwargs)
   {
-	if ($kwargs["build"] === "build")
+	if (isset($kwargs["build"]))
 	{
 	  $this->matrice = $kwargs["build"];
+//	  var_dump($this->matrice);
 	}
 
 	if ($kwargs["preset"] === self::IDENTITY)
@@ -113,15 +114,15 @@ class Matrix
   private function get_case($line, $col, Matrix $matrice)
   {
 	$this->new_matrice[$line][$col] =
-	  $this->matrice[$line][0] * $matrice->matrice[$col][0] +
-	  $this->matrice[$line][1] * $matrice->matrice[$col][1] +
-	  $this->matrice[$line][2] * $matrice->matrice[$col][2] +
-	  $this->matrice[$line][3] * $matrice->matrice[$col][3];
+	  $this->matrice[$line][0] * $matrice->matrice[0][$col] +
+	  $this->matrice[$line][1] * $matrice->matrice[1][$col] +
+	  $this->matrice[$line][2] * $matrice->matrice[2][$col] +
+	  $this->matrice[$line][3] * $matrice->matrice[3][$col];
 
-	print $this->matrice[$line][0] ." * ". $matrice->matrice[$col][0]. " + ";
-	print $this->matrice[$line][1] ." * ". $matrice->matrice[$col][1]. " + ";
-	print $this->matrice[$line][2] ." * ". $matrice->matrice[$col][2]. " + ";
-	print $this->matrice[$line][3] ." * ". $matrice->matrice[$col][3]. "\n";
+	print $this->matrice[$line][0] . " * " . $matrice->matrice[0][$col] . " + ";
+	print $this->matrice[$line][1] . " * " . $matrice->matrice[1][$col] . " + ";
+	print $this->matrice[$line][2] . " * " . $matrice->matrice[2][$col] . " + ";
+	print $this->matrice[$line][3] . " * " . $matrice->matrice[3][$col] . "\n";
   }
 
 
@@ -130,13 +131,14 @@ class Matrix
 //	$this->_print_matrice();
 
 
-    for ($i = 0; $i < 4; $i++)
+	for ($i = 0; $i < 4; $i++)
 	{
 	  $this->get_case($i, 0, $matrix);
 	  $this->get_case($i, 1, $matrix);
 	  $this->get_case($i, 2, $matrix);
 	  $this->get_case($i, 3, $matrix);
 	}
+	echo $this->_print_matri($this->new_matrice);
 	return new Matrix([
 	  "build" => $this->new_matrice
 	]);
@@ -233,6 +235,34 @@ class Matrix
 		$this->matrice[3][1],
 		$this->matrice[3][2],
 		$this->matrice[3][3]);
+  }
+
+
+  private function _print_matri($matrice)
+  {
+	return
+	  sprintf("M | vtcX | vtcY | vtcZ | vtxO\n") .
+	  sprintf("-----------------------------\n") .
+	  sprintf("x | %.2f | %.2f | %.2f | %.2f\n",
+		$matrice->matrice[0][0],
+		$matrice->matrice[0][1],
+		$matrice->matrice[0][2],
+		$matrice->matrice[0][3]) .
+	  sprintf("y | %.2f | %.2f | %.2f | %.2f\n",
+		$matrice->matrice[1][0],
+		$matrice->matrice[1][1],
+		$matrice->matrice[1][2],
+		$matrice->matrice[1][3]) .
+	  sprintf("z | %.2f | %.2f | %.2f | %.2f\n",
+		$matrice->matrice[2][0],
+		$matrice->matrice[2][1],
+		$matrice->matrice[2][2],
+		$matrice->matrice[2][3]) .
+	  sprintf("w | %.2f | %.2f | %.2f | %.2f\n",
+		$matrice->matrice[3][0],
+		$matrice->matrice[3][1],
+		$matrice->matrice[3][2],
+		$matrice->matrice[3][3]);
   }
 
 
