@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
 </head>
 <body>
-
-<form onsubmit="event.preventDefault(); validateMyForm(event);">
 
     <input
             type="text"
@@ -25,24 +27,24 @@
             name="droite">
     <input
             type="submit"
-            value="Try me!">
-
-</form>
+            value="Try me!"
+    id="lala">
 
 
 <script>
 
-  function validateMyForm(e)
-  {8
-	let gauche = parseInt(document.getElementById("gauche").value)
-	let droite = parseInt(document.getElementById("droite").value)
-	let op = document.getElementById("op").value
+  $("#lala").click(function (e)
+  {
+	e.preventDefault();
+    let gauche = parseInt($("#gauche").val())
+	let droite = parseInt($("#droite").val())
+	let op = $("#dop").val()
 
 
 	if (gauche < 0 || droite < 0 || isNaN(gauche) || isNaN(droite))
 	{
 	  console.log("Error :(")
-      alert("Error :(")
+	  alert("Error :(")
 	}
 	else if ((op === "%" && droite === 0) ||
 	  (op === "/" && droite === 0))
@@ -52,13 +54,16 @@
 	}
 	else
 	{
-	  let res = eval(`${gauche} ${op} ${droite}`);
+	  let res = eval(`${gauche} ${op} ${droite}`)
 	  console.log(res)
 	  alert(res)
 	}
-  }
+  })
 
-  setInterval(function(){ alert("Please, use me...") }, 30000);
+  // setInterval(function ()
+  // {
+	// alert("Please, use me...")
+  // }, 30000)
 
 
 </script>
