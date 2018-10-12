@@ -31,11 +31,19 @@
   let i = 0
   // je get ce truc avec des modulos
   var color = ["red", "green", "blue"]
+
+  function change_color()
+  {
+    let y;
+	    y = i < 0 ?  i * -1 : i ;
+    ballon.style.backgroundColor = color[y % 3]
+  }
+
   ballon.addEventListener("click", function ()
   {
 	i++
-    ballon.style.backgroundColor = color[i % 3]
 
+	change_color()
 	var height = ballon.style.height
 	height = height.replace("px", "")
 	height = parseInt(height) + 10
@@ -47,14 +55,14 @@
 	height = height + "px"
 	ballon.style.height = height
 	ballon.style.width = height
-	console.log(height)
-
+    if (i < 0)
+        i *= -1;
   })
 
   ballon.addEventListener("mouseout", function ()
   {
 	i -= 1;
-    ballon.style.backgroundColor = color[i % 3]
+	change_color()
 
 	var height = ballon.style.height
 	height = height.replace("px", "")
@@ -67,9 +75,7 @@
 	height = height + "px"
 	ballon.style.height = height
 	ballon.style.width = height
-	console.log(height)
-
-
+	console.log(i % 3)
   })
 
   // ballon.addEventListener("mouseout", function ()

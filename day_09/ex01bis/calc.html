@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form onsubmit="event.preventDefault(); validateMyForm(event);">
+
+    <input
+            type="text"
+            id="gauche"
+            name="gauche">
+    <select id="op">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+    </select>
+    <input
+            type="text"
+            id="droite"
+            name="droite">
+    <input
+            type="submit"
+            value="Try me!">
+
+</form>
+
+
+<script>
+
+  function validateMyForm(e)
+  {8
+	let gauche = parseInt(document.getElementById("gauche").value)
+	let droite = parseInt(document.getElementById("droite").value)
+	let op = document.getElementById("op").value
+
+
+	if (gauche < 0 || droite < 0 || isNaN(gauche) || isNaN(droite))
+	{
+	  console.log("Error :(")
+      alert("Error :(")
+	}
+	else if ((op === "%" && droite === 0) ||
+	  (op === "/" && droite === 0))
+	{
+	  console.log("It’s over 9000!")
+	  alert("It’s over 9000!")
+	}
+	else
+	{
+	  let res = eval(`${gauche} ${op} ${droite}`);
+	  console.log(res)
+	  alert(res)
+	}
+  }
+
+  setInterval(function(){ alert("Please, use me...") }, 30000);
+
+
+</script>
+
+
+</body>
+</html>
