@@ -1,0 +1,15 @@
+/*th {*/
+    /*display: inline-block;*/
+    /*margin: 1px;*/
+    /*background: red;*/
+    /*width: 10px;*/
+    /*height: 10px;*/
+/*}*/
+
+.black {
+    display: inline-block;
+    margin: 1px;
+    background: red;
+    width: 10px;
+    height: 10px;
+}

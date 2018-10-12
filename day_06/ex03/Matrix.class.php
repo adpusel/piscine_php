@@ -118,6 +118,7 @@ class Matrix
 	  $this->matrice[$line][1] * $matrice->matrice[1][$col] +
 	  $this->matrice[$line][2] * $matrice->matrice[2][$col] +
 	  $this->matrice[$line][3] * $matrice->matrice[3][$col];
+	echo $this->new_matrice[$line][$col]."\n";
 
 	print $this->matrice[$line][0] . " * " . $matrice->matrice[0][$col] . " + ";
 	print $this->matrice[$line][1] . " * " . $matrice->matrice[1][$col] . " + ";

@@ -45,3 +45,12 @@ la methode pour print la map ==> ligne et collomne
 /*------------------------------------*\
     les vaisseaux
 \*------------------------------------*/
+
+
+
+/*------------------------------------*\
+    les obstacles et les vaisseau herite de ma class object et sont sur la map
+\*------------------------------------*/
+
+--> ils ont ume metode qui modifie la map, pour la colorer de leur maniere
+--> prends map en argument ??

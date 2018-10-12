@@ -76,7 +76,7 @@ $m1 = new Matrix(["build" => [
 ]]);
 $M = $m->mult( $m1 );
 //
-//print( $M .  PHP_EOL);
+print( $M .  PHP_EOL);
 //$M = $T->mult( $RX )->mult( $RY )->mult( $S );
 //print( $M .  PHP_EOL);
 //
