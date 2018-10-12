@@ -67,7 +67,7 @@ class Map
 
 //	    echo $this->tab_map[$i][$y]->color === "black" ? " . " : " x ";
 		echo "<th class='" . $this->_tab_map[$i][$y]->color . "'></th>";
-
+cv,\
 	  }
 	  echo '</tr>';
 	}
