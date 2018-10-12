@@ -10,14 +10,17 @@
 class px {
   public $x;
   public $y;
+  public $color;
 
-  public function __construct($x, $y)
+  public function __construct($x, $y, $color)
   {
     $this->y = $y;
     $this->x = $x;
+    $this->color = $color;
   }
-
 }
+
+
 
 class map
 {
@@ -28,7 +31,7 @@ class map
 	  for ($i = 0; $i < 150; $i++) {
 		$line = array();
 		for ($y = 0; $y < 100; $y++) {
-		  $line[$y] = new px($i, $y);
+		  $line[$y] = new px($i, $y, "black");
 	    }
 	    $this->tab_map[$i] = $line;
 	  }
@@ -36,8 +39,12 @@ class map
 
 	public function print_tab()
 	{
-
-	    return;
+	  for ($i = 0; $i < 150; $i++) {
+		for ($y = 0; $y < 100; $y++) {
+		  echo $this->tab_map[$i][$y]->color === "black" ? " . " : " x ";
+		}
+		echo "\n";
+	  }
 	}
 
 
@@ -48,3 +55,4 @@ class map
 }
 
 new map();
+$map->print_tab();
