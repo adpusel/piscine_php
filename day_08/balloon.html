@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+
+    body {
+        padding: 40%;
+    }
+
+</style>
+
+<body>
+
+
+<div
+        class="ballon"
+        id="ballon"
+        style="width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: red;">
+</div>
+
+
+<script>
+  var ballon = document.getElementById("ballon")
+  let i = 0
+  // je get ce truc avec des modulos
+  var color = ["red", "green", "blue"]
+  ballon.addEventListener("click", function ()
+  {
+	i++
+    ballon.style.backgroundColor = color[i % 3]
+
+	var height = ballon.style.height
+	height = height.replace("px", "")
+	height = parseInt(height) + 10
+	console.log(height)
+	if (height > 220)
+	{
+	  height = 200
+	}
+	height = height + "px"
+	ballon.style.height = height
+	ballon.style.width = height
+	console.log(height)
+
+  })
+
+  ballon.addEventListener("mouseout", function ()
+  {
+	i -= 1;
+    ballon.style.backgroundColor = color[i % 3]
+
+	var height = ballon.style.height
+	height = height.replace("px", "")
+	height = parseInt(height) - 5
+	console.log(height)
+	if (height < 200)
+	{
+	  height = 200
+	}
+	height = height + "px"
+	ballon.style.height = height
+	ballon.style.width = height
+	console.log(height)
+
+
+  })
+
+  // ballon.addEventListener("mouseout", function ()
+  // {
+	// i--;
+	// ballon.style.backgroundColor = color[i % 3]
+  //
+  // })
+
+
+</script>
+
+</body>
+</html>

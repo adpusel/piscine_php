@@ -20,7 +20,8 @@
 --> un tab des obstacle () red;
 --> un tab des vaisseau // bleu et vert;
 --> le reste est blanc;
-
+--> pas de clique sur le vaisseaux c'est chacun sont tour
+-->
 
 la methode pour print la map ==> ligne et collomne
 -->
@@ -54,3 +55,14 @@ la methode pour print la map ==> ligne et collomne
 
 --> ils ont ume metode qui modifie la map, pour la colorer de leur maniere
 --> prends map en argument ??
+
+
+/*------------------------------------*\
+    un tour se fait -->
+\*------------------------------------*/
+    il y a deux vaisseaux,
+    premier jouer -->
+            il
+
+
+// sans rien pour faire le front ca ne sert a rien

@@ -24,4 +24,5 @@ class ObjetMap
   {
 	return $this->_coord;
   }
+
 }

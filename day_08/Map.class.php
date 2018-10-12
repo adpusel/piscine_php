@@ -21,10 +21,15 @@ class px
   }
 }
 
+	// comment faire les interaction entre le serveur et moi
+	// des objet pour faire les request
 
 // dans la map il y a un tab qui gere les objet init,
 // avant de print la map, je passe sur les bateau qui me donne leur nouvelle position et la je print la mapz
 
+/*------------------------------------*\
+	moyen plus rapide de gere la map ?
+\*------------------------------------*/
 
 class Map
 {
@@ -32,6 +37,12 @@ class Map
   private $_height = 40;
   private $_width = 40;
   private $_obstacle;
+
+
+  /*------------------------------------*\
+
+  \*------------------------------------*/
+
 
   private function _buildTab()
   {
@@ -48,7 +59,7 @@ class Map
 
   public function print_tab()
   {
-    for ($i = 0; $i < $this->_height; $i++)
+	for ($i = 0; $i < $this->_height; $i++)
 	{
 	  echo '<tr>';
 	  for ($y = 0; $y < $this->_width; $y++)
