@@ -20,6 +20,7 @@
 /*------------------------------------*\
     funciton el
 \*------------------------------------*/
+
 // la function qui destroy les list,
 function delete_el(el)
 {
@@ -28,7 +29,6 @@ function delete_el(el)
 	el.remove()
 	save_list()
   }
-
 }
 
 function create_el(value)
@@ -42,15 +42,39 @@ function create_el(value)
   return div
 }
 
+function aj(data, route, meth, func)
+{
+  $.ajax({
+	type   : meth,
+	url    : route,
+	data   : {data},
+	// dataType: "json",
+	success: function (data)
+	{
+	  if (func)
+	  {
+		func(data)
+	  }
+	}
+  })
+
+}
 
 /*------------------------------------*\
     save et init
 \*------------------------------------*/
-function getCookie(name)
+function get_data()
 {
-  var value = "; " + document.cookie
-  var parts = value.split("; " + name + "=")
-  if (parts.length == 2) return parts.pop().split(";").shift()
+  aj([], "select.php", "GET", function (data)
+  {
+	var list = $("#ft_list")
+	data = $.parseJSON(data)
+	for (var b = 0; b < data.length; b++)
+	{
+	  list.prepend(create_el(data[b]))
+	  console.log(b)
+	}
+  })
 }
 
 function init()
@@ -69,19 +93,20 @@ function init()
 function save_list()
 {
   let arr = []
+  let i = 0
   list.find("*").each(function ()
   {
-	arr.push(this.textContent)
+	arr.unshift([
+
+	  `${i++}`, this.textContent
+	])
   })
 
   arr = JSON.stringify(arr)
-  document.cookie = "list=" + arr + ";expires=Thu, 18 Dec 2400 12:00:00 UTC\""
+  // console.log(arr)
+  aj(arr, "insert.php", "POST")
 }
 
-function delete_el()
-{
-
-}
 
 
 /*------------------------------------*\
@@ -99,11 +124,11 @@ document.getElementById("btn").addEventListener("click", function ()
   save_list()
 })
 
-
-let list = $("#ft_list")
+get_data()
+var list = $("#ft_list")
 let i = 0
 
-init()
+// init()
 
 
 
