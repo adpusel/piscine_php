@@ -47,7 +47,6 @@
 	var height = ballon.style.height
 	height = height.replace("px", "")
 	height = parseInt(height) + 10
-	console.log(height)
 	if (height > 420)
 	{
 	  height = 200
@@ -67,7 +66,6 @@
 	var height = ballon.style.height
 	height = height.replace("px", "")
 	height = parseInt(height) - 5
-	console.log(height)
 	if (height < 200)
 	{
 	  height = 200
@@ -75,7 +73,6 @@
 	height = height + "px"
 	ballon.style.height = height
 	ballon.style.width = height
-	console.log(i % 3)
   })
 
   // ballon.addEventListener("mouseout", function ()

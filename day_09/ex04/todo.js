@@ -1,15 +1,17 @@
 /*
-* les consignes
 *
-* input qui fait pout push dans la listr
-* sur chaque el de la liste, je get juste le premier el de la liste
-* comment je le suprime ? les list on des id, comme ca je sais ce que je suprime :)
+* je dois tout faire en ajax,
+* la form des todo est : *id;i am a todo’
+*   faire test bon output // faire ca juste avec des cookies
+*
+*   charge les fichiers depuit select.php >> je refait une request
+*   send new file to insert. php          >> je resend tout
+*   le fichier delete suprime les todo    >> je resend tout || notion d'id dans la class du todo?
 *
 *
+*   apage pour delete les cookie
 *
-* // une fonction add_to_list
-* // une fonction compte list
-* //
+*   // mettre dans le ajax toute les actions ? i don't understand.
 *
 *
 * */
@@ -18,7 +20,6 @@
 /*------------------------------------*\
     funciton el
 \*------------------------------------*/
-
 // la function qui destroy les list,
 function delete_el(el)
 {
@@ -70,12 +71,18 @@ function save_list()
   let arr = []
   list.find("*").each(function ()
   {
-	arr.unshift(this.textContent)
+	arr.push(this.textContent)
   })
 
   arr = JSON.stringify(arr)
   document.cookie = "list=" + arr + ";expires=Thu, 18 Dec 2400 12:00:00 UTC\""
 }
+
+function delete_el()
+{
+
+}
+
 
 /*------------------------------------*\
     lauch app
@@ -87,6 +94,7 @@ document.getElementById("btn").addEventListener("click", function ()
   if (value !== "" && value !== null)
   {
 	list.prepend(create_el(value))
+
   }
   save_list()
 })

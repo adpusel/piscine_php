@@ -55,7 +55,10 @@ function getCookie(name)
 function init()
 {
   let task = getCookie("list")
-  task = JSON.parse(task)
+  if (task)
+  {
+	task = JSON.parse(task)
+  }
   for (var i = 0; i < task.length; i++)
   {
 	list.appendChild(create_el(task[i]))
@@ -80,11 +83,10 @@ document.getElementById("btn").addEventListener("click", function ()
 {
   let value = prompt("")
 
-  if (value !== "")
+  if (value !== "" && value !== null)
   {
-
+	list.insertBefore(create_el(value), list.firstChild)
   }
-  list.appendChild(create_el(value))
   save_list()
 })
 
